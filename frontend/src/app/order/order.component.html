@@ -1,0 +1,15 @@
+
+<!--Bisher ales nur Platzhalter-->
+
+<p>order works!</p>
+<p>{{ title }}</p>
+
+<div id="ordermain">
+  <div *ngFor="let meal of mealz">
+    <span>{{meal.name}}</span>
+  </div>
+
+  <div *ngFor="let ingredient of ingredients">
+    <span>{{ingredient}}</span>
+  </div>
+</div>

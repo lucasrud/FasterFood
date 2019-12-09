@@ -10,14 +10,13 @@ import java.util.List;
 @Service
 public class OrderService {
 
-    public void addOrder(List<Meal> meals){
+    public void addOrder(List<Meal> meals) {
+
         List<Process> processes = new LinkedList<>();
-    for(Meal meal: meals) {
-    Process process = new Process(meal, meal.getPurchasePrice());
-    processes.add(process);
+
+        for (Meal meal : meals) {
+            Process process = new Process(meal, meal.getPurchasePrice());
+            processes.add(process);
+        }
     }
-
-    }
-
-
 }

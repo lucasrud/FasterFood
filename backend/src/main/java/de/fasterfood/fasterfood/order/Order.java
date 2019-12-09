@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 
@@ -17,13 +19,13 @@ public class Order {
     @OneToMany
     private List<Process> processList;
 
-    private Date date;
-    private Time time;
+    private LocalDate date;
+    private LocalTime time;
 
     private int retailPrice;
 
 
-    public Order(Date date, Time time, List<Process> processes) {
+    public Order(LocalDate date, LocalTime time, List<Process> processes) {
         this.date = date;
         this.time = time;
         this.processList = processes;
@@ -41,19 +43,19 @@ public class Order {
         this.id = id;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
-    public Time getTime() {
+    public LocalTime getTime() {
         return time;
     }
 
-    public void setTime(Time time) {
+    public void setTime(LocalTime time) {
         this.time = time;
     }
 

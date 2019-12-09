@@ -3,12 +3,14 @@ package de.fasterfood.fasterfood.order;
 import de.fasterfood.fasterfood.process.Process;
 
 import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 
 public class Order {
+    @Id
     @GeneratedValue
     private int id;
 
@@ -18,14 +20,17 @@ public class Order {
     private Date date;
     private Time time;
 
-    private int net;
-    private int gross;
+    private int retailPrice;
 
 
     public Order(Date date, Time time, List<Process> processes) {
         this.date = date;
         this.time = time;
-
+        this.processList = processes;
+        this.retailPrice=0;
+        for(Process process: processes){
+            retailPrice+=process.getRetailPrice();
+        }
     }
 
     public int getId() {
@@ -52,19 +57,11 @@ public class Order {
         this.time = time;
     }
 
-    public int getNet() {
-        return net;
+    public int getRetailPrice() {
+        return retailPrice;
     }
 
-    public void setNet(int net) {
-        this.net = net;
-    }
-
-    public int getGross() {
-        return gross;
-    }
-
-    public void setGross(int gross) {
-        this.gross = gross;
+    public void setRetailPrice(int retailPrice) {
+        this.retailPrice = retailPrice;
     }
 }

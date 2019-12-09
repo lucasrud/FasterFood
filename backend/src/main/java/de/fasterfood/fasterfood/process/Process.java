@@ -17,13 +17,13 @@ public class Process {
     @OneToOne
     private Meal meal;
 
-    private int unitPrice;
+    private int retailPrice;
     private int quantity;
 
-    public Process (Meal meal, int unitPrice) {
+    public Process (Meal meal, int retailPrice) {
 //        this.order = order;
         this.meal = meal;
-        this.unitPrice = unitPrice;
+        this.retailPrice= retailPrice;
     }
 
     public int getId() {
@@ -50,12 +50,12 @@ public class Process {
         this.meal = meal;
     }
 
-    public int getUnitPrice() {
-        return unitPrice;
+    public int getRetailPrice() {
+        return retailPrice;
     }
 
-    public void setUnitPrice(int unitPrice) {
-        this.unitPrice = unitPrice;
+    public void setRetailPrice(int retailPrice) {
+        this.retailPrice = retailPrice;
     }
 }
 

@@ -13,13 +13,12 @@ import java.util.List;
 
 @RestController
 public class OrderController {
-
-    private OrderRepository orderRepository;
+    private OrderService orderService;
     private MealRepository mealRepository;
 
     @Autowired
-    public OrderController (OrderRepository orderRepository, MealRepository mealRepository){
-        this.orderRepository=orderRepository;
+    public OrderController (MealRepository mealRepository, OrderService orderService){
+        this.orderService = orderService;
         this.mealRepository=mealRepository;
     }
 
@@ -36,9 +35,8 @@ public class OrderController {
 //    //TODO Pfade
     @PostMapping("/fasterfood/order")
     public List<Meal> order(@RequestBody List<Meal> meals){
-
-
-    return listOfItems();
+        orderService.addOrder(meals);
+        return listOfItems();
     }
 
 

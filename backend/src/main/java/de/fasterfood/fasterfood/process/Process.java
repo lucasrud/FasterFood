@@ -21,9 +21,9 @@ public class Process {
     private int quantity;
 
     public Process (Meal meal, double retailPrice) {
-//        this.order = order;
         this.meal = meal;
         this.retailPrice= retailPrice;
+        this.quantity=1;
     }
 
     public int getId() {
@@ -56,6 +56,14 @@ public class Process {
 
     public void setRetailPrice(int retailPrice) {
         this.retailPrice = retailPrice;
+    }
+
+    public void increaseQuantity(){
+        this.quantity++;
+    }
+
+    public int getQuantity() {
+        return quantity;
     }
 }
 

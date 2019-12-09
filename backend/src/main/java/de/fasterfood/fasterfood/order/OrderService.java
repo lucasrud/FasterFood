@@ -22,15 +22,28 @@ public class OrderService {
         this.processRepository = processRepository;
     }
 
-    public void addOrder(List<Meal> meals){
+    public void addOrder(List<Meal> meals) {
         List<Process> processes = new LinkedList<>();
-    for(Meal meal: meals) {
-        Process process = new Process(meal, meal.getPurchasePrice());
-        processes.add(process);
-        processRepository.save(process);
-    }
-    Order order = new Order(LocalDate.now(), LocalTime.now(), processes);
-    orderRepository.save(order);
+        for (Meal meal : meals) {
+            if (!processes.isEmpty()) {
+                for (Process process : processes) {
+                    if (process.getMeal().getId() == meal.getId()) {
+                        process.increaseQuantity();
+                    } else {
+                        Process newProcess = new Process(meal, meal.getPurchasePrice());
+                        processes.add(newProcess);
+                    }
+                }
+            } else {
+                Process newProcess = new Process(meal, meal.getPurchasePrice());
+                processes.add(newProcess);
+            }
+            for (Process process : processes) {
+                processRepository.save(process);
+            }
+            Order order = new Order(LocalDate.now(), LocalTime.now(), processes);
+            orderRepository.save(order);
+        }
     }
 
 

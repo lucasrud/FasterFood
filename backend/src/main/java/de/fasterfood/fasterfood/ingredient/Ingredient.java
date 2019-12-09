@@ -13,14 +13,14 @@ public class Ingredient {
 
     private String name;
 
-    private int purchasePrice;
+    private double purchasePrice;
 
     private int stock;
 
     @ManyToMany
     private List<Meal> mealList;
 
-    public Ingredient(String name, int purchasePrice, int stock) {
+    public Ingredient(String name, double purchasePrice, int stock) {
         this.name = name;
         this.purchasePrice = purchasePrice;
         this.stock = stock;
@@ -48,7 +48,7 @@ public class Ingredient {
         this.name = name;
     }
 
-    public int getPurchasePrice() {
+    public double getPurchasePrice() {
         return purchasePrice;
     }
 

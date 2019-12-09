@@ -15,18 +15,20 @@ public class Meal {
 
     private String name;
 
-    private int purchasePrice;
+    private double purchasePrice;
     private int retailPrice;
-    private int profit;
+    private double profit;
 
     @ManyToMany
     private List<Ingredient> ingredients;
 
-    public Meal(String name, int purchasePrice, int retailPrice, int profit, List<Ingredient> ingredients) {
+    public Meal(String name, int retailPrice, List<Ingredient> ingredients) {
         this.name = name;
-        this.purchasePrice = purchasePrice;
+        for (Ingredient ingredient : ingredients){
+            this.purchasePrice += ingredient.getPurchasePrice();
+        }
         this.retailPrice = retailPrice;
-        this.profit = profit;
+        this.profit = retailPrice - purchasePrice;
         this.ingredients = ingredients;
     }
 
@@ -46,7 +48,7 @@ public class Meal {
         this.name = name;
     }
 
-    public int getPurchasePrice() {
+    public double getPurchasePrice() {
         return purchasePrice;
     }
 
@@ -62,7 +64,7 @@ public class Meal {
         this.retailPrice = retailPrice;
     }
 
-    public int getProfit() {
+    public double getProfit() {
         return profit;
     }
 

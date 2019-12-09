@@ -12,6 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
 import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -57,8 +60,8 @@ public class HomeController {
         processes.add(process0);
         processes.add(process1);
 
-        Date today = new Date();
-        Time now = new Time(0);
+        LocalDate today = LocalDate.now();
+        LocalTime now = LocalTime.now();
 
         Order order = new Order(today, now, processes);
 
@@ -72,7 +75,6 @@ public class HomeController {
         }
 
         orderRepository.save(order);
-
 
     }
 }

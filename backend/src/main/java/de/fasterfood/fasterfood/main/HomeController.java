@@ -18,14 +18,19 @@ import java.util.List;
 
 public class HomeController {
 
+    private IngredientRepository ingredientRepository;
+    private MealRepository mealRepository;
+    private OrderRepository orderRepository;
+    private ProcessRepository processRepository;
+
     @Autowired
-    IngredientRepository ingredientRepository;
-    @Autowired
-    MealRepository mealRepository;
-    @Autowired
-    OrderRepository orderRepository;
-    @Autowired
-    ProcessRepository processRepository;
+    public HomeController(IngredientRepository ingredientRepository, MealRepository mealRepository, OrderRepository orderRepository,
+                          ProcessRepository processRepository){
+        this.ingredientRepository = ingredientRepository;
+        this.mealRepository = mealRepository;
+        this.orderRepository = orderRepository;
+        this.processRepository = processRepository;
+    }
 
     @PostConstruct
     public void setupData(){

@@ -6,6 +6,7 @@ import javax.naming.InsufficientResourcesException;
 import javax.persistence.*;
 import java.util.List;
 
+@Entity
 public class Meal {
 
     @Id

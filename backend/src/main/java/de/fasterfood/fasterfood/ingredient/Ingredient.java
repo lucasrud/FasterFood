@@ -2,13 +2,13 @@ package de.fasterfood.fasterfood.ingredient;
 
 import de.fasterfood.fasterfood.meal.Meal;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
 public class Ingredient {
-    @GeneratedValue
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String name;

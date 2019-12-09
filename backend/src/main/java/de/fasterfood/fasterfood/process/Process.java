@@ -3,13 +3,12 @@ package de.fasterfood.fasterfood.process;
 import de.fasterfood.fasterfood.meal.Meal;
 import de.fasterfood.fasterfood.order.Order;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
+@Entity
 public class Process {
-
-    @GeneratedValue
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @ManyToOne

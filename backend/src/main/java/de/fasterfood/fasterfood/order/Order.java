@@ -2,21 +2,20 @@ package de.fasterfood.fasterfood.order;
 
 import de.fasterfood.fasterfood.process.Process;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 
+@Entity
 public class Order {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @OneToMany
+    @OneToMany(mappedBy = "order")
     private List<Process> processList;
 
     private LocalDate date;

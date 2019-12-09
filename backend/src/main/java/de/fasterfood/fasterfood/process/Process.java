@@ -18,9 +18,10 @@ public class Process {
     private Meal meal;
 
     private int unitPrice;
+    private int quantity;
 
-    public Process(Order order, Meal meal, int unitPrice) {
-        this.order = order;
+    public Process (Meal meal, int unitPrice) {
+//        this.order = order;
         this.meal = meal;
         this.unitPrice = unitPrice;
     }

@@ -1,5 +1,7 @@
 package de.fasterfood.fasterfood.order;
 
+import de.fasterfood.fasterfood.process.Process;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.OneToMany;
 import java.sql.Time;
@@ -20,11 +22,10 @@ public class Order {
     private int gross;
 
 
-    public Order(Date date, Time time, int net, int gross) {
+    public Order(Date date, Time time, List<Process> processes) {
         this.date = date;
         this.time = time;
-        this.net = net;
-        this.gross = gross;
+
     }
 
     public int getId() {

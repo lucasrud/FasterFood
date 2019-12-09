@@ -14,15 +14,24 @@ export class OrderService {
   }
 
   meals: Meal[] = [];
-  processList: Meal[] = [];
+  processList: Process[] = [];
+  tempProcessList: string[] = [];
 
-  // getProcessList(): string[] {
+  // getProcessList() {
   //   return this.processList;
   // }
   //
   // addProcess(process: Process) {
   //   this.processList.push(process);
   // }
+
+  addTempProcessList(tempProcessString: string) {
+    this.tempProcessList.push(tempProcessString);
+  }
+
+  getTempProcessList() {
+    return this.tempProcessList;
+  }
 
   getAllMeals() {
       this.http.get<Meal[]>('/fasterfood/order').subscribe( meals => this.meals = meals);

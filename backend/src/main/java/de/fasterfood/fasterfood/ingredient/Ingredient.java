@@ -17,7 +17,10 @@ public class Ingredient {
     private int stock;
 
     @ManyToMany
-    private List<Meal> mealList;
+    private List<Meal> mealList;  // Bitte lesen
+//    @ManyToMany             // Muss Meal in der Zeile drüber wirklich eine List sein? Ist nicht eigentlich das Verhältnis von
+//    private Meal mealList;  // Meal zu Ingredient ManyToMany,  statt  List<Meal> zu Ingredient? Oder passt das wirklich? AK
+
 
     public Ingredient(String name, double purchasePrice, int stock) {
         this.name = name;

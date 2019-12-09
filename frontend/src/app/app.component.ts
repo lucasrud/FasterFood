@@ -1,5 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import { OrderService } from './order.service';
+import {TestService} from './testservice';
 import {Meal} from './meal';
 import {HttpClient} from '@angular/common/http';
 
@@ -17,18 +18,20 @@ export class AppComponent implements OnInit {
 
   meals: Meal[];
   orderService: OrderService;
+  testService: TestService;
 
-  constructor(private http: HttpClient, orderService: OrderService) {
+  constructor(private http: HttpClient, orderService: OrderService, testService: TestService) {
     this.orderService = orderService;
+    this.testService = testService;
+    this.meals = this.testService.getMeals();
+    // this.meals = this.orderService.getAllMeals();
   }
 
   ngOnInit(): void {
-    this.meals = this.orderService.getAllMeals();
   }
 
-  addProcess() {
-    // Todo
-    // this.orderService.addProcess();
+  addProcess(mealName: string) { // TODO erstmal Platzhalter nur mit Strings für die angeklickten Waren, später dann mit Process?
+    this.orderService.addTempProcessList(mealName);
   }
 
 }

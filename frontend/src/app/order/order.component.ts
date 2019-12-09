@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Meal} from '../meal';
 import {TestService} from '../testservice';
+import { OrderService } from '../order.service';
 
 @Component({
   selector: 'app-order',
@@ -11,14 +12,17 @@ export class OrderComponent implements OnInit {
 
   // Bisher ales nur Platzhalter
 
-  title = 'order Component';
-  mealz: Meal[];
+  title = 'order Components';
+  meals: Meal[];
+  mealz: string[];
   ingredients: string[];
+  orderService: OrderService;
+  testService: TestService;
 
-  constructor(testservice: TestService) {
+  constructor(testservice: TestService, orderService: OrderService) {
 
     this.ingredients = testservice.getIngredients();
-    this.mealz = testservice.getMeals();
+    this.mealz = orderService.getTempProcessList();
   }
 
   ngOnInit(): void {

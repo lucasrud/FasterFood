@@ -15,12 +15,17 @@ export class TestService {
   }
 
   getMeals() {
-      for (let i = 0; i < 5; i++) {
+
+      const bla: string[] = ['Cola', 'Cola', 'Döner', 'Pizza', 'Pasta', 'Haxe'];
+      const blacost: number[] = [1.50, 1.50, 4.50, 7.20, 5.90, 9.99];
+
+      for (let i = 1; i < 6; i++) {
 
         const meal: Meal = {
-          name: 'Döner',
+          id: i,
+          name: bla[i],
           purchasePrice: 2,
-          retailPrice: 5,
+          retailPrice: blacost[i],
           profit: 3,
           ingredients: this.ingredients,
         };

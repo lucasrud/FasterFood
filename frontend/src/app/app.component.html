@@ -1,24 +1,11 @@
-{{ title }}
+<h1>{{ title }}</h1>
 
 <!--Bisher ales nur Platzhalter-->
 
-<div id="ordermain">
-  <span *ngFor="let meal of meals">
-    <div [id]="meal.id" (click)="addProcess()">
-      <span>{{meal.name}}</span>
-      <span>{{meal.name}}</span>
-
+<div class="main" >
+    <div class="main mealbutton" *ngFor="let meal of meals">
+      <span (click)="addProcess(meal.name)"> {{meal.id + ' ' + meal.name + ' ' + meal.retailPrice + ' EUR' }}</span>
     </div>
-  </span>
-
-<div class="main">
-  <div class="main">
-    <span>asd</span>
-  </div>
-
-  <div class="main">
-    <span>sdf</span>
-  </div>
 </div>
 
 

@@ -4,6 +4,7 @@ import de.fasterfood.fasterfood.ingredient.Ingredient;
 import javax.persistence.*;
 import java.util.List;
 
+
 @Entity
 public class Meal {
 

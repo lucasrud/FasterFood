@@ -1,4 +1,5 @@
 import {Meal} from './meal';
+import {Process} from './process';
 import {Injectable} from '@angular/core';
 
 
@@ -7,9 +8,9 @@ import {Injectable} from '@angular/core';
 })
 export class OrderService {
 
-  processList: Meal[] = [];
+  processList: Process[] = [];
 
-  getProcessList(): string[] {
+  getProcessList() {
     return this.processList;
   }
 

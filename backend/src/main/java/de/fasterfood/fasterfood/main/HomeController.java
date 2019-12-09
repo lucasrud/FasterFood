@@ -9,6 +9,7 @@ import de.fasterfood.fasterfood.order.OrderRepository;
 import de.fasterfood.fasterfood.process.Process;
 import de.fasterfood.fasterfood.process.ProcessRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.PostConstruct;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -16,6 +17,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 
+//@RestController
 public class HomeController {
 
     private IngredientRepository ingredientRepository;

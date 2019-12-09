@@ -3,14 +3,13 @@ package de.fasterfood.fasterfood.meal;
 import de.fasterfood.fasterfood.ingredient.Ingredient;
 
 import javax.naming.InsufficientResourcesException;
-import javax.persistence.GeneratedValue;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 public class Meal {
-    @GeneratedValue
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String name;

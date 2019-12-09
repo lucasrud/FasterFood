@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import { OrderService } from './orderservice';
+import { OrderService } from './order.service';
 import {Meal} from './meal';
 import {HttpClient} from '@angular/common/http';
 
@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
   // Bisher ales nur Platzhalter-
 
   title = 'fasterfood-angular';
+
   meals: Meal[];
   orderService: OrderService;
 
@@ -21,7 +22,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.http.get<Meal[]>('/fasterfood/order').subscribe( meals => this.meals = meals);
+    this.meals = this.orderService.getAllMeals();
   }
 
   addProcess() {

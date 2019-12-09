@@ -22,7 +22,6 @@ export class OrderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
   }
 
 }

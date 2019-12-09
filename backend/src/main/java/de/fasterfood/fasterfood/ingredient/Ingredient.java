@@ -1,20 +1,19 @@
 package de.fasterfood.fasterfood.ingredient;
 
 import de.fasterfood.fasterfood.meal.Meal;
-
 import javax.persistence.*;
 import java.util.List;
 
+
 @Entity
 public class Ingredient {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     private String name;
-
     private double purchasePrice;
-
     private int stock;
 
     @ManyToMany

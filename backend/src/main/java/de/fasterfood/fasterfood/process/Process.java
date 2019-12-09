@@ -2,14 +2,15 @@ package de.fasterfood.fasterfood.process;
 
 import de.fasterfood.fasterfood.meal.Meal;
 import de.fasterfood.fasterfood.order.Order;
-
 import javax.persistence.*;
+
 
 @Entity
 public class Process {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @ManyToOne
     private Order order;
@@ -18,6 +19,7 @@ public class Process {
 
     private double retailPrice;
     private int quantity;
+
 
     public Process (Meal meal, double retailPrice) {
         this.meal = meal;

@@ -1,20 +1,18 @@
 package de.fasterfood.fasterfood.meal;
 
 import de.fasterfood.fasterfood.ingredient.Ingredient;
-
-import javax.naming.InsufficientResourcesException;
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 public class Meal {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     private String name;
-
     private double purchasePrice;
     private int retailPrice;
     private double profit;

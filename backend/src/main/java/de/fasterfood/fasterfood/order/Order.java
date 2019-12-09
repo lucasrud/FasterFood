@@ -1,36 +1,34 @@
 package de.fasterfood.fasterfood.order;
 
 import de.fasterfood.fasterfood.process.Process;
-
 import javax.persistence.*;
-import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
 import java.util.List;
+
 
 @Entity
 public class Order {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @OneToMany(mappedBy = "order")
     private List<Process> processList;
 
     private LocalDate date;
     private LocalTime time;
-
-    private int retailPrice;
+    private double retailPrice;
 
 
     public Order(LocalDate date, LocalTime time, List<Process> processes) {
         this.date = date;
         this.time = time;
         this.processList = processes;
-        this.retailPrice=0;
+        this.retailPrice = 0;
         for(Process process: processes){
-            retailPrice+=process.getRetailPrice();
+            retailPrice += process.getRetailPrice();
         }
     }
 
@@ -58,7 +56,7 @@ public class Order {
         this.time = time;
     }
 
-    public int getRetailPrice() {
+    public double getRetailPrice() {
         return retailPrice;
     }
 

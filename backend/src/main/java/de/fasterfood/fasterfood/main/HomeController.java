@@ -19,7 +19,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 
-// Muss hier nicht noch eine Annotation hin? AK
 @RestController
 public class HomeController {
 

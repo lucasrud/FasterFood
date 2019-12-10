@@ -8,6 +8,7 @@ import de.fasterfood.fasterfood.order.Order;
 import de.fasterfood.fasterfood.order.OrderRepository;
 import de.fasterfood.fasterfood.process.Process;
 import de.fasterfood.fasterfood.process.ProcessRepository;
+import de.fasterfood.fasterfood.recipe.Recipe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,8 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.PostConstruct;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 
 @RestController
@@ -59,11 +62,21 @@ public class HomeController {
             ingredients.add(sauce);
             ingredients.add(veggies);
 
-            Meal kebab = new Meal("kebab", 6, ingredients);
-            Meal wrap = new Meal("pizza", 6, ingredients);
-            Meal turkishPizza = new Meal("turkishPizza", 6, ingredients);
-            Meal durum = new Meal("durum", 6, ingredients);
-            Meal crog = new Meal("crog", 6, ingredients);
+            HashMap<String, Integer> amountOfIng = new HashMap<>();
+            Random random = new Random();
+
+            for ( Ingredient ingredient : ingredients ){
+                amountOfIng.put(ingredient.getName(), random.nextInt(8+1));
+            }
+
+
+
+            Meal kebab = new Meal("kebab", 6, ingredients, amountOfIng);
+            Meal wrap = new Meal("pizza", 6, ingredients, amountOfIng);
+            Meal turkishPizza = new Meal("turkishPizza", 6, ingredients, amountOfIng);
+            Meal durum = new Meal("durum", 6, ingredients, amountOfIng);
+            Meal crog = new Meal("crog", 6, ingredients, amountOfIng);
+
 
             Process process0 = new Process(kebab, kebab.getRetailPrice());
             Process process1 = new Process(kebab, kebab.getRetailPrice());

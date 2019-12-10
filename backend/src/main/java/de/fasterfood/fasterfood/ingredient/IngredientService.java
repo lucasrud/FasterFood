@@ -20,8 +20,15 @@ public class IngredientService {
 
         for (Ingredient ingredient : meal.getIngredients()){
 
-
         }
-
     }
+    public void changePurchasePrice(Ingredient ingredient, int value){
+        ingredient.setPurchasePrice(value);
+        ingredientRepository.save(ingredient);
+    }
+    public void changeStock(Ingredient ingredient, int value){
+        ingredient.setStock(value);
+        ingredientRepository.save(ingredient);
+    }
+
 }

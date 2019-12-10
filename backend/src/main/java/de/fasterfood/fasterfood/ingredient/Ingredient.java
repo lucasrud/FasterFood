@@ -1,8 +1,11 @@
 package de.fasterfood.fasterfood.ingredient;
 
 import de.fasterfood.fasterfood.meal.Meal;
+import de.fasterfood.fasterfood.recipe.Recipe;
+
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -12,14 +15,17 @@ public class Ingredient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+
     private String name;
     private double purchasePrice;
     private int stock;
 
     @ManyToMany
-    private List<Meal> mealList;  // Bitte lesen
-//    @ManyToMany             // Muss Meal in der Zeile drüber wirklich eine List sein? Ist nicht eigentlich das Verhältnis von
-//    private Meal mealList;  // Meal zu Ingredient ManyToMany,  statt  List<Meal> zu Ingredient? Oder passt das wirklich? AK
+    private List<Meal> mealList;
+
+    @OneToMany(mappedBy = "ingredient")
+    Set<Recipe> recipeSet;
+
 
 
     public Ingredient(String name, double purchasePrice, int stock) {

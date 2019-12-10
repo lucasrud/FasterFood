@@ -2,8 +2,8 @@
 <!--Bisher ales nur Platzhalter-->
 
 <div id="ordermain">
-  <h5>current Order</h5>
-  <div *ngFor="let meal of mealz">
+  <h5>current Order {{orderCost}}</h5>
+  <div *ngFor="let meal of meals">
     <span>{{meal.retailPrice + ' EUR ' }} {{meal.name}}</span>
   </div>
 </div>

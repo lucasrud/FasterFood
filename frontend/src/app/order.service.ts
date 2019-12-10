@@ -2,6 +2,7 @@ import {Meal} from './meal';
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Process} from './process';
+import {BehaviorSubject, Observable} from 'rxjs';
 
 
 @Injectable({
@@ -12,27 +13,32 @@ export class OrderService {
   constructor(private http: HttpClient) {
   }
 
-  meals: Meal[] = [];
+  private meals: Meal[] = [];
   processList: Process[] = [];
-  tempProcessList: Meal[] = [];
+  mealList: Meal[] = [];
+  currentCost: number;
 
-  // getProcessList() {
-  //   return this.processList;
-  // }
-  //
-  // addProcess(process: Process) {
-  //   this.processList.push(process);
-  // }
-
-  addTempProcessList(tempProcessString: Meal) {
-    this.tempProcessList.push(tempProcessString);
+  addToMealList(meal: Meal): void {
+    this.mealList.push(meal);
   }
 
-  getTempProcessList() {
-    return this.tempProcessList;
+  getMealList(): Meal[] {
+    return this.mealList;
   }
 
-  // getAllMeals() {  // steht jetzt direkt in app.component.ts
-  //     this.http.get<Meal[]>('/api/fasterfood/order').subscribe( meals => this.meals = meals);
-  // }
+  setOrderCost(): number {
+
+    for (const meal of this.mealList) {
+      this.currentCost += meal.retailPrice;
+    }
+
+    console.log(this.currentCost);
+    return this.currentCost;
+  }
+
+  getOrderCost(): number {
+    return this.currentCost;
+  }
+
+
 }

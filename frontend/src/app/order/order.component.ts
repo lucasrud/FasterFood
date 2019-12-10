@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Meal} from '../meal';
 import {TestService} from '../testservice';
 import { OrderService } from '../order.service';
+import {BehaviorSubject} from 'rxjs';
 
 @Component({
   selector: 'app-order',
@@ -10,22 +11,21 @@ import { OrderService } from '../order.service';
 })
 export class OrderComponent implements OnInit {
 
-  // Bisher ales nur Platzhalter
-
   title = 'order Components';
   meals: Meal[];
-  mealz: Meal[];
   ingredients: string[];
   orderService: OrderService;
   testService: TestService;
+  orderCost: BehaviorSubject<number>;
 
   constructor(testservice: TestService, orderService: OrderService) {
-
+    this.orderService = orderService;
     this.ingredients = testservice.getIngredients();
-    this.mealz = orderService.getTempProcessList();
+    this.meals = orderService.getMealList();
   }
 
   ngOnInit(): void {
+    const orderCost = this.orderService.getOrderCost();
   }
 
 }

@@ -7,4 +7,3 @@ export interface Meal {
   profit: number;
   ingredients: string[];
 }
-

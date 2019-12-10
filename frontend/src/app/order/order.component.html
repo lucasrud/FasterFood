@@ -4,6 +4,6 @@
 <div id="ordermain">
   <h5>current Order</h5>
   <div *ngFor="let meal of mealz">
-    <span>{{meal}}</span>
+    <span>{{meal.retailPrice + ' EUR ' }} {{meal.name}}</span>
   </div>
 </div>

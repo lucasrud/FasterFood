@@ -14,7 +14,7 @@ export class OrderComponent implements OnInit {
 
   title = 'order Components';
   meals: Meal[];
-  mealz: string[];
+  mealz: Meal[];
   ingredients: string[];
   orderService: OrderService;
   testService: TestService;

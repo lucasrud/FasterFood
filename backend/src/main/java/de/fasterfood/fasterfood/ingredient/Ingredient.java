@@ -37,7 +37,7 @@ public class Ingredient {
         }
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -67,5 +67,9 @@ public class Ingredient {
 
     public void setStock(int stock) {
         this.stock = stock;
+    }
+
+    public List<Meal> getMealList() {
+        return mealList;
     }
 }

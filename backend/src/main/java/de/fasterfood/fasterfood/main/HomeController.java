@@ -50,6 +50,7 @@ public class HomeController {
         Ingredient pita = new Ingredient("pita", 0.4, 20);
         Ingredient sauce = new Ingredient("sauce", 0.4, 20);
         Ingredient veggies = new Ingredient("veggies", 0.4, 20);
+        Ingredient dough = new Ingredient("dough", 0.4, 20);
 
         List<Ingredient> ingredients = new LinkedList<>();
         ingredients.add(cowMeat);
@@ -59,6 +60,10 @@ public class HomeController {
         ingredients.add(veggies);
 
         Meal kebab = new Meal("kebab", 6, ingredients);
+        Meal wrap = new Meal("pizza", 6, ingredients);
+        Meal turkishPizza = new Meal("turkishPizza", 6, ingredients);
+        Meal durum = new Meal("durum", 6, ingredients);
+        Meal crog = new Meal("crog", 6, ingredients);
 
         Process process0 = new Process(kebab, kebab.getRetailPrice());
         Process process1 = new Process(kebab, kebab.getRetailPrice());
@@ -76,6 +81,10 @@ public class HomeController {
             ingredientRepository.save(ingredient);
         }
         mealRepository.save(kebab);
+        mealRepository.save(turkishPizza);
+        mealRepository.save(crog);
+        mealRepository.save(durum);
+        mealRepository.save(wrap);
 
         for (Process process : processes){
             processRepository.save(process);

@@ -31,6 +31,9 @@ public class Meal {
         this.ingredients = ingredients;
     }
 
+    public Meal() {
+    }
+
     public int getId() {
         return id;
     }

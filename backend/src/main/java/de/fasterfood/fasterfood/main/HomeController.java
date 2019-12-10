@@ -9,6 +9,9 @@ import de.fasterfood.fasterfood.order.OrderRepository;
 import de.fasterfood.fasterfood.process.Process;
 import de.fasterfood.fasterfood.process.ProcessRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import javax.annotation.PostConstruct;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -17,6 +20,7 @@ import java.util.List;
 
 
 // Muss hier nicht noch eine Annotation hin? AK
+@RestController
 public class HomeController {
 
     private IngredientRepository ingredientRepository;
@@ -31,6 +35,11 @@ public class HomeController {
         this.mealRepository = mealRepository;
         this.orderRepository = orderRepository;
         this.processRepository = processRepository;
+    }
+
+    @GetMapping("/")
+    public List<Meal> home(){
+        return mealRepository.findAll();
     }
 
     @PostConstruct

@@ -28,6 +28,9 @@ public class Ingredient {
         this.stock = stock;
     }
 
+    public Ingredient() {
+    }
+
     public void addMeal(Meal meal){
         if(!this.mealList.contains(meal)){
             this.mealList.add(meal);

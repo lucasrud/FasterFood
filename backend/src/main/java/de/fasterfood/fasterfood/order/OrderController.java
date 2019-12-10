@@ -22,13 +22,13 @@ public class OrderController {
         this.mealRepository=mealRepository;
     }
 
-    @GetMapping("/fasterfood/order")
+    @GetMapping("/api/fasterfood/order")
     public List<Meal> listOfItems () {
         return mealRepository.findAll();
     }
 
 //    //TODO Pfade
-    @PostMapping("/fasterfood/order")
+    @PostMapping("/api/fasterfood/order")
     public List<Meal> order(@RequestBody List<Meal> meals){
         orderService.addOrder(meals);
         return listOfItems();

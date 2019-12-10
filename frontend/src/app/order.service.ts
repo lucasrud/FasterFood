@@ -10,12 +10,11 @@ import {Process} from './process';
 export class OrderService {
 
   constructor(private http: HttpClient) {
-    this.getAllMeals();
   }
 
   meals: Meal[] = [];
   processList: Process[] = [];
-  tempProcessList: string[] = [];
+  tempProcessList: Meal[] = [];
 
   // getProcessList() {
   //   return this.processList;
@@ -25,7 +24,7 @@ export class OrderService {
   //   this.processList.push(process);
   // }
 
-  addTempProcessList(tempProcessString: string) {
+  addTempProcessList(tempProcessString: Meal) {
     this.tempProcessList.push(tempProcessString);
   }
 
@@ -33,8 +32,7 @@ export class OrderService {
     return this.tempProcessList;
   }
 
-  getAllMeals() {
-      this.http.get<Meal[]>('/fasterfood/order').subscribe( meals => this.meals = meals);
-      return this.meals;
-  }
+  // getAllMeals() {  // steht jetzt direkt in app.component.ts
+  //     this.http.get<Meal[]>('/api/fasterfood/order').subscribe( meals => this.meals = meals);
+  // }
 }

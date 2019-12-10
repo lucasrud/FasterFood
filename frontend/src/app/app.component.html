@@ -4,7 +4,7 @@
 
 <div class="main" >
     <div class="main mealbutton" *ngFor="let meal of meals">
-      <span (click)="addProcess(meal.name)"> {{meal.id + ' ' + meal.name + ' ' + meal.retailPrice + ' EUR' }}</span>
+      <span (click)="addProcess(meal)"> {{meal.id + ' ' + meal.name + ' ' + meal.retailPrice + ' EUR' }}</span>
     </div>
 </div>
 

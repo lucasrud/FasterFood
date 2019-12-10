@@ -12,6 +12,6 @@ public class MealService {
     public void changeRetailPrice(Meal meal, int value){
         meal.setRetailPrice(value);
         mealRepository.save(meal);
-    }
+}
 
 }

@@ -46,7 +46,7 @@ public class HomeController {
 
         if (mealRepository.count() == 0) {
             Ingredient cowMeat = new Ingredient("cowMeat", 0.4, 20);
-            Ingredient salad = new Ingredient("cowMeat", 0.4, 20);
+            Ingredient salad = new Ingredient("salad", 0.4, 20);
             Ingredient pita = new Ingredient("pita", 0.4, 20);
             Ingredient sauce = new Ingredient("sauce", 0.4, 20);
             Ingredient veggies = new Ingredient("veggies", 0.4, 20);

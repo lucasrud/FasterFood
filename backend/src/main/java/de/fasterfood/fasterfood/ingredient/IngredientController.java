@@ -17,15 +17,27 @@ public class IngredientController {
         this.ingredientRepository = ingredientRepository;
     }
 
-    @GetMapping("/prices/ingredients")
+    @GetMapping("/price/ingredients")
     public List<Ingredient> listAllIngredients(){
         return ingredientRepository.findAll();
     }
 
-    @PostMapping("/prices/ingredients")
+    @PostMapping("/price/ingredients")
     public void changeIngredientPrices(List<Ingredient> ingredients, List<Integer> prices){
-        for(int i=0; i<ingredients.size();i++){
+        for(int i=0; i<ingredients.size(); i++){
             ingredientService.changePurchasePrice(ingredients.get(i), prices.get(i));
+        }
+    }
+
+    @GetMapping("/stock/ingredients")
+    public List<Ingredient> stockIngredient(){
+        return ingredientRepository.findAll();
+    }
+
+    @PostMapping("/stock/ingredients")
+    public void changeStock(List<Ingredient> ingredients, List<Integer> units){
+        for(int i=0; i<ingredients.size(); i++){
+            ingredientService.changeStock(ingredients.get(i), units.get(i));
         }
     }
 }

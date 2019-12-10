@@ -69,6 +69,8 @@ public class Ingredient {
         this.stock = stock;
     }
 
+    public void addStock(int stock) { this.stock += stock;}
+
     public List<Meal> getMealList() {
         return mealList;
     }

@@ -23,14 +23,13 @@ export class AppComponent implements OnInit {
   constructor(private http: HttpClient, orderService: OrderService, testService: TestService) {
     this.orderService = orderService;
     this.testService = testService;
-    this.meals = this.testService.getMeals();
-    // this.meals = this.orderService.getAllMeals();
   }
 
   ngOnInit(): void {
+    this.http.get<Meal[]>('/api/fasterfood/order').subscribe( meals => this.meals = meals);
   }
 
-  addProcess(mealName: string) { // TODO erstmal Platzhalter nur mit Strings für die angeklickten Waren, später dann mit Process?
+  addProcess(mealName: Meal) { // TODO erstmal Platzhalter nur mit Strings für die angeklickten Waren, später dann mit Process?
     this.orderService.addTempProcessList(mealName);
   }
 

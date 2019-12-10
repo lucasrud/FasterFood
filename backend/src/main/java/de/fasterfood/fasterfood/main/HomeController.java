@@ -36,14 +36,14 @@ public class HomeController {
     @PostConstruct
     public void setupData(){
 
-        Ingredient cowMeat = new Ingredient("cowMeat", 0.4, 20);
-        Ingredient salad = new Ingredient("cowMeat", 0.4, 20);
+        Ingredient beef = new Ingredient("beef", 0.4, 20);
+        Ingredient salad = new Ingredient("beef", 0.4, 20);
         Ingredient pita = new Ingredient("pita", 0.4, 20);
         Ingredient sauce = new Ingredient("sauce", 0.4, 20);
         Ingredient veggies = new Ingredient("veggies", 0.4, 20);
 
         List<Ingredient> ingredients = new LinkedList<>();
-        ingredients.add(cowMeat);
+        ingredients.add(beef);
         ingredients.add(salad);
         ingredients.add(pita);
         ingredients.add(sauce);

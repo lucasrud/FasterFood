@@ -27,7 +27,10 @@ public class Process {
         this.quantity=1;
     }
 
-    public int getId() {
+    public Process() {
+    }
+
+    public Integer getId() {
         return id;
     }
 
@@ -66,5 +69,6 @@ public class Process {
     public int getQuantity() {
         return quantity;
     }
+
 }
 

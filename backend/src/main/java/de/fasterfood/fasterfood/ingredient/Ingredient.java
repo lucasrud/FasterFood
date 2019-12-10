@@ -28,13 +28,16 @@ public class Ingredient {
         this.stock = stock;
     }
 
+    public Ingredient() {
+    }
+
     public void addMeal(Meal meal){
         if(!this.mealList.contains(meal)){
             this.mealList.add(meal);
         }
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -64,5 +67,9 @@ public class Ingredient {
 
     public void setStock(int stock) {
         this.stock = stock;
+    }
+
+    public List<Meal> getMealList() {
+        return mealList;
     }
 }

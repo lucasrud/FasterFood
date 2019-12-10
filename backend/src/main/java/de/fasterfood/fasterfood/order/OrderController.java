@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import java.util.LinkedList;
 import java.util.List;
 
 
@@ -25,12 +24,7 @@ public class OrderController {
 
     @GetMapping("/fasterfood/order")
     public List<Meal> listOfItems () {
-        List<Meal> meals = new LinkedList<>();
-
-        for (Meal meal : mealRepository.findAll()) {
-            meals.add(meal);
-        }
-        return meals;
+        return mealRepository.findAll();
     }
 
 //    //TODO Pfade

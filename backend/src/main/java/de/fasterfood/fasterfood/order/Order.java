@@ -8,6 +8,7 @@ import java.util.List;
 
 
 @Entity
+@Table(name = "orders")
 public class Order {
 
     @Id
@@ -32,7 +33,10 @@ public class Order {
         }
     }
 
-    public int getId() {
+    public Order() {
+    }
+
+    public Integer getId() {
         return id;
     }
 
@@ -62,5 +66,13 @@ public class Order {
 
     public void setRetailPrice(int retailPrice) {
         this.retailPrice = retailPrice;
+    }
+
+    public List<Process> getProcessList() {
+        return processList;
+    }
+
+    public void setProcessList(List<Process> processList) {
+        this.processList = processList;
     }
 }

@@ -1,4 +1,4 @@
-<div>
+<div class="roundBorder">
   <h2>Meal Prices</h2>
   <table>
     <tr>
@@ -8,8 +8,8 @@
     </tr>
     <tr *ngFor="let meal of meals">
       <td>{{meal.name}}</td>
-      <td>{{meal.retailPrice}}</td>
-      <td><input type="text" placeholder="0" #price></td>
+      <td class="alignMid">{{meal.retailPrice}}</td>
+      <td><input type="text" placeholder="0" #price size="10"></td>
       <td>
         <button (click)="changePrice(meal, price.value)">Change</button>
       </td>

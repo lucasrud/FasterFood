@@ -12,10 +12,10 @@
   text-align: center;
 }
 
-input:hover {
-  background-color: lightgreen;
-}
-
 button:hover {
   cursor: pointer;
+}
+
+input:hover {
+  background-color: lightgreen;
 }

@@ -12,6 +12,11 @@ body {
   margin: 4px;
   font-size: 2rem;
   display: inline-block;
+  box-shadow: 2px 2px 2px black;
+}
+
+.next {
+  float: left;
 }
 
 .mealbutton:hover {
@@ -19,4 +24,13 @@ body {
   cursor: pointer;
   text-decoration: underline;
   text-shadow: 2px 2px 2px lightgreen;
+  animation-name: expand;
+  animation-duration: 1.2s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes expand {
+  0% {}
+  50% { background-color: lightgreen; }
+  100% {}
 }

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
+
 @RestController
 public class IngredientController {
     IngredientRepository ingredientRepository;
@@ -18,26 +19,20 @@ public class IngredientController {
         this.ingredientService = ingredientService;
     }
 
-    @GetMapping("/api/price/ingredients")  // KONSOLIDIEREN AK
+    @GetMapping("/api/ingredients")
     public List<Ingredient> listAllIngredients(){
         return ingredientRepository.findAll();
     }
 
-    @PostMapping("/api/price/ingredients")
+    @PostMapping("/api/ingredients/price")
     public List<Ingredient> changeIngredientPrices(@RequestBody Ingredient ingredient){
         ingredientService.changePurchasePrice(ingredient);
         return listAllIngredients();
     }
 
-    @GetMapping("/api/stock/ingredients")    // KONSOLIDIEREN AK
-    public List<Ingredient> fetchStockIngredient(){
-        return ingredientRepository.findAll();
-    }
-
-    @PostMapping("/api/stock/ingredients")
+    @PostMapping("/api/ingredients/stock")
     public List<Ingredient> changeStock(@RequestBody Ingredient ingredient){
-        System.out.println(ingredient.getStock() + "blaa");
         ingredientService.changeStock(ingredient);
-        return fetchStockIngredient();
+        return listAllIngredients();
     }
 }

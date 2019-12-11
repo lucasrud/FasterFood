@@ -23,11 +23,10 @@ public class IngredientController {
         return ingredientRepository.findAll();
     }
 
-    @PostMapping("/price/ingredients")
-    public void changeIngredientPrices(List<Ingredient> ingredients, List<Integer> prices){
-        for(int i=0; i<ingredients.size(); i++){
-            ingredientService.changePurchasePrice(ingredients.get(i), prices.get(i));
-        }
+    @PostMapping("/api/price/ingredients")
+    public List<Ingredient> changeIngredientPrices(@RequestBody Ingredient ingredient){
+        ingredientService.changePurchasePrice(ingredient);
+        return listAllIngredients();
     }
 
     @GetMapping("/api/stock/ingredients")    // KONSOLIDIEREN AK

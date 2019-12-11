@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
 
-
 @Service
 public class IngredientService {
 
@@ -26,9 +25,7 @@ public class IngredientService {
 
         }
     }
-
-    public void changePurchasePrice(Ingredient ingredient, int value){
-        ingredient.setPurchasePrice(value);
+    public void changePurchasePrice(Ingredient ingredient){
         ingredientRepository.save(ingredient);
     }
 

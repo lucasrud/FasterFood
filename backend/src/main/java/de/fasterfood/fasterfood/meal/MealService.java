@@ -17,12 +17,12 @@ public class MealService {
 
     }
 
-    public void addMeals(List<MealDTO> meals) {
-        for (MealDTO meal : meals){
+    public void addMeal(MealDTO meal) {
+
             Meal newMeal = new Meal();
             newMeal.setName(meal.getName());
             newMeal.setRetailPrice(meal.getPrice());
             mealRepository.save(newMeal);
-        }
+
     }
 }

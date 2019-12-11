@@ -37,12 +37,13 @@ export class AppComponent implements OnInit {
   addMeal(nameE) {
     const m: MealDTO = {
       name: nameE,
-      retailPrice: 6,
+      price: 6,
     };
     console.log('aa');
+
+    this.http.post<Meal[]>('/api/fasterfood/addMeal', m).subscribe( meals => this.meals = meals);
     this.newMeals.push(m);
     this.resetNewMeal();
-
   }
   postMeals() {
     this.orderService.addMeals(this.newMeals);

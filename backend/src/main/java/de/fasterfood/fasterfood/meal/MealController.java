@@ -35,9 +35,9 @@ public class MealController {
         }
     }
 
-    @PostMapping("/api/fasterfood/addMeals")
-    public List<Meal> addMeals(@RequestBody List<MealDTO> meals){
-        mealService.addMeals(meals);
+    @PostMapping("/api/fasterfood/addMeal")
+    public List<Meal> addMeal(@RequestBody MealDTO meal){
+        mealService.addMeal(meal);
         return listOfItems();
     }
 

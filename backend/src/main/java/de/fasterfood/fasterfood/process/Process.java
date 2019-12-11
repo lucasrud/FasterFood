@@ -20,14 +20,27 @@ public class Process {
     private double retailPrice;
     private int quantity;
 
+    public Process() { }
 
     public Process (Meal meal, double retailPrice) {
         this.meal = meal;
-        this.retailPrice= retailPrice;
-        this.quantity=1;
+        this.retailPrice = retailPrice;
+        this.quantity = 1;
     }
 
-    public Process() {
+    @Override
+    public boolean equals(Object obj) {   // neecessary for method OrderService.addOrderandProcess()
+
+        if (obj == this) {
+            return true;
+        }
+        if((obj == null) || (obj.getClass() != this.getClass())) {
+            return false;
+        }
+
+        Process objProcess = (Process)obj;
+
+        return this.getMeal().getId() == objProcess.getMeal().getId();
     }
 
     public Integer getId() {
@@ -69,6 +82,5 @@ public class Process {
     public int getQuantity() {
         return quantity;
     }
-
 }
 

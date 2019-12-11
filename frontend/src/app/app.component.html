@@ -2,13 +2,14 @@
 
 <div class="main" >
     <div class="main mealbutton" *ngFor="let meal of meals">
-      <span (click)="addProcess(meal)"> {{meal.id + ' ' + meal.name + ' ' + meal.retailPrice + ' EUR' }}</span>
+      <tr>
+        <td (click)="addProcess(meal)"> {{meal.id + ' ' + meal.name + ' ' + meal.retailPrice + ' EUR' }}</td>
+      </tr>
     </div>
 </div>
 
 
 <app-order class="next"></app-order>
-
 <app-prices class="next"></app-prices>
 <app-ingredient-prices class="next"></app-ingredient-prices>
 

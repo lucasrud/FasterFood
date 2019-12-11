@@ -21,7 +21,6 @@ export class IngredientsComponent implements OnInit {
   }
 
   changePriceForIngredient(ingredient, price) {
-
     if (!isNaN(Number(price)) && !(price === '')) {
       ingredient.purchasePrice = price;
       this.http.post<Ingredient[]>('/api/ingredients/price', ingredient).subscribe(ingredients => this.ingredients = ingredients);
@@ -29,8 +28,6 @@ export class IngredientsComponent implements OnInit {
   }
 
   changeStockForIngredient(ingredient, stock) {
-    console.log('"' + stock + '"')
-
     if (!isNaN(Number(stock)) && !(stock === '')) {
       ingredient.stock = stock;
       this.http.post<Ingredient[]>('/api/ingredients/stock', ingredient).subscribe( ingredients => this.ingredients = ingredients);

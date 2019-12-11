@@ -27,12 +27,9 @@ public class OrderController {
         return mealRepository.findAll();
     }
 
-//    //TODO Pfade
     @PostMapping("/api/fasterfood/order")
     public List<Meal> order(@RequestBody List<Meal> meals){
         orderService.addOrderandProcess(meals);
         return listOfItems();
     }
-
-
 }

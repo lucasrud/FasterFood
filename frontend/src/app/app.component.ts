@@ -12,8 +12,6 @@ import {HttpClient} from '@angular/common/http';
 })
 export class AppComponent implements OnInit {
 
-  // Bisher ales nur Platzhalter-
-
   title = 'fasterfood-angular';
 
   meals: Meal[];
@@ -30,7 +28,7 @@ export class AppComponent implements OnInit {
     // this.meals = this.orderService.fetchMeals();
   }
 
-  addProcess(mealName: Meal) { // TODO erstmal Platzhalter nur mit Strings für die angeklickten Waren, später dann mit Process?
+  addProcess(mealName: Meal) {
     this.orderService.addToMealList(mealName);
     this.orderService.getOrderCost();
   }

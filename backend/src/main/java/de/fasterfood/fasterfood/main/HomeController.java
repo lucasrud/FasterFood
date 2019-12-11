@@ -8,11 +8,9 @@ import de.fasterfood.fasterfood.order.Order;
 import de.fasterfood.fasterfood.order.OrderRepository;
 import de.fasterfood.fasterfood.process.Process;
 import de.fasterfood.fasterfood.process.ProcessRepository;
-import de.fasterfood.fasterfood.recipe.Recipe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import javax.annotation.PostConstruct;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -70,12 +68,16 @@ public class HomeController {
             }
 
 
-
-            Meal kebab = new Meal("kebab", 6, ingredients, amountOfIng);
-            Meal wrap = new Meal("pizza", 6, ingredients, amountOfIng);
-            Meal turkishPizza = new Meal("turkishPizza", 6, ingredients, amountOfIng);
-            Meal durum = new Meal("durum", 6, ingredients, amountOfIng);
+            Meal kebab = new Meal("kebab", 4.50, ingredients, amountOfIng);
+            Meal wrap = new Meal("pizza", 7, ingredients, amountOfIng);
+            Meal turkishPizza = new Meal("turkishPizza", 3.5, ingredients, amountOfIng);
+            Meal durum = new Meal("durum", 5, ingredients, amountOfIng);
             Meal crog = new Meal("crog", 6, ingredients, amountOfIng);
+            Meal coca = new Meal("Coke", 1.5, ingredients, amountOfIng);
+            Meal tee = new Meal("Tee", 1.2, ingredients, amountOfIng);
+            Meal fanta = new Meal("Fanta", 1.5, ingredients, amountOfIng);
+            Meal bier = new Meal("Bier", 2.5, ingredients, amountOfIng);
+            Meal wasser = new Meal("Wasser", 1.1, ingredients, amountOfIng);
 
 
             Process process0 = new Process(kebab, kebab.getRetailPrice());
@@ -98,6 +100,11 @@ public class HomeController {
             mealRepository.save(crog);
             mealRepository.save(durum);
             mealRepository.save(wrap);
+            mealRepository.save(coca);
+            mealRepository.save(tee);
+            mealRepository.save(fanta);
+            mealRepository.save(bier);
+            mealRepository.save(wasser);
 
             for (Process process : processes){
                 processRepository.save(process);
@@ -105,6 +112,5 @@ public class HomeController {
 
             orderRepository.save(order);
         }
-
     }
 }

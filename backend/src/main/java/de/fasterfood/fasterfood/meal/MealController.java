@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.List;
 
 
@@ -25,13 +24,6 @@ public class MealController {
     public List<Meal> listAllMeals(){
         return mealRepository.findAll();
     }
-
-//    @PostMapping("api/price/meals")
-//    public void changePrices(List<Meal> meals, List<Integer> prices){
-//        for (int i=0; i<meals.size(); i++){
-//            mealService.changeRetailPrice(meals.get(i), prices.get(i));
-//        }
-//    }
 
     @PostMapping("api/price/meals")
     public List<Meal> changePrice(@RequestBody Meal meal){

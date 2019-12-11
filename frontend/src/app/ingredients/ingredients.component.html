@@ -2,25 +2,25 @@
   <h2>Ingredient Purchase-Prices</h2>
   <table>
     <tr>
-      <th>Ingredient</th>
-      <th>Actual Price</th>
-      <th>New Price</th>
-      <th></th>
-      <th>Actual Stock</th>
-      <th>New Stock</th>
-      <th></th>
+        <th>Ingredient</th>
+        <th>Actual Price</th>
+        <th>New Price</th>
+        <th></th>
+        <th>Actual Stock</th>
+        <th>New Stock</th>
+        <th></th>
     </tr>
 
     <tr *ngFor="let ingredient of ingredients">
-      <td>{{ingredient.name}}</td>
+        <td>{{ingredient.name}}</td>
 
-      <td class="alignMid">{{ingredient.purchasePrice}}</td>
-      <td><input type="text" placeholder="0" #price size="10"></td>
-      <td><button (click)="changePriceForIngredient(ingredient, price.value)">Change</button></td>
+        <td class="alignMid">{{ingredient.purchasePrice}}</td>
+        <td><input type="text" placeholder="0" #price size="10"></td>
+        <td><button (click)="changePriceForIngredient(ingredient, price.value)">Change</button></td>
 
-      <td class="alignMid">{{ingredient.stock}}</td>
-      <td><input type="text" placeholder="0" #stock size="10"></td>
-      <td><button (click)="changeStockForIngredient(ingredient, stock.value)">Change</button></td>
+        <td class="alignMid">{{ingredient.stock}}</td>
+        <td><input type="text" placeholder="0" #stock size="10"></td>
+        <td><button (click)="changeStockForIngredient(ingredient, stock.value)">Change</button></td>
     </tr>
   </table>
 </div>

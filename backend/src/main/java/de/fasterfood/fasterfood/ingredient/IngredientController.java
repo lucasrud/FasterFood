@@ -10,8 +10,9 @@ import java.util.List;
 
 @RestController
 public class IngredientController {
-    IngredientRepository ingredientRepository;
+
     IngredientService ingredientService;
+    IngredientRepository ingredientRepository;
 
     @Autowired
     public IngredientController(IngredientRepository ingredientRepository, IngredientService ingredientService){

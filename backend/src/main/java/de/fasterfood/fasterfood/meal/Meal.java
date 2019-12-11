@@ -6,7 +6,6 @@ import de.fasterfood.fasterfood.recipe.Recipe;
 import javax.persistence.*;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 
 
 @Entity
@@ -22,7 +21,7 @@ public class Meal {
 
     private String name;
     private double purchasePrice;
-    private int retailPrice;
+    private double retailPrice;
     private double profit;
 
     @ManyToMany
@@ -30,7 +29,7 @@ public class Meal {
 
     private HashMap<String, Integer> amountOfIngredient;
 
-    public Meal(String name, int retailPrice, List<Ingredient> ingredients, HashMap amountOfIngredient) {
+    public Meal(String name, double retailPrice, List<Ingredient> ingredients, HashMap amountOfIngredient) {
         this.name = name;
         for (Ingredient ingredient : ingredients){
             this.purchasePrice += ingredient.getPurchasePrice();
@@ -48,9 +47,9 @@ public class Meal {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+//    public void setId(int id) {
+//        this.id = id;
+//    }
 
     public String getName() {
         return name;
@@ -68,11 +67,11 @@ public class Meal {
         this.purchasePrice = purchasePrice;
     }
 
-    public int getRetailPrice() {
+    public double getRetailPrice() {
         return retailPrice;
     }
 
-    public void setRetailPrice(int retailPrice) {
+    public void setRetailPrice(double retailPrice) {
         this.retailPrice = retailPrice;
     }
 
@@ -92,7 +91,6 @@ public class Meal {
         this.ingredients = ingredients;
     }
 
-
     public Recipe getRecipeSet() {
         return recipe;
     }
@@ -100,6 +98,4 @@ public class Meal {
     public void setRecipe(Recipe recipe) {
         this.recipe = recipe;
     }
-
-
 }

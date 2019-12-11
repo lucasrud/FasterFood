@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 
 @Entity
-public class Process {
+public class Process implements Comparable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -70,5 +70,14 @@ public class Process {
         return quantity;
     }
 
+    @Override
+    public int compareTo(Object o) {
+        Process pro = (Process)o;
+        if (this.meal != pro.meal) {
+            return 1;
+        }
+        return 0;
+        // TODO noch abzuklären, ob das funzt
+    }
 }
 

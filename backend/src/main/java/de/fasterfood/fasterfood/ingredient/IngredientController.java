@@ -36,13 +36,9 @@ public class IngredientController {
     }
 
     @PostMapping("/api/stock/ingredients")
-<<<<<<< HEAD
-    public List<Ingredient> changeStock(Ingredient ingredient){
 
-=======
     public List<Ingredient> changeStock(@RequestBody Ingredient ingredient){
         System.out.println(ingredient.getStock() + "blaa");
->>>>>>> bac7c62ec6159adb325875ab168133949b8dc6c9
         ingredientService.changeStock(ingredient);
         return fetchStockIngredient();
     }

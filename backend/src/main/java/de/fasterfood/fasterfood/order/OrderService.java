@@ -27,25 +27,33 @@ public class OrderService {
         List<Process> processes = new LinkedList<>();
         for (Meal meal : meals) {
             if (!processes.isEmpty()) {
-                for
-                (Process process : processes) {
+
+                for (Process process : processes) {
                     if (process.getMeal().getId() == meal.getId()) {
                         process.increaseQuantity();
                     } else {
+
                         Process newProcess = new Process(meal, meal.getPurchasePrice());
-                        processes.add(newProcess);
+
+                        if (processes.contains(newProcess)) {
+                            process.increaseQuantity();
+                        } else {
+                            processes.add(newProcess);
+                        }
+
+
                     }
                 }
             } else {
                 Process newProcess = new Process(meal, meal.getPurchasePrice());
                 processes.add(newProcess);
             }
-            for (Process process : processes) {
-                processRepository.save(process);
-            }
-            Order order = new Order(LocalDate.now(), LocalTime.now(), processes);
-            orderRepository.save(order);
         }
+        for (Process process : processes) {
+            processRepository.save(process);
+        }
+        Order order = new Order(LocalDate.now(), LocalTime.now(), processes);
+        orderRepository.save(order);
     }
 
 

@@ -35,9 +35,7 @@ public class MealController {
 
     @PostMapping("api/price/meals")
     public List<Meal> changePrice(@RequestBody Meal meal){
-        Meal orgMeal = mealRepository.findById((int) meal.getId());
-        orgMeal = meal;
-        mealRepository.save(meal);
+        mealService.changeRetailPrice(meal);
         return listAllMeals();
     }
 

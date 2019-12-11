@@ -9,8 +9,7 @@ public class MealService {
     @Autowired
     MealRepository mealRepository;
 
-    public void changeRetailPrice(Meal meal, int value){
-        meal.setRetailPrice(value);
+    public void changeRetailPrice(Meal meal){
         mealRepository.save(meal);
 }
 

@@ -3,6 +3,7 @@ package de.fasterfood.fasterfood.ingredient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -13,20 +14,20 @@ public class IngredientController {
     IngredientService ingredientService;
 
     @Autowired
-    public IngredientController(IngredientRepository ingredientRepository){
+    public IngredientController(IngredientRepository ingredientRepository, IngredientService ingredientService){
         this.ingredientRepository = ingredientRepository;
+        this.ingredientService = ingredientService;
     }
 
-    @GetMapping("/price/ingredients")
+    @GetMapping("/api/price/ingredients")
     public List<Ingredient> listAllIngredients(){
         return ingredientRepository.findAll();
     }
 
-    @PostMapping("/price/ingredients")
-    public void changeIngredientPrices(List<Ingredient> ingredients, List<Integer> prices){
-        for(int i=0; i<ingredients.size(); i++){
-            ingredientService.changePurchasePrice(ingredients.get(i), prices.get(i));
-        }
+    @PostMapping("/api/price/ingredients")
+    public List<Ingredient> changeIngredientPrices(@RequestBody Ingredient ingredient){
+        ingredientService.changePurchasePrice(ingredient);
+        return listAllIngredients();
     }
 
     @GetMapping("/stock/ingredients")

@@ -28,4 +28,7 @@ export class OrderComponent implements OnInit {
     });
   }
 
+  deleteOrder(meal: Meal) {
+    this.orderService.deleteMeal(meal);
+  }
 }

@@ -34,10 +34,10 @@ export class AppComponent implements OnInit {
     this.resetNewMeal();
     this.newMeals = [];
   }
-  addMeal(nameE) {
+  addMeal(nameE, priceE) {
     const m: MealDTO = {
       name: nameE,
-      price: 6,
+      price: priceE,
     };
     console.log('aa');
 
@@ -45,6 +45,11 @@ export class AppComponent implements OnInit {
     this.newMeals.push(m);
     this.resetNewMeal();
   }
+
+  deleteMeal(mealToBeDeleted) {
+    this.http.post<Meal[]>('/api/fasterfood/deleteMeal', mealToBeDeleted).subscribe( meals => this.meals = meals);
+  }
+
   postMeals() {
     this.orderService.addMeals(this.newMeals);
 }

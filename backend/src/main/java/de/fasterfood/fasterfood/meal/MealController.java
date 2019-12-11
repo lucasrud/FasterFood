@@ -42,5 +42,12 @@ public class MealController {
     }
 
 
+    @PostMapping("/api/fasterfood/deleteMeal")
+    public List<Meal> deletedMeal(@RequestBody Meal meal){
+        mealService.deleteMeal(meal);
+        return listOfItems();
+    }
+
+
 
 }

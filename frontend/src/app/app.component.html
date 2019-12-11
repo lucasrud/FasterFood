@@ -3,14 +3,16 @@
 <!--Bisher ales nur Platzhalter-->
 
 <div class="main" >
-    <div class="main mealbutton" *ngFor="let meal of meals">
-        <span (click)="addProcess(meal)"> {{meal.id + ' ' + meal.name + ' ' + meal.retailPrice + ' EUR' }}</span>
+    <div *ngFor="let meal of meals">
+        <span class="main mealbutton"  (click)="addProcess(meal)"> {{meal.id + ' ' + meal.name + ' ' + meal.retailPrice + ' EUR' }}</span>
+      <span class="main mealbutton" (click)="deleteMeal(meal)"> DELETE </span>
     </div>
 </div>
 
 <label>Name:
-  <input type="text" #quantity id="abe">
-  <input type="submit" (click)="addMeal(quantity.value)" value="Add">
+  <input type="text" #quantity>
+  <input type="text" #price>
+  <input type="submit" (click)="addMeal(quantity.value, price.value)" value="Add">
 </label>
 
 <app-order></app-order>

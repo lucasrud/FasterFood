@@ -25,4 +25,8 @@ public class MealService {
             mealRepository.save(newMeal);
 
     }
+
+    public void deleteMeal(Meal meal) {
+        mealRepository.delete(meal);
+    }
 }

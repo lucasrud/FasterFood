@@ -11,21 +11,21 @@ import {BehaviorSubject} from 'rxjs';
 })
 export class OrderComponent implements OnInit {
 
-  title = 'order Components';
   meals: Meal[];
-  ingredients: string[];
   orderService: OrderService;
-  testService: TestService;
-  orderCost: BehaviorSubject<number>;
+  orderCostNum = 0;
 
-  constructor(testservice: TestService, orderService: OrderService) {
+  constructor(orderService: OrderService) {
     this.orderService = orderService;
-    this.ingredients = testservice.getIngredients();
-    this.meals = orderService.getMealList();
   }
 
+
   ngOnInit(): void {
-    const orderCost = this.orderService.getOrderCost();
+    const meals$ = this.orderService.getMeals();
+    meals$.subscribe(meals => {
+      this.meals = meals;
+      this.orderCostNum = this.orderService.getOrderCost();
+    });
   }
 
 }

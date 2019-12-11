@@ -11,34 +11,26 @@ import {BehaviorSubject, Observable} from 'rxjs';
 export class OrderService {
 
   constructor(private http: HttpClient) {
+    const initialOrders: Meal[] = [];
+    this.meals = new BehaviorSubject<Meal[]>(initialOrders);
   }
 
-  private meals: Meal[] = [];
-  processList: Process[] = [];
-  mealList: Meal[] = [];
-  currentCost: number;
+  private meals: BehaviorSubject<Meal[]>;
+  currentCost = 0;
 
   addToMealList(meal: Meal): void {
-    this.mealList.push(meal);
+    this.currentCost += meal.retailPrice;
+    this.meals.next([...this.meals.value, meal]);
   }
 
-  getMealList(): Meal[] {
-    return this.mealList;
-  }
-
-  setOrderCost(): number {
-
-    for (const meal of this.mealList) {
-      this.currentCost += meal.retailPrice;
-    }
-
-    console.log(this.currentCost);
-    return this.currentCost;
+  getMeals(): BehaviorSubject<Meal[]> {
+    return this.meals;
   }
 
   getOrderCost(): number {
     return this.currentCost;
   }
+
 
 
 }

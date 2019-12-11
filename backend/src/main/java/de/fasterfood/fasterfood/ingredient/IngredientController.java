@@ -17,7 +17,7 @@ public class IngredientController {
         this.ingredientRepository = ingredientRepository;
     }
 
-    @GetMapping("/price/ingredients")
+    @GetMapping("/api/price/ingredients")  // KONSOLIDIEREN AK
     public List<Ingredient> listAllIngredients(){
         return ingredientRepository.findAll();
     }
@@ -29,15 +29,15 @@ public class IngredientController {
         }
     }
 
-    @GetMapping("/stock/ingredients")
-    public List<Ingredient> stockIngredient(){
+    @GetMapping("/api/stock/ingredients")    // KONSOLIDIEREN AK
+    public List<Ingredient> fetchStockIngredient(){
         return ingredientRepository.findAll();
     }
 
-    @PostMapping("/stock/ingredients")
-    public void changeStock(List<Ingredient> ingredients, List<Integer> units){
-        for(int i=0; i<ingredients.size(); i++){
-            ingredientService.changeStock(ingredients.get(i), units.get(i));
-        }
+    @PostMapping("/api/stock/ingredients")
+    public List<Ingredient> changeStock(Ingredient ingredient){
+
+        ingredientService.changeStock(ingredient);
+        return fetchStockIngredient();
     }
 }

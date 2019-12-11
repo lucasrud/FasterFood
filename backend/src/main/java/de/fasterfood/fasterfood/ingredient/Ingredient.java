@@ -2,7 +2,6 @@ package de.fasterfood.fasterfood.ingredient;
 
 import de.fasterfood.fasterfood.meal.Meal;
 import de.fasterfood.fasterfood.recipe.Recipe;
-
 import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
@@ -14,7 +13,6 @@ public class Ingredient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
 
     private String name;
     private double purchasePrice;

@@ -27,6 +27,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.http.get<Meal[]>('/api/fasterfood/order').subscribe( meals => this.meals = meals);
+    // this.meals = this.orderService.fetchMeals();
   }
 
   addProcess(mealName: Meal) { // TODO erstmal Platzhalter nur mit Strings für die angeklickten Waren, später dann mit Process?

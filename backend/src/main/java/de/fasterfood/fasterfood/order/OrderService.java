@@ -23,7 +23,7 @@ public class OrderService {
         this.processRepository = processRepository;
     }
 
-    public void addOrderAndProcess(List<Meal> meals) {
+    public void addOrderandProcess(List<Meal> meals) {
         List<Process> processes = new LinkedList<>();
         for (Meal meal : meals) {
             if (!processes.isEmpty()) {

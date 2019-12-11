@@ -7,7 +7,7 @@ import {BehaviorSubject} from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class OrderService {
+export class IngredientService {
 
   constructor(private http: HttpClient) {
     const initialOrders: Meal[] = [];

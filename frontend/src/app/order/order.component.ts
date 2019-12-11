@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Meal} from '../meal';
-import {TestService} from '../testservice';
 import { OrderService } from '../order.service';
-import {BehaviorSubject} from 'rxjs';
+
 
 @Component({
   selector: 'app-order',
@@ -18,7 +17,6 @@ export class OrderComponent implements OnInit {
   constructor(orderService: OrderService) {
     this.orderService = orderService;
   }
-
 
   ngOnInit(): void {
     const meals$ = this.orderService.getMeals();

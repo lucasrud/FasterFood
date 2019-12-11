@@ -1,0 +1,11 @@
+
+
+<div class="main">
+  <h5>stock Details</h5>
+  <div *ngFor="let ingredient of ingredients">
+    <span >{{ingredient.stock + ' stock'}} {{ingredient.name + ' for'}}  {{ingredient.purchasePrice }}</span>
+    <input type="text" #quantity >
+    <input type="submit" (click)="changeStockForIngredient(ingredient, quantity.value)" value="update">
+  </div>
+</div>
+

@@ -3,6 +3,8 @@ package de.fasterfood.fasterfood.ingredient;
 import de.fasterfood.fasterfood.meal.Meal;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Optional;
+
 public class IngredientService {
 
     private IngredientRepository ingredientRepository;
@@ -22,13 +24,17 @@ public class IngredientService {
 
         }
     }
+
     public void changePurchasePrice(Ingredient ingredient, int value){
         ingredient.setPurchasePrice(value);
         ingredientRepository.save(ingredient);
     }
-    public void changeStock(Ingredient ingredient, int value){
-        ingredient.setStock(value);
-        ingredientRepository.save(ingredient);
+
+    public void changeStock(Ingredient ingredient){
+        Optional<Ingredient> foundOptionalIngredient = ingredientRepository.findById(ingredient.getId());
+        Ingredient changedIngredient = foundOptionalIngredient.get();
+        changedIngredient = ingredient;
+        ingredientRepository.save(changedIngredient);
     }
 
 }

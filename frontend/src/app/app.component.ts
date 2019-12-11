@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
 
   addProcess(mealName: Meal) { // TODO erstmal Platzhalter nur mit Strings für die angeklickten Waren, später dann mit Process?
     this.orderService.addToMealList(mealName);
-    this.orderService.setOrderCost();
+    this.orderService.getOrderCost();
   }
 
 }

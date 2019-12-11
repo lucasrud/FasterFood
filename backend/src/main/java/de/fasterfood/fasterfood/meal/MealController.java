@@ -1,8 +1,10 @@
 package de.fasterfood.fasterfood.meal;
 
+import de.fasterfood.fasterfood.order.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -15,15 +17,16 @@ public class MealController {
     private MealService mealService;
 
     @Autowired
-    public MealController(MealRepository mealRepository, MealService mealService){
-        this.mealRepository = mealRepository;
+    public MealController (MealRepository mealRepository, MealService mealService){
+        this.mealRepository=mealRepository;
         this.mealService = mealService;
     }
 
-    @GetMapping("price/meals")
-    public List<Meal> listAllMeals(){
+    @GetMapping("/api/fasterfood/allMeals")
+    public List<Meal> listOfItems () {
         return mealRepository.findAll();
     }
+
 
     @PostMapping("price/meals")
     public void changePrices(List<Meal> meals, List<Integer> prices){
@@ -31,5 +34,13 @@ public class MealController {
             mealService.changeRetailPrice(meals.get(i), prices.get(i));
         }
     }
+
+    @PostMapping("/api/fasterfood/addMeals")
+    public List<Meal> addMeals(@RequestBody List<MealDTO> meals){
+        mealService.addMeals(meals);
+        return listOfItems();
+    }
+
+
 
 }

@@ -11,6 +11,7 @@ import de.fasterfood.fasterfood.process.ProcessRepository;
 import de.fasterfood.fasterfood.recipe.Recipe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.PostConstruct;
@@ -43,6 +44,11 @@ public class HomeController {
     public List<Meal> home(){
         return mealRepository.findAll();
     }
+
+    @PostMapping("/")
+    public void addMeal(){
+
+            }
 
     @PostConstruct
     public void setupData(){

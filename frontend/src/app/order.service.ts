@@ -31,6 +31,8 @@ export class OrderService {
     return this.currentCost;
   }
 
-
+  addMeals(meals) {
+    this.http.post('/api/fasterfood/addMeals', meals);
+  }
 
 }

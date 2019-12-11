@@ -4,9 +4,13 @@
 
 <div class="main" >
     <div class="main mealbutton" *ngFor="let meal of meals">
-      <span (click)="addProcess(meal)"> {{meal.id + ' ' + meal.name + ' ' + meal.retailPrice + ' EUR' }}</span>
+        <span (click)="addProcess(meal)"> {{meal.id + ' ' + meal.name + ' ' + meal.retailPrice + ' EUR' }}</span>
     </div>
 </div>
 
+<label>Name:
+  <input type="text" #quantity id="abe">
+  <input type="submit" (click)="addMeal(quantity.value)" value="Add">
+</label>
 
 <app-order></app-order>

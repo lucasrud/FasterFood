@@ -31,6 +31,8 @@ export class OrderService {
     return this.currentCost;
   }
 
-
+  checkout(){
+    this.http.post<Meal[]>('/api/fasterfood/order', {}).subscribe( meals => this.meals = meals);
+  }
 
 }

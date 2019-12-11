@@ -3,8 +3,8 @@ package de.fasterfood.fasterfood.ingredient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.List;
 
 @RestController
@@ -13,8 +13,9 @@ public class IngredientController {
     IngredientService ingredientService;
 
     @Autowired
-    public IngredientController(IngredientRepository ingredientRepository){
+    public IngredientController(IngredientRepository ingredientRepository, IngredientService ingredientService){
         this.ingredientRepository = ingredientRepository;
+        this.ingredientService = ingredientService;
     }
 
     @GetMapping("/api/price/ingredients")  // KONSOLIDIEREN AK
@@ -35,8 +36,13 @@ public class IngredientController {
     }
 
     @PostMapping("/api/stock/ingredients")
+<<<<<<< HEAD
     public List<Ingredient> changeStock(Ingredient ingredient){
 
+=======
+    public List<Ingredient> changeStock(@RequestBody Ingredient ingredient){
+        System.out.println(ingredient.getStock() + "blaa");
+>>>>>>> bac7c62ec6159adb325875ab168133949b8dc6c9
         ingredientService.changeStock(ingredient);
         return fetchStockIngredient();
     }

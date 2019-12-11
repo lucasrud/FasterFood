@@ -21,13 +21,19 @@ export class IngredientsComponent implements OnInit {
   }
 
   changePriceForIngredient(ingredient, price) {
-    ingredient.purchasePrice = price;
-    this.http.post<Ingredient[]>('/api/ingredients/price', ingredient).subscribe( ingredients => this.ingredients = ingredients);
+
+    if (!isNaN(Number(price)) && !(price === '')) {
+      ingredient.purchasePrice = price;
+      this.http.post<Ingredient[]>('/api/ingredients/price', ingredient).subscribe(ingredients => this.ingredients = ingredients);
+    }
   }
 
   changeStockForIngredient(ingredient, stock) {
-    ingredient.stock = stock;
-    this.http.post<Ingredient[]>('/api/ingredients/stock', ingredient).subscribe( ingredients => this.ingredients = ingredients);
-  }
+    console.log('"' + stock + '"')
 
+    if (!isNaN(Number(stock)) && !(stock === '')) {
+      ingredient.stock = stock;
+      this.http.post<Ingredient[]>('/api/ingredients/stock', ingredient).subscribe( ingredients => this.ingredients = ingredients);
+    }
+  }
 }

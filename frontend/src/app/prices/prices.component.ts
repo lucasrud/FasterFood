@@ -15,9 +15,11 @@ export class PricesComponent implements OnInit {
   ngOnInit() {
     this.http.get<Meal[]>('/api/price/meals').subscribe( meals => this.meals = meals);
   }
-  changePrice(meal, price) {
-    meal.retailPrice = price;
-    this.http.post<Meal[]>('/api/price/meals', meal).subscribe( meals => this.meals = meals);
-  }
 
+  changePrice(meal, price) {
+    if (!isNaN(Number(price)) && !(price === '')) {
+      meal.retailPrice = price;
+      this.http.post<Meal[]>('/api/price/meals', meal).subscribe(meals => this.meals = meals);
+    }
+  }
 }

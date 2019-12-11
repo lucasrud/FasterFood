@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
 
+
 @Service
 public class IngredientService {
 
@@ -13,10 +14,6 @@ public class IngredientService {
     @Autowired
     public IngredientService(IngredientRepository ingredientRepository){
         this.ingredientRepository = ingredientRepository;
-    }
-
-    public void addStock(Ingredient ingredient, int value){
-        ingredient.addStock(value);
     }
 
     public void useForMeal(Meal meal){
@@ -30,7 +27,7 @@ public class IngredientService {
     }
 
     public void changeStock(Ingredient ingredient){
-        System.out.println(ingredient.getStock() + " " + ingredient.getName());
+
         Optional<Ingredient> foundOptionalIngredient = ingredientRepository.findById(ingredient.getId());
         Ingredient changedIngredient = foundOptionalIngredient.get();
         changedIngredient = ingredient;

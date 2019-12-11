@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {Meal} from '../meal';
 import {HttpClient} from '@angular/common/http';
 import {Ingredient} from '../ingredient';
 import {IngredientService} from '../ingredient.service';
@@ -19,13 +18,16 @@ export class StockComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.http.get<Ingredient[]>('/api/stock/ingredients').subscribe( meals => this.ingredients = meals);
+    this.http.get<Ingredient[]>('/api/stock/ingredients').subscribe( ingredients => this.ingredients = ingredients);
   }
 
   changeStockForIngredient(ingredient, stock) {
 
+    console.log(ingredient.stock);
     ingredient.stock = stock;
-    this.http.post<Ingredient[]>('/api/stock/ingredients', ingredient).subscribe( meals => this.ingredients = meals);
+    console.log(ingredient.retailPrice);
+    console.log(ingredient.stock);
+    this.http.post<Ingredient[]>('/api/stock/ingredients', ingredient).subscribe( ing => this.ingredients = ing);
   }
 
 

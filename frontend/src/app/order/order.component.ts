@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Meal} from '../meal';
-import {TestService} from '../testservice';
 import { OrderService } from '../order.service';
-import {BehaviorSubject} from 'rxjs';
+import {Ingredient} from '../ingredient';
+import {HttpClient} from '@angular/common/http';
+
 
 @Component({
   selector: 'app-order',
@@ -15,10 +16,9 @@ export class OrderComponent implements OnInit {
   orderService: OrderService;
   orderCostNum = 0;
 
-  constructor(orderService: OrderService) {
+  constructor(private  http: HttpClient, orderService: OrderService) {
     this.orderService = orderService;
   }
-
 
   ngOnInit(): void {
     const meals$ = this.orderService.getMeals();
@@ -26,6 +26,11 @@ export class OrderComponent implements OnInit {
       this.meals = meals;
       this.orderCostNum = this.orderService.getOrderCost();
     });
+  }
+
+ checkOutOrder(meals) {
+
+  this.http.post<Meal[]>('/api/fasterfood/order', meals).subscribe( mealz => this.meals = mealz);
   }
 
 }

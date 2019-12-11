@@ -1,14 +1,13 @@
 import {Meal} from './meal';
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Process} from './process';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {BehaviorSubject} from 'rxjs';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class OrderService {
+export class IngredientService {
 
   constructor(private http: HttpClient) {
     const initialOrders: Meal[] = [];
@@ -30,4 +29,11 @@ export class OrderService {
   getOrderCost(): number {
     return this.currentCost;
   }
+
+  // fetchMeals() {
+  //   let mealz: Meal[] = [];
+  //   this.http.get<Meal[]>('/api/fasterfood/order').subscribe( meals => mealz = meals);
+  //   return mealz;
+  // }
+
 }

@@ -2,6 +2,11 @@
 
 <!--Bisher ales nur Platzhalter-->
 
+<nav>
+  <a routerLink="/stock" >Stock</a>
+</nav>
+
+
 <div class="main" >
     <div class="main mealbutton" *ngFor="let meal of meals">
       <span (click)="addProcess(meal)"> {{meal.id + ' ' + meal.name + ' ' + meal.retailPrice + ' EUR' }}</span>
@@ -10,3 +15,5 @@
 
 
 <app-order></app-order>
+<!--<app-stock></app-stock>-->
+<!--<router-outlet></router-outlet>-->

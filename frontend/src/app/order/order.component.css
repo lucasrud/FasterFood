@@ -15,3 +15,8 @@ button:hover {
 input:hover {
   background-color: lightgreen;
 }
+
+p {
+  font-size: 1.45rem;
+  font-weight: bold;
+}

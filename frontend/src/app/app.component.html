@@ -3,7 +3,7 @@
 <div class="main" >
     <div class="main mealbutton" *ngFor="let meal of meals">
       <tr>
-        <td (click)="addProcess(meal)"> {{meal.id + ' ' + meal.name + ' ' + meal.retailPrice + ' EUR' }}</td>
+        <td (click)="addProcess(meal)"> {{meal.id + ' ' + meal.name + ' ' + meal.retailPrice.toFixed(2) + ' €' }}</td>
       </tr>
     </div>
 </div>

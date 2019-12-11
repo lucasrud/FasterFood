@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.http.get<Meal[]>('/api/fasterfood/order').subscribe( meals => this.meals = meals);
-    // this.meals = this.orderService.fetchMeals();
+    // Diese Methoden sollten bei Gelegenheit in den/ einen Service ausgelagert werden? AK
   }
 
   addProcess(mealName: Meal) {

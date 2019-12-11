@@ -73,11 +73,13 @@ public class HomeController {
             Meal turkishPizza = new Meal("turkishPizza", 3.5, ingredients, amountOfIng);
             Meal durum = new Meal("durum", 5, ingredients, amountOfIng);
             Meal crog = new Meal("crog", 6, ingredients, amountOfIng);
+            Meal salat = new Meal("Salat", 4.20, ingredients, amountOfIng);
             Meal coca = new Meal("Coke", 1.5, ingredients, amountOfIng);
             Meal tee = new Meal("Tee", 1.2, ingredients, amountOfIng);
             Meal fanta = new Meal("Fanta", 1.5, ingredients, amountOfIng);
-            Meal bier = new Meal("Bier", 2.5, ingredients, amountOfIng);
             Meal wasser = new Meal("Wasser", 1.1, ingredients, amountOfIng);
+            Meal bier = new Meal("Bier", 2.5, ingredients, amountOfIng);
+            Meal rum = new Meal("Rum", 3, ingredients, amountOfIng);
 
 
             Process process0 = new Process(kebab, kebab.getRetailPrice());
@@ -100,11 +102,14 @@ public class HomeController {
             mealRepository.save(crog);
             mealRepository.save(durum);
             mealRepository.save(wrap);
+            mealRepository.save(salat);
             mealRepository.save(coca);
             mealRepository.save(tee);
             mealRepository.save(fanta);
-            mealRepository.save(bier);
             mealRepository.save(wasser);
+            mealRepository.save(bier);
+            mealRepository.save(rum);
+
 
             for (Process process : processes){
                 processRepository.save(process);

@@ -2,8 +2,8 @@
 <!--Bisher ales nur Platzhalter-->
 
 <div id="ordermain">
-  <h5>current Order {{orderCostNum}}</h5>
+  <p>current Order {{orderCostNum.toFixed(2) + ' €'}}</p>
   <div *ngFor="let meal of meals">
-    <span>{{meal.retailPrice + ' EUR ' }} {{meal.name}}</span>
+    <span>{{meal.retailPrice.toFixed(2) + ' € ' }} {{meal.name}}</span>
   </div>
 </div>

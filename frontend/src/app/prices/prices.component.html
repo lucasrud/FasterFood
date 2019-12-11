@@ -1,0 +1,18 @@
+<div>
+  <h2>Meal Prices</h2>
+  <table>
+    <tr>
+      <th>Meal</th>
+      <th>Actual Price</th>
+      <th>New Price</th>
+    </tr>
+    <tr *ngFor="let meal of meals">
+      <td>{{meal.name}}</td>
+      <td>{{meal.retailPrice}}</td>
+      <td><input type="text" placeholder="0" #price></td>
+      <td>
+        <button (click)="changePrice(meal, price.value)">Change</button>
+      </td>
+    </tr>
+  </table>
+</div>

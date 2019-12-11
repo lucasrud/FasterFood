@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Meal} from '../meal';
-import {TestService} from '../testservice';
 import { OrderService } from '../order.service';
-import {BehaviorSubject} from 'rxjs';
 
 @Component({
   selector: 'app-order',

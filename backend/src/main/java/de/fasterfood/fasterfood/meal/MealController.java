@@ -3,6 +3,7 @@ package de.fasterfood.fasterfood.meal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -20,16 +21,24 @@ public class MealController {
         this.mealService = mealService;
     }
 
-    @GetMapping("price/meals")
+    @GetMapping("api/price/meals")
     public List<Meal> listAllMeals(){
         return mealRepository.findAll();
     }
 
-    @PostMapping("price/meals")
-    public void changePrices(List<Meal> meals, List<Integer> prices){
-        for (int i=0; i<meals.size(); i++){
-            mealService.changeRetailPrice(meals.get(i), prices.get(i));
-        }
+//    @PostMapping("api/price/meals")
+//    public void changePrices(List<Meal> meals, List<Integer> prices){
+//        for (int i=0; i<meals.size(); i++){
+//            mealService.changeRetailPrice(meals.get(i), prices.get(i));
+//        }
+//    }
+
+    @PostMapping("api/price/meals")
+    public List<Meal> changePrice(@RequestBody Meal meal){
+        Meal orgMeal = mealRepository.findById((int) meal.getId());
+        orgMeal = meal;
+        mealRepository.save(meal);
+        return listAllMeals();
     }
 
 }

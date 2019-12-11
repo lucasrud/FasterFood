@@ -30,7 +30,7 @@ public class OrderController {
 //    //TODO Pfade
     @PostMapping("/api/fasterfood/order")
     public List<Meal> order(@RequestBody List<Meal> meals){
-        orderService.addOrder(meals);
+        orderService.addOrderAndProcess(meals);
         return listOfItems();
     }
 

@@ -13,7 +13,7 @@ import { IngredientPricesComponent } from './ingredient-prices/ingredient-prices
   declarations: [
     AppComponent,
     OrderComponent,
-    StockComponent
+    StockComponent,
     PricesComponent,
     IngredientPricesComponent
   ],

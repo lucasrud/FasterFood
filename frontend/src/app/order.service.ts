@@ -8,7 +8,6 @@ import {BehaviorSubject} from 'rxjs';
   providedIn: 'root'
 })
 export class OrderService {
-
   constructor(private http: HttpClient) {
     const initialOrders: Meal[] = [];
     this.meals = new BehaviorSubject<Meal[]>(initialOrders);
@@ -23,9 +22,13 @@ export class OrderService {
   }
 
   deleteMeal(meal: Meal): void {
-    const index = this.meals.value.indexOf(meal);
-    delete this.meals.value[index];
-    this.meals.next(this.meals.value);
+    const newMeals: Meal[] = [];
+    for (const m of this.meals.value) {
+      if (!(m === meal) && !(this.meals.value.indexOf(m) === this.meals.value.indexOf(meal))) {
+        newMeals.push(m);
+      }
+    }
+    this.meals.next([...newMeals]);
   }
   getMeals(): BehaviorSubject<Meal[]> {
     return this.meals;

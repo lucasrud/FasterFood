@@ -3,6 +3,7 @@ package de.fasterfood.fasterfood.meal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -34,14 +35,14 @@ public class MealController {
     @PostMapping("/api/fasterfood/addMeal")
     public List<Meal> addMeal(@RequestBody MealDTO meal){
         mealService.addMeal(meal);
-        return listOfItems();
+        return listAllMeals();
     }
 
 
     @PostMapping("/api/fasterfood/deleteMeal")
     public List<Meal> deletedMeal(@RequestBody Meal meal){
         mealService.deleteMeal(meal);
-        return listOfItems();
+        return listAllMeals();
     }
 
 

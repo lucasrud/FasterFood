@@ -14,7 +14,7 @@ import { MealsComponent } from './meals/meals.component';
     AppComponent,
     OrderComponent,
     PricesComponent,
-    IngredientsComponent
+    IngredientsComponent,
     MealsComponent
   ],
   imports: [

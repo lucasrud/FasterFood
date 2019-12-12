@@ -5,6 +5,6 @@
   <p>current Order {{orderCostNum.toFixed(2) + ' €'}}</p>
   <div *ngFor="let meal of meals">
     <span>{{meal.retailPrice.toFixed(2) + ' € ' }} {{meal.name}}</span>
-    <span *ngIf="meal" class="main mealbutton" (click)="deleteOrder(meal)"> X </span>
+    <span *ngIf="meal" class="main mealbutton" (click)="deleteOrder(meals.indexOf(meal))"> X </span>
   </div>
 </div>

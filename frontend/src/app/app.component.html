@@ -4,10 +4,20 @@
     <div class="main mealbutton" *ngFor="let meal of meals">
       <tr>
         <td (click)="addProcess(meal)"> {{meal.id + ' ' + meal.name + ' ' + meal.retailPrice.toFixed(2) + ' €' }}</td>
+        <td class="main mealbutton" (click)="deleteMeal(meal)"> X </td>
       </tr>
-    </div>
 </div>
 
+
+
+
+
+
+<label>Name:
+  <input type="text" #quantity>
+  <input type="text" #price>
+  <input type="submit" (click)="addMeal(quantity.value, price.value)" value="Add">
+</label>
 
 <app-order class="next"></app-order>
 <app-prices class="next"></app-prices>

@@ -22,6 +22,11 @@ export class OrderService {
     this.meals.next([...this.meals.value, meal]);
   }
 
+  deleteMeal(meal: Meal): void {
+    const index = this.meals.value.indexOf(meal);
+    delete this.meals.value[index];
+    this.meals.next(this.meals.value);
+  }
   getMeals(): BehaviorSubject<Meal[]> {
     return this.meals;
   }
@@ -29,11 +34,7 @@ export class OrderService {
   getOrderCost(): number {
     return this.currentCost;
   }
-
-  // fetchMeals() {
-  //   let mealz: Meal[] = [];
-  //   this.http.get<Meal[]>('/api/fasterfood/order').subscribe( meals => mealz = meals);
-  //   return mealz;
-  // }
-
+  addMeals(meals) {
+    this.http.post('/api/fasterfood/addMeals', meals);
+  }
 }

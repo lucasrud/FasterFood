@@ -20,3 +20,20 @@ p {
   font-size: 1.45rem;
   font-weight: bold;
 }
+
+
+.main {
+  border-radius: 15px;
+  border: 2px solid black;
+  padding: 15px;
+  margin: 4px;
+  font-size: 2rem;
+  display: inline-block;
+}
+
+.mealbutton:hover {
+  color:green;
+  cursor: pointer;
+  text-decoration: underline;
+  text-shadow: 2px 2px 2px lightgreen;
+}

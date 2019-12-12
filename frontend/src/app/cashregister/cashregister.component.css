@@ -1,0 +1,41 @@
+
+body {
+  background-image: linear-gradient(45deg, lightgreen, white);
+  background-attachment: fixed;
+  height: 100vh;
+}
+
+.main {
+  border-radius: 15px;
+  border: 2px solid black;
+  padding: 12px;
+  margin: 3px;
+  margin-top: 0px;
+  font-size: 2rem;
+  display: inline-block;
+  box-shadow: 2px 2px 2px black;
+}
+
+.next {
+  float: left;
+}
+
+td {
+  width: 322px;
+}
+
+.mealbutton:hover {
+  color:green;
+  cursor: pointer;
+  text-decoration: underline;
+  text-shadow: 2px 2px 2px lightgreen;
+  animation-name: expand;
+  animation-duration: 1.2s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes expand {
+  0% {}
+  80% { background-color: lightgreen; }
+  100% {}
+}

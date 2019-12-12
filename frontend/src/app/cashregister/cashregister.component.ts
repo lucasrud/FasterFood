@@ -1,17 +1,18 @@
-import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
-import { OrderService} from '../order.service';
-import {TestService} from '../testservice';
-import {Meal} from '../meal';
+import {Component, Input, OnInit} from '@angular/core';
 import {MealDTO} from '../mealDTO';
+import {Meal} from '../meal';
+import {OrderService} from '../order.service';
+import {TestService} from '../testservice';
 import {HttpClient} from '@angular/common/http';
 
 @Component({
-  selector: 'app-meals',
-  templateUrl: './meals.component.html',
-  styleUrls: ['./meals.component.css'],
-  encapsulation: ViewEncapsulation.None
+  selector: 'app-cashregister',
+  templateUrl: './cashregister.component.html',
+  styleUrls: ['./cashregister.component.css']
 })
-export class MealsComponent implements OnInit {
+export class CashregisterComponent implements OnInit {
+
+  title = 'fasterfood-angular';
 
   newMeals: MealDTO[];
   name = '';
@@ -33,24 +34,31 @@ export class MealsComponent implements OnInit {
   }
 
   addMeal(nameE, priceE) {
-    if (!isNaN(Number(priceE)) && !(priceE === '')) {
-      const m: MealDTO = {
-        name: nameE,
-        price: priceE,
-      };
-
-      this.http.post<Meal[]>('/api/fasterfood/addMeal', m).subscribe(meals => this.meals = meals);
-      this.newMeals.push(m);
-      this.resetNewMeal();
-    }
-
+    const m: MealDTO = {
+      name: nameE,
+      price: priceE,
+    };
+    console.log('aa');
+    this.http.post<Meal[]>('/api/fasterfood/addMeal', m).subscribe(meals => this.meals = meals);
+    this.newMeals.push(m);
+    this.resetNewMeal();
   }
 
   deleteMeal(mealToBeDeleted) {
     this.http.post<Meal[]>('/api/fasterfood/deleteMeal', mealToBeDeleted).subscribe(meals => this.meals = meals);
   }
 
+  postMeals() {
+    this.orderService.addMeals(this.newMeals);
+  }
+
   resetNewMeal() {
     this.name = '';
   }
+
+  addProcess(mealName: Meal) {
+    this.orderService.addToMealList(mealName);
+    this.orderService.getOrderCost();
+  }
+
 }

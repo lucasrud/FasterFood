@@ -29,4 +29,7 @@ export class OrderComponent implements OnInit {
   deleteOrder(index: number) {
     this.orderService.deleteMeal(index);
   }
+  order(meals: Meal[]) {
+    this.orderService.order(meals);
+  }
 }

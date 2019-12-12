@@ -7,4 +7,5 @@
     <span>{{meal.retailPrice.toFixed(2) + ' € ' }} {{meal.name}}</span>
     <span *ngIf="meal" class="main mealbutton" (click)="deleteOrder(meals.indexOf(meal))"> X </span>
   </div>
+  <button (click)="order(meals)">Order</button>
 </div>

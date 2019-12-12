@@ -27,7 +27,6 @@ public class OrderService {
         List<Process> processes = new LinkedList<>();
         for (Meal meal : meals) {
             if (!processes.isEmpty()) {
-
                 for (Process process : processes) {
                     if (process.getMeal().getId() == meal.getId()) {
                         process.increaseQuantity();

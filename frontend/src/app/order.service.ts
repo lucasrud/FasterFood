@@ -44,4 +44,7 @@ export class OrderService {
   addMeals(meals) {
     this.http.post('/api/fasterfood/addMeals', meals);
   }
+  order(meals) {
+    this.http.post('/api/fasterfood/order', meals);
+  }
 }

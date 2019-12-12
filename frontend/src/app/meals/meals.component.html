@@ -8,12 +8,14 @@
 
 
   <div class="main mealbutton">
-  <label>Name:
-    <input type="text" #quantity>
-    <input type="text" #price>
-    <input type="submit" (click)="addMeal(quantity.value, price.value)" value="Add">
-  </label>
+    <label>Name:
+      <input type="text" #mealname placeholder="Meal">
+      <input type="text" #price placeholder="Price">
+      <input type="submit" (click)="addMeal(mealname.value, price.value)" value="Add">
+    </label>
   </div>
+
+  <app-prices></app-prices>
 
 </div>
 

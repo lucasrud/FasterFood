@@ -23,10 +23,14 @@ export class OrderService {
 
   deleteMeal(index: number): void {
     const newMeals: Meal[] = [];
+    let i = 0;
     for (const m of this.meals.value) {
-      if (!( this.meals.value.indexOf(m) === index )) {
+      if (!( index === i )) {
         newMeals.push(m);
+      } else {
+        this.currentCost -= m.retailPrice;
       }
+      i++;
     }
     this.meals.next([...newMeals]);
   }

@@ -1,9 +1,12 @@
-<div class="main" >
-  <div class="main mealbutton" *ngFor="let meal of meals">
-    <tr>
-      <td (click)="addProcess(meal)" > {{meal.id + ' ' + meal.name + ' ' + meal.retailPrice.toFixed(2) + ' €' }}</td>
-    </tr>
+<section class="section">
+  <div class="container">
+      <div class="columns is-multiline">
+<!--        <div class="column">-->
+      <button class ="button" class = "column is-one-fifth " *ngFor="let meal of meals">
+          <div (click)="addProcess(meal)"> {{meal.id + ' ' + meal.name + ' ' + meal.retailPrice.toFixed(2) + ' €' }}</div>
+      </button>
+    </div>
   </div>
-</div>
+</section>
 
 <app-order></app-order>

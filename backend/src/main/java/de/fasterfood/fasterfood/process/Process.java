@@ -77,6 +77,7 @@ public class Process {
 
     public void increaseQuantity(){
         this.quantity++;
+        this.retailPrice += this.meal.getRetailPrice();
     }
 
     public int getQuantity() {

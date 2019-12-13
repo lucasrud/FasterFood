@@ -48,8 +48,8 @@ public class OrderService {
                 newProcesses.add(newProcess);
             }
 
+            processes = newProcesses;
         }
-        processes = newProcesses;
         for (Process process : processes) {
             processRepository.save(process);
         }

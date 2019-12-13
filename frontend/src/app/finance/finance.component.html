@@ -1,0 +1,20 @@
+
+<table>
+  <tr>
+    <th>Process Nr </th>
+    <th>Meal Name</th>
+    <th>Retail Price</th>
+  </tr>
+
+  <tr *ngFor="let process of processes">  <!-- das hier ist nicht fertig, ist nur Platzhalter, noch bei Gelegenheit aufräumen -->
+    <td class="alignMid">{{process.id}}</td>
+    <td class="alignMid">{{process.meal.name}}</td>
+    <td class="alignMid">{{process.meal.purchasePrice}}</td>
+    <td class="alignMid">{{process.meal.retailPrice}}</td>
+    <td class="alignMid">{{process.meal.profit}}</td>
+    <td class="alignMid">{{process.retailPrice}}</td>
+  </tr>
+</table>
+
+<!--<td><input type="text" placeholder="0" #stock size="10"></td>-->
+<!--<td><button (click)="changeStockForIngredient(ingredient, stock.value)">Change</button></td>-->

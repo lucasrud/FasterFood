@@ -43,7 +43,6 @@ export class MealsComponent implements OnInit {
       this.newMeals.push(m);
       this.resetNewMeal();
     }
-
   }
 
   deleteMeal(mealToBeDeleted) {

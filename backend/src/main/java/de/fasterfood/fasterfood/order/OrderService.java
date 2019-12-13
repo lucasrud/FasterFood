@@ -25,27 +25,31 @@ public class OrderService {
 
     public void addOrderandProcess(List<Meal> meals) {
         List<Process> processes = new LinkedList<>();
+        List<Process> newProcesses = new LinkedList<>();
         for (Meal meal : meals) {
             if (!processes.isEmpty()) {
-                for (Process process : processes) {
-                    if (process.getMeal().getId() == meal.getId()) {
-                        process.increaseQuantity();
+                for (int i = 0; i<processes.size(); i++) {
+                    if (processes.get(i).getMeal().getId() == meal.getId()) {
+                        processes.get(i).increaseQuantity();
                     } else {
 
-                        Process newProcess = new Process(meal, meal.getPurchasePrice());
+                        Process newProcess = new Process(meal, meal.getRetailPrice());
 
                         if (processes.contains(newProcess)) {  // check @Override Process.equals()
-                            process.increaseQuantity();
+                            processes.get(i).increaseQuantity();
                         } else {
-                            processes.add(newProcess);
+                            newProcesses.add(newProcess);
                         }
                     }
                 }
+
             } else {
-                Process newProcess = new Process(meal, meal.getPurchasePrice());
-                processes.add(newProcess);
+                Process newProcess = new Process(meal, meal.getRetailPrice());
+                newProcesses.add(newProcess);
             }
+
         }
+        processes = newProcesses;
         for (Process process : processes) {
             processRepository.save(process);
         }

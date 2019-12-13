@@ -42,4 +42,10 @@ public class IngredientController {
         ingredientService.addIngredient(ingredient);
         return listAllIngredients();
     }
+
+    @PostMapping("/api/ingredients/delete")
+    public List<Ingredient> delete(@RequestBody Ingredient ingredient){
+        ingredientService.deleteIngredient(ingredient);
+        return listAllIngredients();
+    }
 }

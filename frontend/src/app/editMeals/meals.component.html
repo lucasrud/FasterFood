@@ -5,15 +5,16 @@
       <td class="main mealbutton" (click)="deleteMeal(meal)"> X </td>
     </tr>
   </div>
-
-
-  <div class="main mealbutton">
-    <label>Name:
-      <input type="text" #mealname placeholder="Meal">
-      <input type="text" #price placeholder="Price">
+  
+  <div class="roundBorder">
+    <h2>Add new Meal</h2>
+    <table>
+      <tr><td>Name:</td><td><input type="text" #mealname placeholder="Meal"></td></tr>
+      <tr><td>Price:</td><td><input type="text" #price placeholder="Price"></td></tr>
       <input type="submit" (click)="addMeal(mealname.value, price.value)" value="Add">
-    </label>
+    </table>
   </div>
+
 
   <div class="roundBorder">
     <h2>Meal Prices</h2>
@@ -33,7 +34,6 @@
       </tr>
     </table>
   </div>
-
 
 </div>
 

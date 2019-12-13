@@ -35,7 +35,11 @@ public class IngredientService {
         ingredientRepository.save(changedIngredient);
     }
 
-    public void addIngredient(Ingredient ingredientName) {
-        ingredientRepository.save(ingredientName);
+    public void addIngredient(Ingredient ingredient) {
+        ingredientRepository.save(ingredient);
+    }
+
+    public void deleteIngredient(Ingredient ingredient) {
+        ingredientRepository.delete(ingredient);
     }
 }

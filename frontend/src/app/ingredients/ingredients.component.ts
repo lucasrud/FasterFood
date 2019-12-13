@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Ingredient} from '../ingredient';
 import {ingredientDTO} from '../ingredientDTO';
+import {Meal} from '../meal';
 
 
 @Component({
@@ -42,8 +43,11 @@ export class IngredientsComponent implements OnInit {
         purchasePrice: iprice,
         stock: istock
       };
-
       this.http.post<Ingredient[]>('/api/ingredients/add', m).subscribe(ingredients => this.ingredients = ingredients);
     }
+  }
+
+  deleteIngredient(ingredient) {
+    this.http.post<Ingredient[]>('/api/ingredients/delete', ingredient).subscribe(ingredients => this.ingredients = ingredients);
   }
 }

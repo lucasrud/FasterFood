@@ -1,9 +1,7 @@
-package de.fasterfood.fasterfood.meal;
+package de.fasterfood.fasterfood.editMeal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class MealService {

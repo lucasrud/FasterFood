@@ -1,6 +1,6 @@
 package de.fasterfood.fasterfood.ingredient;
 
-import de.fasterfood.fasterfood.meal.Meal;
+import de.fasterfood.fasterfood.editMeal.Meal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Optional;

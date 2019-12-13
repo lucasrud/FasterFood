@@ -1,4 +1,4 @@
-package de.fasterfood.fasterfood.meal;
+package de.fasterfood.fasterfood.editMeal;
 
 public class MealDTO {
     private String name;

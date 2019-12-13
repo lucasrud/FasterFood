@@ -1,4 +1,4 @@
-package de.fasterfood.fasterfood.meal;
+package de.fasterfood.fasterfood.editMeal;
 
 import de.fasterfood.fasterfood.ingredient.Ingredient;
 import de.fasterfood.fasterfood.recipe.Recipe;

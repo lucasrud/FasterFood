@@ -1,6 +1,6 @@
 package de.fasterfood.fasterfood.order;
 
-import de.fasterfood.fasterfood.meal.Meal;
+import de.fasterfood.fasterfood.editMeal.Meal;
 import de.fasterfood.fasterfood.process.Process;
 import de.fasterfood.fasterfood.process.ProcessRepository;
 import org.springframework.beans.factory.annotation.Autowired;

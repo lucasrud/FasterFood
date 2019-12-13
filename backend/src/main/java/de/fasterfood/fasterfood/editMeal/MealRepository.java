@@ -1,4 +1,4 @@
-package de.fasterfood.fasterfood.meal;
+package de.fasterfood.fasterfood.editMeal;
 
 import org.springframework.data.repository.CrudRepository;
 

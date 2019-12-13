@@ -1,6 +1,6 @@
 package de.fasterfood.fasterfood.process;
 
-import de.fasterfood.fasterfood.meal.Meal;
+import de.fasterfood.fasterfood.editMeal.Meal;
 import de.fasterfood.fasterfood.order.Order;
 import javax.persistence.*;
 

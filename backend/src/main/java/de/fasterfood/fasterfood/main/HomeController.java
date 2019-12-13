@@ -2,8 +2,8 @@ package de.fasterfood.fasterfood.main;
 
 import de.fasterfood.fasterfood.ingredient.Ingredient;
 import de.fasterfood.fasterfood.ingredient.IngredientRepository;
-import de.fasterfood.fasterfood.meal.Meal;
-import de.fasterfood.fasterfood.meal.MealRepository;
+import de.fasterfood.fasterfood.editMeal.Meal;
+import de.fasterfood.fasterfood.editMeal.MealRepository;
 import de.fasterfood.fasterfood.order.Order;
 import de.fasterfood.fasterfood.order.OrderRepository;
 import de.fasterfood.fasterfood.process.Process;

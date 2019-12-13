@@ -1,6 +1,6 @@
 package de.fasterfood.fasterfood.ingredient;
 
-import de.fasterfood.fasterfood.meal.Meal;
+import de.fasterfood.fasterfood.editMeal.Meal;
 import de.fasterfood.fasterfood.recipe.Recipe;
 import javax.persistence.*;
 import java.util.List;

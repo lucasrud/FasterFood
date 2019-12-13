@@ -5,9 +5,8 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { OrderComponent } from './order/order.component';
 import { HttpClientModule } from '@angular/common/http';
-import { PricesComponent } from './prices/prices.component';
 import { IngredientsComponent } from './ingredients/ingredients.component';
-import { MealsComponent } from './meals/meals.component';
+import { MealsComponent } from './editMeals/meals.component';
 import { CashregisterComponent } from './cashregister/cashregister.component';
 import { FinanceComponent } from './finance/finance.component';
 
@@ -15,7 +14,6 @@ import { FinanceComponent } from './finance/finance.component';
   declarations: [
     AppComponent,
     OrderComponent,
-    PricesComponent,
     IngredientsComponent,
     MealsComponent,
     CashregisterComponent,

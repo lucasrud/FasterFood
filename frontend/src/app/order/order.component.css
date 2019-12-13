@@ -1,39 +1,39 @@
 
-#ordermain {
-  border-radius: 15px;
-  border: 2px solid black;
-  padding: 15px;
-  font-size: 2rem;
-  display: inline-table;
-  box-shadow: 2px 2px 2px black;
-}
+/*#ordermain {*/
+/*  border-radius: 15px;*/
+/*  border: 2px solid black;*/
+/*  padding: 15px;*/
+/*  font-size: 2rem;*/
+/*  display: inline-table;*/
+/*  box-shadow: 2px 2px 2px black;*/
+/*}*/
 
-button:hover {
-  cursor: pointer;
-}
+/*button:hover {*/
+/*  cursor: pointer;*/
+/*}*/
 
-input:hover {
-  background-color: lightgreen;
-}
+/*input:hover {*/
+/*  background-color: lightgreen;*/
+/*}*/
 
-p {
-  font-size: 1.45rem;
-  font-weight: bold;
-}
+/*p {*/
+/*  font-size: 1.45rem;*/
+/*  font-weight: bold;*/
+/*}*/
 
 
-.main {
-  border-radius: 15px;
-  border: 2px solid black;
-  padding: 15px;
-  margin: 4px;
-  font-size: 2rem;
-  display: inline-block;
-}
+/*.main {*/
+/*  border-radius: 15px;*/
+/*  border: 2px solid black;*/
+/*  padding: 15px;*/
+/*  margin: 4px;*/
+/*  font-size: 2rem;*/
+/*  display: inline-block;*/
+/*}*/
 
-.mealbutton:hover {
-  color:green;
-  cursor: pointer;
-  text-decoration: underline;
-  text-shadow: 2px 2px 2px lightgreen;
-}
+/*.mealbutton:hover {*/
+/*  color:green;*/
+/*  cursor: pointer;*/
+/*  text-decoration: underline;*/
+/*  text-shadow: 2px 2px 2px lightgreen;*/
+/*}*/

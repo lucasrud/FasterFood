@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Ingredient} from '../ingredient';
+import {ingredientDTO} from '../ingredientDTO';
+import {Meal} from '../meal';
 
 
 @Component({
@@ -32,5 +34,20 @@ export class IngredientsComponent implements OnInit {
       ingredient.stock = stock;
       this.http.post<Ingredient[]>('/api/ingredients/stock', ingredient).subscribe( ingredients => this.ingredients = ingredients);
     }
+  }
+
+  addIngredient(iname, iprice, istock) {
+    if (!isNaN(Number(iprice)) && !(iprice === '')) {
+      const m: ingredientDTO = {
+        name: iname,
+        purchasePrice: iprice,
+        stock: istock
+      };
+      this.http.post<Ingredient[]>('/api/ingredients/add', m).subscribe(ingredients => this.ingredients = ingredients);
+    }
+  }
+
+  deleteIngredient(ingredient) {
+    this.http.post<Ingredient[]>('/api/ingredients/delete', ingredient).subscribe(ingredients => this.ingredients = ingredients);
   }
 }

@@ -43,5 +43,6 @@ export class OrderService {
   }
   order(meals) {
     this.http.post<Meal[]>('/api/fasterfood/order', meals).subscribe(m => this.meals.next([]));
+    this.currentCost = 0;
   }
 }

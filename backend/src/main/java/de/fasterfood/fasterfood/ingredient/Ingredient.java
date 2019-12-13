@@ -13,7 +13,6 @@ public class Ingredient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     private String name;
     private double purchasePrice;
     private int stock;
@@ -23,7 +22,6 @@ public class Ingredient {
 
     @OneToMany(mappedBy = "ingredient")
     Set<Recipe> recipeSet;
-
 
 
     public Ingredient(String name, double purchasePrice, int stock) {

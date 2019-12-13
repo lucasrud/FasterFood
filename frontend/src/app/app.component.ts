@@ -49,10 +49,6 @@ export class AppComponent implements OnInit {
     this.http.post<Meal[]>('/api/fasterfood/deleteMeal', mealToBeDeleted).subscribe(meals => this.meals = meals);
   }
 
-  postMeals() {
-    this.orderService.addMeals(this.newMeals);
-  }
-
   resetNewMeal() {
     this.name = '';
   }

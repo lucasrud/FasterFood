@@ -41,7 +41,7 @@ export class OrderService {
   getOrderCost(): number {
     return this.currentCost;
   }
-  addMeals(meals) {
-    this.http.post('/api/fasterfood/addMeals', meals);
+  order(meals) {
+    this.http.post<Meal[]>('/api/fasterfood/order', meals).subscribe(m => this.meals.next([]));
   }
 }

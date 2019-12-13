@@ -36,4 +36,10 @@ public class IngredientController {
         ingredientService.changeStock(ingredient);
         return listAllIngredients();
     }
+
+    @PostMapping("/api/ingredients/add")
+    public List<Ingredient> add(@RequestBody Ingredient ingredient){
+        ingredientService.addIngredient(ingredient);
+        return listAllIngredients();
+    }
 }

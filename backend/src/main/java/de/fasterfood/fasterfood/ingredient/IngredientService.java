@@ -16,12 +16,13 @@ public class IngredientService {
         this.ingredientRepository = ingredientRepository;
     }
 
-    public void useForMeal(Meal meal){
+    public void useForMeal(Meal meal){        // wird das benötigt?
 
         for (Ingredient ingredient : meal.getIngredients()){
 
         }
     }
+
     public void changePurchasePrice(Ingredient ingredient){
         ingredientRepository.save(ingredient);
     }
@@ -29,9 +30,12 @@ public class IngredientService {
     public void changeStock(Ingredient ingredient){
 
         Optional<Ingredient> foundOptionalIngredient = ingredientRepository.findById(ingredient.getId());
-        Ingredient changedIngredient = foundOptionalIngredient.get();
+        Ingredient changedIngredient = foundOptionalIngredient.get();  // nochmal umschreiben?
         changedIngredient = ingredient;
         ingredientRepository.save(changedIngredient);
     }
 
+    public void addIngredient(Ingredient ingredientName) {
+        ingredientRepository.save(ingredientName);
+    }
 }

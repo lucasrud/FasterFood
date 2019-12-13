@@ -2,6 +2,7 @@ package de.fasterfood.fasterfood.meal;
 
 import de.fasterfood.fasterfood.ingredient.Ingredient;
 import de.fasterfood.fasterfood.recipe.Recipe;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.util.HashMap;
@@ -16,8 +17,10 @@ public class Meal {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToOne
-    Recipe recipe;
+
+//
+//    @OneToMany(mappedBy = "meal")
+//    private List<Recipe> recipe;
 
     private String name;
     private double purchasePrice;
@@ -27,7 +30,6 @@ public class Meal {
     @ManyToMany
     private List<Ingredient> ingredients;
 
-    private HashMap<String, Integer> amountOfIngredient;
 
     public Meal(String name, double retailPrice, List<Ingredient> ingredients, HashMap amountOfIngredient) {
         this.name = name;
@@ -37,7 +39,6 @@ public class Meal {
         this.retailPrice = retailPrice;
         this.profit = retailPrice - purchasePrice;
         this.ingredients = ingredients;
-        this.amountOfIngredient = amountOfIngredient;
     }
 
     public Meal() {
@@ -90,12 +91,22 @@ public class Meal {
     public void setIngredients(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
+//
+//    public void setRecipe(List<Recipe> recipe){
+//        this.recipe = recipe;
+//    }
+//
+//    public void addInstruction(Recipe recipe){
+//        this.recipe.add(recipe);
+//    }
+//
+//    public void deleteInstruction(Recipe recipe){
+//        this.recipe.remove(recipe);
+//    }
+//
+//    public List<Recipe> getRecipe() {
+//
+//        return recipe;
+//    }
 
-    public Recipe getRecipeSet() {
-        return recipe;
-    }
-
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
-    }
 }

@@ -29,8 +29,13 @@ public class OrderController {
 
     @PostMapping("/api/fasterfood/order")
     public List<Meal> order(@RequestBody List<Meal> meals){
-        System.out.println("hi");
         orderService.addOrderandProcess(meals);
         return listOfItems();
     }
+
+    @PostMapping("/api/fasterfood/orderCheck")
+    public int orderCheck(@RequestBody List<Meal> meals){
+        return orderService.orderCheck(meals);
+    }
+
 }

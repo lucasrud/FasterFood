@@ -8,6 +8,8 @@ import de.fasterfood.fasterfood.order.Order;
 import de.fasterfood.fasterfood.order.OrderRepository;
 import de.fasterfood.fasterfood.process.Process;
 import de.fasterfood.fasterfood.process.ProcessRepository;
+import de.fasterfood.fasterfood.recipe.Recipe;
+import de.fasterfood.fasterfood.recipe.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,14 +30,16 @@ public class HomeController {
     private MealRepository mealRepository;
     private OrderRepository orderRepository;
     private ProcessRepository processRepository;
+    private RecipeRepository recipeRepository;
 
     @Autowired
     public HomeController(IngredientRepository ingredientRepository, MealRepository mealRepository, OrderRepository orderRepository,
-                          ProcessRepository processRepository){
+                          ProcessRepository processRepository, RecipeRepository recipeRepository){
         this.ingredientRepository = ingredientRepository;
         this.mealRepository = mealRepository;
         this.orderRepository = orderRepository;
         this.processRepository = processRepository;
+        this.recipeRepository = recipeRepository;
     }
 
     @GetMapping("/")
@@ -66,6 +70,7 @@ public class HomeController {
             ingredients.add(sauce);
             ingredients.add(veggies);
 
+
             HashMap<String, Integer> amountOfIng = new HashMap<>();
             Random random = new Random();
 
@@ -86,6 +91,7 @@ public class HomeController {
             Meal wasser = new Meal("Wasser", 1.1, ingredients, amountOfIng);
             Meal bier = new Meal("Bier", 2.5, ingredients, amountOfIng);
             Meal rum = new Meal("Rum", 3, ingredients, amountOfIng);
+
 
 
             Process process0 = new Process(kebab, kebab.getRetailPrice());
@@ -116,6 +122,15 @@ public class HomeController {
             mealRepository.save(bier);
             mealRepository.save(rum);
 
+
+            int i = 1;
+            for ( Ingredient ingredient : ingredients ){
+                Recipe recipe = new Recipe(kebab.getId(), ingredient, i);
+                Recipe recipe2 = new Recipe(turkishPizza.getId(), ingredient, i);
+                recipeRepository.save(recipe);
+                recipeRepository.save(recipe2);
+                i++;
+            }
 
             for (Process process : processes){
                 processRepository.save(process);

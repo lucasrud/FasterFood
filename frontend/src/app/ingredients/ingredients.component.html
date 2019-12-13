@@ -21,6 +21,7 @@
         <td class="alignMid">{{ingredient.stock + ' g'}}</td>
         <td><input type="text" placeholder="0 g" #stock size="10"></td>
         <td><button (click)="changeStockForIngredient(ingredient, stock.value)">Change</button></td>
+        <td><button (click)="deleteIngredient(ingredient)">Delete</button></td>
     </tr>
   </table>
 </div>

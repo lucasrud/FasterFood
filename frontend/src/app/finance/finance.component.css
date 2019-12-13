@@ -1,0 +1,9 @@
+
+table {
+  width: 300px;
+}
+
+.alignMid {
+  text-align: center;
+  border: 1px black solid;
+}

@@ -26,7 +26,7 @@ export class MealsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.http.get<Meal[]>('/api/fasterfood/order').subscribe(meals => this.meals = meals);
+    this.http.get<Meal[]>('/api/meals').subscribe(meals => this.meals = meals);
     // Diese Methoden sollten bei Gelegenheit in den/ einen Service ausgelagert werden? AK
     this.resetNewMeal();
     this.newMeals = [];
@@ -43,7 +43,6 @@ export class MealsComponent implements OnInit {
       this.newMeals.push(m);
       this.resetNewMeal();
     }
-
   }
 
   deleteMeal(mealToBeDeleted) {
@@ -52,5 +51,12 @@ export class MealsComponent implements OnInit {
 
   resetNewMeal() {
     this.name = '';
+  }
+
+  changePrice(meal, price) {
+    if (!isNaN(Number(price)) && !(price === '')) {
+      meal.retailPrice = price;
+      this.http.post<Meal[]>('/api/meals/price', meal).subscribe(meals => this.meals = meals);
+    }
   }
 }

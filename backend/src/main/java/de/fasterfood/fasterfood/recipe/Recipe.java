@@ -8,44 +8,48 @@ import javax.persistence.*;
 @Entity
 public class Recipe {
 
-    @EmbeddedId
-    IngredientMealKey id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    private Integer mealId;
 
     @ManyToOne
-    @MapsId("meal_id")
-    @JoinColumn(name = "meal_id")
-    Meal meal;
-
-    @ManyToOne
-    @MapsId("ingredients_id")
-    @JoinColumn(name = "ingredients_id")
-    Ingredient ingredient;
+    private Ingredient ingredient;
 
     int amount;
 
     public Recipe() {
     }
 
-    public Recipe(Meal meal, Ingredient ingredient, int amount){
-        this.meal = meal;
+    public Recipe(Integer meal, Ingredient ingredient, int amount){
+        this.mealId = meal;
         this.ingredient = ingredient;
         this.amount = amount;
     }
 
-    public IngredientMealKey getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(IngredientMealKey id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public Meal getMeal() {
-        return meal;
+    public Integer getMeal() {
+        return mealId;
     }
 
-    public void setMeal(Meal meal) {
-        this.meal = meal;
+    public void setMealId(Integer mealId){
+        this.mealId = mealId;
+    }
+
+    public Integer getMealId(){
+        return this.mealId;
+    }
+
+    public void setMeal(Integer meal) {
+        this.mealId = meal;
     }
 
     public Ingredient getIngredient() {

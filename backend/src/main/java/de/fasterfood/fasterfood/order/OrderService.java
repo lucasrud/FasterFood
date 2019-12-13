@@ -1,10 +1,17 @@
 package de.fasterfood.fasterfood.order;
 
 import de.fasterfood.fasterfood.editMeal.Meal;
+import de.fasterfood.fasterfood.ingredient.Ingredient;
+import de.fasterfood.fasterfood.ingredient.IngredientService;
+import de.fasterfood.fasterfood.meal.Meal;
 import de.fasterfood.fasterfood.process.Process;
 import de.fasterfood.fasterfood.process.ProcessRepository;
+import de.fasterfood.fasterfood.recipe.Recipe;
+import de.fasterfood.fasterfood.recipe.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.sound.midi.Receiver;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.LinkedList;
@@ -16,14 +23,19 @@ public class OrderService {
 
     private OrderRepository orderRepository;
     private ProcessRepository processRepository;
+    private IngredientService ingredientService;
+    private RecipeRepository recipeRepository;
 
     @Autowired
-    public OrderService(OrderRepository orderRepository, ProcessRepository processRepository){
+    public OrderService(OrderRepository orderRepository, ProcessRepository processRepository, IngredientService ingredientService, RecipeRepository recipeRepository){
         this.orderRepository = orderRepository;
         this.processRepository = processRepository;
+        this.ingredientService = ingredientService;
+        this.recipeRepository = recipeRepository;
     }
 
     public void addOrderandProcess(List<Meal> meals) {
+        decreaseStock(meals);
         List<Process> processes = new LinkedList<>();
         List<Process> newProcesses = new LinkedList<>();
         for (Meal meal : meals) {
@@ -58,5 +70,31 @@ public class OrderService {
         }
         Order order = new Order(LocalDate.now(), LocalTime.now(), processes);
         orderRepository.save(order);
+    }
+
+    public void decreaseStock(List<Meal> meals){
+
+        for (Meal meal : meals) {
+            List<Recipe> recipe = recipeRepository.findAllByMealId(meal.getId());
+            for (Recipe instruction : recipe ){
+                Ingredient ingredient = instruction.getIngredient();
+                int amount = instruction.getAmount();
+                ingredientService.decreaseStockFromOrder(ingredient, -amount);
+            }
+        }
+    }
+
+    public int orderCheck(List<Meal> meals){
+        for (Meal meal : meals) {
+            List<Recipe> recipe = recipeRepository.findAllByMealId(meal.getId());
+            for (Recipe instruction : recipe ){
+                Ingredient ingredient = instruction.getIngredient();
+                int amount = instruction.getAmount();
+                if (ingredient.getStock() < amount){
+                    return 0;
+                }
+            }
+        }
+        return 1;
     }
 }

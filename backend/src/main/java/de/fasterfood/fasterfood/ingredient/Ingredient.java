@@ -21,7 +21,7 @@ public class Ingredient {
     private List<Meal> mealList;
 
     @OneToMany(mappedBy = "ingredient")
-    Set<Recipe> recipeSet;
+    List<Recipe> recipes;
 
 
     public Ingredient(String name, double purchasePrice, int stock) {

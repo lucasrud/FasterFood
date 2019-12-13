@@ -16,11 +16,9 @@ public class IngredientService {
         this.ingredientRepository = ingredientRepository;
     }
 
-    public void useForMeal(Meal meal){        // wird das benötigt?
-
-        for (Ingredient ingredient : meal.getIngredients()){
-
-        }
+    public void decreaseStockFromOrder(Ingredient ingredient, int amount){
+        ingredient.addStock(amount);
+        ingredientRepository.save(ingredient);
     }
 
     public void changePurchasePrice(Ingredient ingredient){

@@ -1,5 +1,6 @@
 import {Meal} from './meal';
 import {Injectable} from '@angular/core';
+import {Recipe} from './recipe';
 
 
 @Injectable({

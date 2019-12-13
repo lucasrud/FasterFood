@@ -32,4 +32,10 @@ public class OrderController {
         orderService.addOrderandProcess(meals);
         return listOfItems();
     }
+
+    @PostMapping("/api/fasterfood/orderCheck")
+    public int orderCheck(@RequestBody List<Meal> meals){
+        return orderService.orderCheck(meals);
+    }
+
 }

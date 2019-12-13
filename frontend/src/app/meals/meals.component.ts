@@ -43,7 +43,6 @@ export class MealsComponent implements OnInit {
       this.newMeals.push(m);
       this.resetNewMeal();
     }
-
   }
 
   deleteMeal(mealToBeDeleted) {
@@ -53,4 +52,5 @@ export class MealsComponent implements OnInit {
   resetNewMeal() {
     this.name = '';
   }
+
 }

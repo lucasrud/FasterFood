@@ -62,6 +62,8 @@ public class HomeController {
             Ingredient sauce = new Ingredient("sauce", 0.4, 20);
             Ingredient veggies = new Ingredient("veggies", 0.4, 20);
             Ingredient dough = new Ingredient("dough", 0.4, 20);
+            Ingredient test1 = new Ingredient("testDeleteable1", 0.25, 750);
+            Ingredient test2 = new Ingredient("testDeleteable2", 0.12, 500);
 
             List<Ingredient> ingredients = new LinkedList<>();
             ingredients.add(cowMeat);
@@ -69,6 +71,7 @@ public class HomeController {
             ingredients.add(pita);
             ingredients.add(sauce);
             ingredients.add(veggies);
+            ingredients.add(dough);
 
 
             HashMap<String, Integer> amountOfIng = new HashMap<>();
@@ -109,6 +112,9 @@ public class HomeController {
             for (Ingredient ingredient : ingredients){
                 ingredientRepository.save(ingredient);
             }
+            ingredientRepository.save(test1);    // without dependency to a meal
+            ingredientRepository.save(test2);    // without dependency to a meal
+
             mealRepository.save(kebab);
             mealRepository.save(turkishPizza);
             mealRepository.save(crog);

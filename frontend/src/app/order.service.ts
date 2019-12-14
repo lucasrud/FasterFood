@@ -45,6 +45,7 @@ export class OrderService {
   }
   order(meals) {
     this.http.post<number>('/api/fasterfood/orderCheck', meals).subscribe(response => this.response = response);
+    console.log(this.response);
     if (this.response === 1) {
       alert('Order submitted');
       this.currentCost = 0;

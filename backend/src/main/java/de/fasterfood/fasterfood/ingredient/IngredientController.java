@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -47,5 +49,15 @@ public class IngredientController {
     public List<Ingredient> delete(@RequestBody Ingredient ingredient){
         ingredientService.deleteIngredient(ingredient);
         return listAllIngredients();
+    }
+
+    @PostMapping("/api/ingredients/checkdependencies")
+    public List<StringDTO> checkdependency(@RequestBody Ingredient ingredient){
+
+        ArrayList<StringDTO> dependencies = new ArrayList<>();
+        dependencies.add(new StringDTO("test Nr 1"));
+        dependencies.add(new StringDTO("test Nr 2"));
+        dependencies.add(new StringDTO("test Nr 3"));
+        return dependencies;
     }
 }

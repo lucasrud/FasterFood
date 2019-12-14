@@ -4,7 +4,6 @@ import de.fasterfood.fasterfood.editMeal.Meal;
 import de.fasterfood.fasterfood.recipe.Recipe;
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
 
 @Entity
@@ -17,8 +16,6 @@ public class Ingredient {
     private double purchasePrice;
     private int stock;
 
-//    @ManyToMany
-//    private List<Meal> mealList;
 
     @OneToMany(mappedBy = "ingredient")
     List<Recipe> recipes;
@@ -37,12 +34,6 @@ public class Ingredient {
     public String toString() {
         return "Ingredient [id=" + id + ", name=" + name + ", purchasePrice=" +  + purchasePrice + "]";
     }
-
-    //    public void addMeal(Meal meal){
-//        if(!this.mealList.contains(meal)){
-//            this.mealList.add(meal);
-//        }
-//    }
 
     public Integer getId() {
         return id;
@@ -77,10 +68,6 @@ public class Ingredient {
     }
 
     public void addStock(int stock) { this.stock += stock;}
-
-//    public List<Meal> getMealList() {
-//        return mealList;
-//    }
 
     public List<Recipe> getRecipes() {
         return recipes;

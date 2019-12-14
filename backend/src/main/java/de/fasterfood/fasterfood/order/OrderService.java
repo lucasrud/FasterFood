@@ -85,8 +85,8 @@ public class OrderService {
 
     public int orderCheck(List<Meal> meals){
         for (Meal meal : meals) {
-            List<Recipe> recipe = recipeRepository.findAllByMealId(meal.getId());
-            for (Recipe instruction : recipe ){
+            List<Recipe> recipes = recipeRepository.findAllByMealId(meal.getId());
+            for (Recipe instruction : recipes ){
                 Ingredient ingredient = instruction.getIngredient();
                 int amount = instruction.getAmount();
                 if (ingredient.getStock() < amount){

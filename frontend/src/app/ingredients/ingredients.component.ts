@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Ingredient} from '../ingredient';
 import {ingredientDTO} from '../ingredientDTO';
 import {Meal} from '../meal';
+import {StringDTO} from '../stringDTO';
 
 
 @Component({
@@ -48,6 +49,11 @@ export class IngredientsComponent implements OnInit {
   }
 
   deleteIngredient(ingredient) {
+
+    // let dependencies: StringDTO[] = [];
+    // this.http.post<StringDTO[]>('"/api/ingredients/checkdependencies', ingredient).subscribe(deps => dependencies = deps);
+    // dependencies.forEach(dep => console.log(dep));
+
     this.http.post<Ingredient[]>('/api/ingredients/delete', ingredient).subscribe(ingredients => this.ingredients = ingredients);
   }
 }

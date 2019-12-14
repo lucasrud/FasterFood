@@ -11,7 +11,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.authorizeRequests().antMatchers("/","/api/fasterfood/order","/fasterfood","/api/price/meals","/api/price/ingredients", "/api/fasterfood/addMeal", "/api/fasterfood/deleteMeal", "/api/finance","/api/ingredients/delete","/api/ingredients/checkdependencies").permitAll();
+        http.authorizeRequests().antMatchers("/","/api/fasterfood/order","/fasterfood", "/api/price/meals",
+                "/api/price/ingredients", "/api/fasterfood/addMeal", "/api/fasterfood/deleteMeal", "/api/finance",
+                "/api/ingredients/delete", "/api/ingredients/checkdependencies").permitAll();
         http.cors().and().csrf().disable();
     }
 }

@@ -1,12 +1,11 @@
 package de.fasterfood.fasterfood.ingredient;
 
+import de.fasterfood.fasterfood.editMeal.Meal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -14,17 +13,16 @@ import java.util.List;
 public class IngredientController {
 
     IngredientService ingredientService;
-    IngredientRepository ingredientRepository;
 
     @Autowired
-    public IngredientController(IngredientRepository ingredientRepository, IngredientService ingredientService){
-        this.ingredientRepository = ingredientRepository;
+    public IngredientController(IngredientService ingredientService){
         this.ingredientService = ingredientService;
     }
 
+
     @GetMapping("/api/ingredients")
     public List<Ingredient> listAllIngredients(){
-        return ingredientRepository.findAll();
+        return ingredientService.findAll();
     }
 
     @PostMapping("/api/ingredients/price")
@@ -52,12 +50,7 @@ public class IngredientController {
     }
 
     @PostMapping("/api/ingredients/checkdependencies")
-    public List<StringDTO> checkdependency(@RequestBody Ingredient ingredient){
-
-        ArrayList<StringDTO> dependencies = new ArrayList<>();
-        dependencies.add(new StringDTO("test Nr 1"));
-        dependencies.add(new StringDTO("test Nr 2"));
-        dependencies.add(new StringDTO("test Nr 3"));
-        return dependencies;
+    public List<Meal> checkdependencies(@RequestBody Ingredient ingredient){
+        return ingredientService.checkDependencies(ingredient);
     }
 }

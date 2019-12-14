@@ -31,16 +31,19 @@ public class OrderService {
                 for (int i = 0; i<processes.size(); i++) {
                     if (processes.get(i).getMeal().getId() == meal.getId()) {
                         processes.get(i).increaseQuantity();
+                        break;
+
                     } else {
-
                         Process newProcess = new Process(meal, meal.getRetailPrice());
-
                         if (processes.contains(newProcess)) {  // check @Override Process.equals()
-                            processes.get(i).increaseQuantity();
+                            processes.get(processes.indexOf(newProcess)).increaseQuantity();
+
                         } else {
                             newProcesses.add(newProcess);
                         }
+                        break;
                     }
+
                 }
 
             } else {
@@ -48,8 +51,8 @@ public class OrderService {
                 newProcesses.add(newProcess);
             }
 
+            processes = newProcesses;
         }
-        processes = newProcesses;
         for (Process process : processes) {
             processRepository.save(process);
         }

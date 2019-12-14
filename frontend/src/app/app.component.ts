@@ -13,8 +13,6 @@ import {HttpClient} from '@angular/common/http';
 })
 export class AppComponent implements OnInit {
 
-  title = 'fasterfood-angular';
-
   newMeals: MealDTO[];
   name = '';
   @Input()
@@ -25,6 +23,8 @@ export class AppComponent implements OnInit {
     this.orderService = orderService;
   }
 
+  // Können die auskommentierten Inhalte von Ingredient.service gelöscht werden? AK
+
   ngOnInit(): void {
     this.http.get<Meal[]>('/api/meals/order').subscribe(meals => this.meals = meals);
     // Diese Methoden sollten bei Gelegenheit in den/ einen Service ausgelagert werden? AK
@@ -32,27 +32,7 @@ export class AppComponent implements OnInit {
     this.newMeals = [];
   }
 
-  addMeal(nameE, priceE) {
-    const m: MealDTO = {
-      name: nameE,
-      price: priceE,
-    };
-    console.log('aa');
-    this.http.post<Meal[]>('/api/meals/addMeal', m).subscribe(meals => this.meals = meals);
-    this.newMeals.push(m);
-    this.resetNewMeal();
-  }
-
-  deleteMeal(mealToBeDeleted) {
-    this.http.post<Meal[]>('/api/meals/deleteMeal', mealToBeDeleted).subscribe(meals => this.meals = meals);
-  }
-
   resetNewMeal() {
     this.name = '';
-  }
-
-  addProcess(mealName: Meal) {
-    this.orderService.addToMealList(mealName);
-    this.orderService.getOrderCost();
   }
 }

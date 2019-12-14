@@ -22,18 +22,18 @@ public class OrderController {
         this.mealRepository=mealRepository;
     }
 
-    @GetMapping("/api/fasterfood/order")
+    @GetMapping("/api/order")
     public List<Meal> listOfItems () {
         return mealRepository.findAll();
     }
 
-    @PostMapping("/api/fasterfood/order")
+    @PostMapping("/api/order")
     public List<Meal> order(@RequestBody List<Meal> meals){
         orderService.addOrderandProcess(meals);
         return listOfItems();
     }
 
-    @PostMapping("/api/fasterfood/orderCheck")
+    @PostMapping("/api/order/check")
     public int orderCheck(@RequestBody List<Meal> meals){
         return orderService.orderCheck(meals);
     }

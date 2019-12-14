@@ -43,6 +43,9 @@ export class MealsComponent implements OnInit {
     }
   }
 
+  // BUG:  Einmal bestellte Meals können aktuell nicht gelöscht werden. Das liegt daran, da sie in der DB in der Process
+  // BUG:  Tabelle bereits verankert sind. In diesem Zustand können Artikel, welche mal bestellt wurden, nicht von der Karten genommen
+  // BUG:  werden. Sollten wir das fixen? Nicht, dass wir das bei der Präsentation versuchen und dann geht es nicht. AK
   deleteMeal(mealToBeDeleted) {
     this.http.post<Meal[]>('/api/meals/deleteMeal', mealToBeDeleted).subscribe(meals => this.meals = meals);
   }

@@ -1,5 +1,5 @@
 
-export interface ingredientDTO {
+export interface IngredientDTO {
   name: string;
   purchasePrice: number;
   stock: number;

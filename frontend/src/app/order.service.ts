@@ -14,7 +14,6 @@ export class OrderService {
   }
 
   private response = 1;
-  private test: boolean;
   private meals: BehaviorSubject<Meal[]>;
   currentCost = 0;
 
@@ -44,12 +43,12 @@ export class OrderService {
     return this.currentCost;
   }
   order(meals) {
-    this.http.post<number>('/api/fasterfood/orderCheck', meals).subscribe(response => this.response = response);
+    this.http.post<number>('/api/order/check', meals).subscribe(response => this.response = response);
     console.log(this.response);
     if (this.response === 1) {
       alert('Order submitted');
       this.currentCost = 0;
-      this.http.post<Meal[]>('/api/fasterfood/order', meals).subscribe(m => this.meals.next([]));
+      this.http.post<Meal[]>('/api/order', meals).subscribe(m => this.meals.next([]));
     } else {
       prompt('Not enough stock to proceed with order');
     }

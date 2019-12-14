@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {Ingredient} from '../ingredient';
-import {ingredientDTO} from '../ingredientDTO';
+import {IngredientDTO} from '../ingredientDTO';
 import {Meal} from '../meal';
 
 
@@ -40,7 +40,7 @@ export class IngredientsComponent implements OnInit {
 
   addIngredient(iname, iprice, istock) {
     if (!isNaN(Number(iprice)) && !(iprice === '')) {
-      const m: ingredientDTO = {
+      const m: IngredientDTO = {
         name: iname,
         purchasePrice: iprice,
         stock: istock
@@ -53,7 +53,7 @@ export class IngredientsComponent implements OnInit {
 
     this.dependentMealsInformation = '';
     this.http.post<Meal[]>('/api/ingredients/checkdependencies', ingredient).subscribe(deps => this.dependentMeals = deps);
-    alert(this.dependentMeals.length);  // Wenn diese Zeile gelöscht wird, dann funktioniert diese ganze Methode nicht, es ist verrückt!!
+    alert(this.dependentMeals.length); // Wenn diese Zeile gelöscht wird, dann funktioniert diese Methode nicht richtig, es ist verrückt!!AK
 
     if (this.dependentMeals.length > 0) {
       this.dependentMealsInformation = 'Deletion not possible, ' + ingredient.name + ' is still in use for these Meals: ';

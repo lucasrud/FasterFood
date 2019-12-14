@@ -26,7 +26,7 @@
       </tr>
       <tr *ngFor="let meal of meals">
         <td>{{meal.name}}</td>
-        <td class="alignMid">{{meal.retailPrice}}</td>
+        <td class="alignMid">{{meal.retailPrice.toFixed(2) + ' €'}}</td>
         <td><input type="text" placeholder="0" #price size="10"></td>
         <td>
           <button (click)="changePrice(meal, price.value)">Change</button>

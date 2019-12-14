@@ -31,14 +31,14 @@ public class MealController {
         return listAllMeals();
     }
 
-    @PostMapping("/api/fasterfood/addMeal")
+    @PostMapping("/api/meals/addMeal")
     public List<Meal> addMeal(@RequestBody MealDTO meal){
         mealService.addMeal(meal);
         return listAllMeals();
     }
 
 
-    @PostMapping("/api/fasterfood/deleteMeal")
+    @PostMapping("/api/meals/deleteMeal")
     public List<Meal> deletedMeal(@RequestBody Meal meal){
         mealService.deleteMeal(meal);
         return listAllMeals();

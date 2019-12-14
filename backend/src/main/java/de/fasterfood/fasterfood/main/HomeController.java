@@ -12,15 +12,11 @@ import de.fasterfood.fasterfood.recipe.Recipe;
 import de.fasterfood.fasterfood.recipe.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.PostConstruct;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 
 @RestController
@@ -47,11 +43,6 @@ public class HomeController {
         return mealRepository.findAll();
     }
 
-    @PostMapping("/")
-    public void addMeal(){
-
-            }
-
     @PostConstruct
     public void setupData(){
 
@@ -66,6 +57,7 @@ public class HomeController {
             Ingredient test2 = new Ingredient("DeleteableNoDependency2", 0.12, 1200);
             Ingredient test3 = new Ingredient("DeleteableNoDependency3", 0.07, 380);
             Ingredient test4 = new Ingredient("DeleteableNoDependency4", 0.03, 8400);
+            Ingredient wasserflasche = new Ingredient("Bottle of Water - Bonaqua", 0.03, 8400);
 
 
 
@@ -95,7 +87,7 @@ public class HomeController {
             Meal coca = new Meal("Coke", 1.5, ingredients, amountOfIng);
             Meal tee = new Meal("Tee", 1.2, ingredients, amountOfIng);
             Meal fanta = new Meal("Fanta", 1.5, ingredients, amountOfIng);
-            Meal wasser = new Meal("Wasser", 1.1, ingredients, amountOfIng);
+            Meal wasser = new Meal("Wasser", 1.1, Arrays.asList(wasserflasche), amountOfIng);
             Meal bier = new Meal("Bier", 2.5, ingredients, amountOfIng);
             Meal rum = new Meal("Rum", 3, ingredients, amountOfIng);
 
@@ -121,6 +113,7 @@ public class HomeController {
             ingredientRepository.save(test2);    // without dependency to a meal
             ingredientRepository.save(test3);    // without dependency to a meal
             ingredientRepository.save(test4);    // without dependency to a meal
+            ingredientRepository.save(wasserflasche);    // has dependency to Water
 
             mealRepository.save(kebab);
             mealRepository.save(turkishPizza);
@@ -144,6 +137,8 @@ public class HomeController {
                 recipeRepository.save(recipe2);
                 i++;
             }
+            Recipe recipe3 = new Recipe(wasser.getId(), wasserflasche, 1);
+            recipeRepository.save(recipe3);
 
             for (Process process : processes){
                 processRepository.save(process);

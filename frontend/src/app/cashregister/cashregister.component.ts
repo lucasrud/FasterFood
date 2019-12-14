@@ -2,8 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {MealDTO} from '../mealDTO';
 import {Meal} from '../meal';
 import {OrderService} from '../order.service';
-import {TestService} from '../testservice';
 import {HttpClient} from '@angular/common/http';
+
 
 @Component({
   selector: 'app-cashregister',
@@ -19,11 +19,9 @@ export class CashregisterComponent implements OnInit {
   @Input()
   meals: Meal[];
   orderService: OrderService;
-  testService: TestService;
 
-  constructor(private http: HttpClient, orderService: OrderService, testService: TestService) {
+  constructor(private http: HttpClient, orderService: OrderService) {
     this.orderService = orderService;
-    this.testService = testService;
   }
 
   ngOnInit(): void {

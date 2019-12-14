@@ -14,15 +14,15 @@ import {Meal} from '../meal';
 export class IngredientsComponent implements OnInit {
 
   ingredients: Ingredient[];
-  dependentMeals: Meal[];
+  dependentMeals: Meal[] = [];
+  dependentMealsInformation = '';
+
 
   constructor(private http: HttpClient) {
     this.http.get<Ingredient[]>('/api/ingredients').subscribe( ingredients => this.ingredients = ingredients);
   }
 
-  ngOnInit() {
-    this.dependentMeals = [{id: 0, name: '', purchasePrice: 0, retailPrice: 0, profit: 0, ingredients: []}];
-  }
+  ngOnInit() {  }
 
   changePriceForIngredient(ingredient, price) {
     if (!isNaN(Number(price)) && !(price === '')) {
@@ -51,20 +51,17 @@ export class IngredientsComponent implements OnInit {
 
   deleteIngredient(ingredient) {
 
+    this.dependentMealsInformation = '';
     this.http.post<Meal[]>('/api/ingredients/checkdependencies', ingredient).subscribe(deps => this.dependentMeals = deps);
     alert(this.dependentMeals.length);  // Wenn diese Zeile gelöscht wird, dann funktioniert diese ganze Methode nicht, es ist verrückt!!
 
-    
-    // Muss auch noch getestet werden, wenn in die dependentMeals nur eine dependency gefunden wird, zur Sicherheit, es scheint, dass
-    // das TS array.length anders funktioniert?
     if (this.dependentMeals.length > 0) {
-      let text = 'Deletion not possible, ingredients are still in use for these Meals: ';
-      this.dependentMeals.forEach(dep => text += ' ' + dep.name);
-      alert(text);
-      this.dependentMeals = [{id: 0, name: '', purchasePrice: 0, retailPrice: 0, profit: 0, ingredients: []}];
+      this.dependentMealsInformation = 'Deletion not possible, ' + ingredient.name + ' is still in use for these Meals: ';
+      this.dependentMeals.forEach(dep => this.dependentMealsInformation += ' ' + dep.name);
+      this.dependentMeals = [];
     } else {
       this.http.post<Ingredient[]>('/api/ingredients/delete', ingredient).subscribe(ingredients => this.ingredients = ingredients);
-      this.dependentMeals = [{id: 0, name: '', purchasePrice: 0, retailPrice: 0, profit: 0, ingredients: []}];
+      this.dependentMeals = [];
     }
   }
 }

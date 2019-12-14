@@ -1,9 +1,9 @@
 import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
 import { OrderService} from '../order.service';
-import {TestService} from '../testservice';
 import {Meal} from '../meal';
 import {MealDTO} from '../mealDTO';
 import {HttpClient} from '@angular/common/http';
+
 
 @Component({
   selector: 'app-meals',
@@ -18,11 +18,9 @@ export class MealsComponent implements OnInit {
   @Input()
   meals: Meal[];
   orderService: OrderService;
-  testService: TestService;
 
-  constructor(private http: HttpClient, orderService: OrderService, testService: TestService) {
+  constructor(private http: HttpClient, orderService: OrderService) {
     this.orderService = orderService;
-    this.testService = testService;
   }
 
   ngOnInit(): void {
@@ -39,14 +37,14 @@ export class MealsComponent implements OnInit {
         price: priceE,
       };
 
-      this.http.post<Meal[]>('/api/fasterfood/addMeal', m).subscribe(meals => this.meals = meals);
+      this.http.post<Meal[]>('/api/meals/addMeal', m).subscribe(meals => this.meals = meals);
       this.newMeals.push(m);
       this.resetNewMeal();
     }
   }
 
   deleteMeal(mealToBeDeleted) {
-    this.http.post<Meal[]>('/api/fasterfood/deleteMeal', mealToBeDeleted).subscribe(meals => this.meals = meals);
+    this.http.post<Meal[]>('/api/meals/deleteMeal', mealToBeDeleted).subscribe(meals => this.meals = meals);
   }
 
   resetNewMeal() {

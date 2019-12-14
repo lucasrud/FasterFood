@@ -1,20 +1,11 @@
 <div class="main" >
-  <div class="main mealbutton" *ngFor="let meal of meals">
-    <tr>
-      <td > {{meal.id + ' ' + meal.name + ' ' + meal.retailPrice.toFixed(2) + ' €' }}</td>
-      <button class="main mealbutton" (click)="deleteMeal(meal)"> X </button>
-    </tr>
-  </div>
 
-  <div class="roundBorder">
-    <h2>Add new Meal</h2>
-    <table>
-      <tr><td>Name:</td><td><input type="text" #mealname placeholder="Meal"></td></tr>
-      <tr><td>Price:</td><td><input type="text" #price placeholder="Price"></td></tr>
-      <input type="submit" (click)="addMeal(mealname.value, price.value)" value="Add">
-    </table>
-  </div>
-
+<!--  <div class="main mealbutton" *ngFor="let meal of meals">-->
+<!--    <tr>-->
+<!--      <td > {{meal.id + ' ' + meal.name + ' ' + meal.retailPrice.toFixed(2) + ' €' }}</td>-->
+<!--      <button class="main mealbutton" (click)="deleteMeal(meal)"> X </button>-->
+<!--    </tr>-->
+<!--  </div>-->
 
   <div class="roundBorder">
     <h2>Meal Prices</h2>
@@ -28,10 +19,18 @@
         <td>{{meal.name}}</td>
         <td class="alignMid">{{meal.retailPrice.toFixed(2) + ' €'}}</td>
         <td><input type="text" placeholder="0" #price size="10"></td>
-        <td>
-          <button (click)="changePrice(meal, price.value)">Change</button>
-        </td>
+        <td><button (click)="changePrice(meal, price.value)">Change</button></td>
+        <td><button class="main mealbutton" (click)="deleteMeal(meal)">Delete</button></td>
       </tr>
+    </table>
+  </div>
+
+  <div class="roundBorder">
+    <h2>Add new Meal</h2>
+    <table>
+      <tr><td>Name:</td><td><input type="text" #mealname placeholder="Meal"></td></tr>
+      <tr><td>Price:</td><td><input type="text" #price placeholder="Price"></td></tr>
+      <input type="submit" (click)="addMeal(mealname.value, price.value)" value="Add">
     </table>
   </div>
 

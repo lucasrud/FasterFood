@@ -3,7 +3,6 @@ package de.fasterfood.fasterfood.order;
 import de.fasterfood.fasterfood.editMeal.Meal;
 import de.fasterfood.fasterfood.ingredient.Ingredient;
 import de.fasterfood.fasterfood.ingredient.IngredientService;
-import de.fasterfood.fasterfood.meal.Meal;
 import de.fasterfood.fasterfood.process.Process;
 import de.fasterfood.fasterfood.process.ProcessRepository;
 import de.fasterfood.fasterfood.recipe.Recipe;

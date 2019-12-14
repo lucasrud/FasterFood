@@ -2,10 +2,10 @@
   <div class="main mealbutton" *ngFor="let meal of meals">
     <tr>
       <td > {{meal.id + ' ' + meal.name + ' ' + meal.retailPrice.toFixed(2) + ' €' }}</td>
-      <td class="main mealbutton" (click)="deleteMeal(meal)"> X </td>
+      <button class="main mealbutton" (click)="deleteMeal(meal)"> X </button>
     </tr>
   </div>
-  
+
   <div class="roundBorder">
     <h2>Add new Meal</h2>
     <table>

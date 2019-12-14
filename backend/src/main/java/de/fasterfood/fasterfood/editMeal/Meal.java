@@ -27,18 +27,18 @@ public class Meal {
     private double retailPrice;
     private double profit;
 
-    @ManyToMany
-    private List<Ingredient> ingredients;
+//    @ManyToMany
+//    private List<Ingredient> ingredients;
 
 
     public Meal(String name, double retailPrice, List<Ingredient> ingredients, HashMap amountOfIngredient) {
         this.name = name;
-        for (Ingredient ingredient : ingredients){
-            this.purchasePrice += ingredient.getPurchasePrice();
-        }
+//        for (Ingredient ingredient : ingredients){
+//            this.purchasePrice += ingredient.getPurchasePrice();
+//        }
         this.retailPrice = retailPrice;
         this.profit = retailPrice - purchasePrice;
-        this.ingredients = ingredients;
+//        this.ingredients = ingredients;
     }
 
     public Meal() {
@@ -84,13 +84,13 @@ public class Meal {
         this.profit = profit;
     }
 
-    public List<Ingredient> getIngredients() {
-        return ingredients;
-    }
-
-    public void setIngredients(List<Ingredient> ingredients) {
-        this.ingredients = ingredients;
-    }
+//    public List<Ingredient> getIngredients() {
+//        return ingredients;
+//    }
+//
+//    public void setIngredients(List<Ingredient> ingredients) {
+//        this.ingredients = ingredients;
+//    }
 //
 //    public void setRecipe(List<Recipe> recipe){
 //        this.recipe = recipe;

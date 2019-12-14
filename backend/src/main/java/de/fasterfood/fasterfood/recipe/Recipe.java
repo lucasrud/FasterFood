@@ -1,5 +1,6 @@
 package de.fasterfood.fasterfood.recipe;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import de.fasterfood.fasterfood.ingredient.Ingredient;
 import de.fasterfood.fasterfood.editMeal.Meal;
 
@@ -14,6 +15,7 @@ public class Recipe {
 
     private Integer mealId;
 
+    @JsonIgnore
     @ManyToOne
     private Ingredient ingredient;
 

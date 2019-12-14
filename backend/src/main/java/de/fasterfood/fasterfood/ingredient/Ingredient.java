@@ -17,8 +17,8 @@ public class Ingredient {
     private double purchasePrice;
     private int stock;
 
-    @ManyToMany
-    private List<Meal> mealList;
+//    @ManyToMany
+//    private List<Meal> mealList;
 
     @OneToMany(mappedBy = "ingredient")
     List<Recipe> recipes;
@@ -33,11 +33,16 @@ public class Ingredient {
     public Ingredient() {
     }
 
-    public void addMeal(Meal meal){
-        if(!this.mealList.contains(meal)){
-            this.mealList.add(meal);
-        }
+    @Override
+    public String toString() {
+        return "Ingredient [id=" + id + ", name=" + name + ", purchasePrice=" +  + purchasePrice + "]";
     }
+
+    //    public void addMeal(Meal meal){
+//        if(!this.mealList.contains(meal)){
+//            this.mealList.add(meal);
+//        }
+//    }
 
     public Integer getId() {
         return id;
@@ -73,7 +78,15 @@ public class Ingredient {
 
     public void addStock(int stock) { this.stock += stock;}
 
-    public List<Meal> getMealList() {
-        return mealList;
+//    public List<Meal> getMealList() {
+//        return mealList;
+//    }
+
+    public List<Recipe> getRecipes() {
+        return recipes;
+    }
+
+    public void setRecipes(List<Recipe> recipes) {
+        this.recipes = recipes;
     }
 }

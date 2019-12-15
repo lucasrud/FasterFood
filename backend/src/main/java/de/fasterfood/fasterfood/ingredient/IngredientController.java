@@ -49,8 +49,8 @@ public class IngredientController {
         return listAllIngredients();
     }
 
-    @PostMapping("/api/ingredients/checkdependencies")
-    public List<Meal> checkdependencies(@RequestBody Ingredient ingredient){
+    @PostMapping("/api/ingredients/mealdependencies") // Gehört das vielleicht eher in MealController, wenn es Meal returned?
+    public List<Meal> mealdependencies(@RequestBody Ingredient ingredient){
         return ingredientService.checkDependencies(ingredient);
     }
 }

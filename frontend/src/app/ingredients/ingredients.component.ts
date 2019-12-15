@@ -56,13 +56,14 @@ export class IngredientsComponent implements OnInit {
   deleteIngredient(ingredient) {
 
     this.dependentMealsInformation = '';
-    this.http.post<Meal[]>('/api/ingredients/checkdependencies', ingredient).subscribe(deps => this.dependentMeals = deps);
-    alert(this.dependentMeals.length); // Wenn diese Zeile gelöscht wird, dann funktioniert diese Methode nicht richtig, es ist verrückt!!AK
+    this.http.post<Meal[]>('/api/ingredients/mealdependencies', ingredient).subscribe(deps => this.dependentMeals = deps);
+    alert(this.dependentMeals.length); // Wenn diese Zeile gelöscht wird, dann funktioniert diese Methode nicht richtig, es ist verrückt! AK
 
     if (this.dependentMeals.length > 0) {
       this.dependentMealsInformation = 'Deletion not possible, ' + ingredient.name + ' is still in use for these Meals: ';
       this.dependentMeals.forEach(dep => this.dependentMealsInformation += ' ' + dep.name);
       this.dependentMeals = [];
+      // setTimeout(this.dependentMealsInformation = '', 3000);  // funzt noch nicht AK
     } else {
       this.http.post<Ingredient[]>('/api/ingredients/delete', ingredient).subscribe(ingredients => this.ingredients = ingredients);
       this.dependentMeals = [];

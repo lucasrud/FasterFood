@@ -24,7 +24,6 @@ export class CashregisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.http.get<Meal[]>('/api/order').subscribe(meals => this.meals = meals);
-    // Diese Methoden sollten bei Gelegenheit in den/ einen Service ausgelagert werden? AK
     this.resetNewMeal();
     this.newMeals = [];
   }
@@ -33,8 +32,10 @@ export class CashregisterComponent implements OnInit {
     this.name = '';
   }
 
-  addProcess(mealName: Meal) {
-    this.orderService.addToMealList(mealName);
-    this.orderService.getOrderCost();
+  addProcess(meal: Meal) {
+    if (this.orderService.enoughIngredientsInStockCheck(meal)) {
+      this.orderService.addToMealList(meal);
+      this.orderService.getOrderCost();
+    }
   }
 }

@@ -9,8 +9,6 @@ import de.fasterfood.fasterfood.recipe.Recipe;
 import de.fasterfood.fasterfood.recipe.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.sound.midi.Receiver;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.LinkedList;
@@ -37,6 +35,7 @@ public class OrderService {
         decreaseStock(meals);
         List<Process> processes = new LinkedList<>();
         List<Process> newProcesses = new LinkedList<>();
+
         for (Meal meal : meals) {
             if (!processes.isEmpty()) {
                 for (int i = 0; i<processes.size(); i++) {

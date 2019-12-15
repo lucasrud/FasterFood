@@ -69,6 +69,10 @@ public class OrderService {
         }
         Order order = new Order(LocalDate.now(), LocalTime.now(), processes);
         orderRepository.save(order);
+        for (Process process : processes) {
+            process.setOrder(order);
+            processRepository.save(process);
+        }
     }
 
     public void decreaseStock(List<Meal> meals){

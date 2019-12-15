@@ -145,6 +145,11 @@ public class HomeController {
             }
 
             orderRepository.save(order);
+
+            for (Process process : processes){
+                process.setOrder(order);
+                processRepository.save(process);
+            }
         }
     }
 }

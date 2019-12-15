@@ -1,18 +1,29 @@
 
 <table>
   <tr>
-    <th>Process Nr </th>
-    <th>Meal Name</th>
-    <th>Retail Price</th>
+    <th>Process Nr. </th>
+    <th>Order Date </th>
+    <th>Order Time </th>
+    <th>Order Nr. </th>
+    <th>Meal Nr. </th>
+    <th>Meal Name </th>
+    <th>Quantity </th>
+    <th>Unit Cost </th>
+    <th>Total Process Cost </th>
+    <th>Total Order Cost </th>
   </tr>
 
   <tr *ngFor="let process of processes">  <!-- das hier ist nicht fertig, ist nur Platzhalter, noch bei Gelegenheit aufräumen -->
     <td class="alignMid">{{process.id}}</td>
+    <td class="alignMid">{{process.order.date}}</td>
+    <td class="alignMid">{{process.order.time}}</td>
+    <td class="alignMid">{{process.order.id}}</td>
+    <td class="alignMid">{{process.meal.id}}</td>
     <td class="alignMid">{{process.meal.name}}</td>
-    <td class="alignMid">{{process.meal.purchasePrice}}</td>
+    <td class="alignMid">{{process.quantity}}</td>
     <td class="alignMid">{{process.meal.retailPrice}}</td>
-    <td class="alignMid">{{process.meal.profit}}</td>
     <td class="alignMid">{{process.retailPrice}}</td>
+    <td class="alignMid">{{process.order.retailPrice}}</td>
   </tr>
 </table>
 

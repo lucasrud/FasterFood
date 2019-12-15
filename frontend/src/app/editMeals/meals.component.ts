@@ -55,9 +55,13 @@ export class MealsComponent implements OnInit {
   }
 
   changePrice(meal, price) {
-    if (!isNaN(Number(price)) && !(price === '')) {
+    if (this.validateNumber(price)) {
       meal.retailPrice = price;
       this.http.post<Meal[]>('/api/meals/price', meal).subscribe(meals => this.meals = meals);
     }
+  }
+
+  validateNumber(checknumber) {
+    return (!isNaN(Number(checknumber)) && !(checknumber === '')  && !(checknumber < 0));
   }
 }

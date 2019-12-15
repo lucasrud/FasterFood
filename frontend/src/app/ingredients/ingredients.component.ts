@@ -24,22 +24,26 @@ export class IngredientsComponent implements OnInit {
 
   ngOnInit() {  }
 
+  validateNumber(checknumber) {
+    return (!isNaN(Number(checknumber)) && !(checknumber === '')  && !(checknumber < 0));
+  }
+
   changePriceForIngredient(ingredient, price) {
-    if (!isNaN(Number(price)) && !(price === '')) {
+    if (this.validateNumber(price)) {
       ingredient.purchasePrice = price;
       this.http.post<Ingredient[]>('/api/ingredients/price', ingredient).subscribe(ingredients => this.ingredients = ingredients);
     }
   }
 
   changeStockForIngredient(ingredient, stock) {
-    if (!isNaN(Number(stock)) && !(stock === '')) {
+    if (this.validateNumber(stock)) {
       ingredient.stock = stock;
-      this.http.post<Ingredient[]>('/api/ingredients/stock', ingredient).subscribe( ingredients => this.ingredients = ingredients);
+      this.http.post<Ingredient[]>('/api/ingredients/changestock', ingredient).subscribe( ingredients => this.ingredients = ingredients);
     }
   }
 
   addIngredient(iname, iprice, istock) {
-    if (!isNaN(Number(iprice)) && !(iprice === '')) {
+    if (this.validateNumber(iprice) && this.validateNumber(istock)) {
       const m: IngredientDTO = {
         name: iname,
         purchasePrice: iprice,

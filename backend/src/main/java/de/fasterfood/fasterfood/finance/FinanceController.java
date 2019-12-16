@@ -26,6 +26,6 @@ public class FinanceController {
 
     @GetMapping("/api/finance/today")
     public List<Process> dailyTurnover(){
-        return processRepository.findAllByOrderDate(LocalDate.now());
+        return processRepository.findAllByOrderDate(LocalDate.now().toString());
     }
 }

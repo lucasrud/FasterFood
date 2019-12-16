@@ -1,5 +1,12 @@
-
-<table>
+<div class="section">
+  <button *ngIf="!daily" class="button" (click)="changeView()" >Daily</button>
+  <button *ngIf="daily" class="button" (click)="changeView()" >Total</button>
+</div>
+<div class="section">
+  <div class="container">
+  <h2 *ngIf="daily" class="subtitle">Daily</h2>
+  <h2 *ngIf="!daily" class="subtitle">Total</h2>
+<table class="table">
   <tr>
     <th>Process Nr. </th>
     <th>Order Date </th>
@@ -10,6 +17,8 @@
     <th>Quantity </th>
     <th>Unit Cost </th>
     <th>Total Process Cost </th>
+    <th>Total Process Purchase Price</th>
+    <th>Total Process Profit</th>
     <th>Total Order Cost </th>
   </tr>
 
@@ -24,8 +33,12 @@
     <td class="alignMid">{{process.meal.retailPrice}}</td>
     <td class="alignMid">{{process.retailPrice}}</td>
     <td class="alignMid">{{process.order.retailPrice}}</td>
+    <td class="alignMid">{{process.meal.purchasePrice * process.quantity}}</td>
+    <td class="alignMid">{{process.meal.profit * process.quantity}}</td>
   </tr>
 </table>
 
 <!--<td><input type="text" placeholder="0" #stock size="10"></td>-->
 <!--<td><button (click)="changeStockForIngredient(ingredient, stock.value)">Change</button></td>-->
+</div>
+</div>

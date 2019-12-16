@@ -37,6 +37,20 @@
     <td class="alignMid">{{process.meal.profit * process.quantity}}</td>
   </tr>
 </table>
+    <table class="table">
+  <tr>
+    <th>Total Turnover</th>
+    <th>{{processesTotalTurnover(processes)}}</th>
+  </tr>
+  <tr>
+    <th>Total Purchase Price</th>
+    <th>{{processesTotalPurchasePrice(processes)}}</th>
+  </tr>
+  <tr>
+    <th>Total Profit</th>
+    <th>{{processesTotalProfit(processes)}}</th>
+  </tr>
+</table>
 
 <!--<td><input type="text" placeholder="0" #stock size="10"></td>-->
 <!--<td><button (click)="changeStockForIngredient(ingredient, stock.value)">Change</button></td>-->

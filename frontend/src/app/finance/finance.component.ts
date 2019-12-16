@@ -27,5 +27,26 @@ export class FinanceComponent implements OnInit {
       this.http.get<Process[]>('/api/finance/today').subscribe( processes => this.processes = processes);
     }
   }
+  processesTotalTurnover(processes) {
+    let sum = 0;
+    for (const process of processes) {
+      sum += process.retailPrice;
+    }
+    return sum;
+  }
+  processesTotalPurchasePrice(processes) {
+    let sum = 0;
+    for (const process of processes) {
+      sum += process.meal.purchasePrice * process.quantity;
+    }
+    return sum;
+  }
+  processesTotalProfit(processes) {
+    let sum = 0;
+    for (const process of processes) {
+      sum += process.meal.profit * process.quantity;
+    }
+    return sum;
+  }
 
 }

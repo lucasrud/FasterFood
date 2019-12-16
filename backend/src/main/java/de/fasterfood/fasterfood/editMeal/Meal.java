@@ -12,33 +12,23 @@ import java.util.List;
 @Entity
 public class Meal {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-
-//
-//    @OneToMany(mappedBy = "meal")
-//    private List<Recipe> recipe;
+    public String getName() {
+        return name;
+    }
 
     private String name;
     private double purchasePrice;
     private double retailPrice;
     private double profit;
 
-//    @ManyToMany
-//    private List<Ingredient> ingredients;
-
-
-    public Meal(String name, double retailPrice, List<Ingredient> ingredients, HashMap amountOfIngredient) {
+    public Meal(String name, double retailPrice) {
         this.name = name;
-//        for (Ingredient ingredient : ingredients){
-//            this.purchasePrice += ingredient.getPurchasePrice();
-//        }
         this.retailPrice = retailPrice;
         this.profit = retailPrice - purchasePrice;
-//        this.ingredients = ingredients;
     }
 
     public Meal() {
@@ -46,14 +36,6 @@ public class Meal {
 
     public Integer getId() {
         return id;
-    }
-
-//    public void setId(int id) {
-//        this.id = id;
-//    }
-
-    public String getName() {
-        return name;
     }
 
     public void setName(String name) {
@@ -64,8 +46,9 @@ public class Meal {
         return purchasePrice;
     }
 
-    public void setPurchasePrice(int purchasePrice) {
+    public void setPurchasePrice(double purchasePrice) {
         this.purchasePrice = purchasePrice;
+        this.profit = this.retailPrice - this.purchasePrice;
     }
 
     public double getRetailPrice() {
@@ -80,33 +63,7 @@ public class Meal {
         return profit;
     }
 
-    public void setProfit(int profit) {
+    public void setProfit(double profit) {
         this.profit = profit;
     }
-
-//    public List<Ingredient> getIngredients() {
-//        return ingredients;
-//    }
-//
-//    public void setIngredients(List<Ingredient> ingredients) {
-//        this.ingredients = ingredients;
-//    }
-//
-//    public void setRecipe(List<Recipe> recipe){
-//        this.recipe = recipe;
-//    }
-//
-//    public void addInstruction(Recipe recipe){
-//        this.recipe.add(recipe);
-//    }
-//
-//    public void deleteInstruction(Recipe recipe){
-//        this.recipe.remove(recipe);
-//    }
-//
-//    public List<Recipe> getRecipe() {
-//
-//        return recipe;
-//    }
-
 }

@@ -52,7 +52,7 @@ public class HomeController {
             Ingredient pita = new Ingredient("pita", 0.4, 20);
             Ingredient sauce = new Ingredient("sauce", 0.4, 20);
             Ingredient veggies = new Ingredient("veggies", 0.4, 20);
-            Ingredient dough = new Ingredient("dough", 0.4, 20);
+            Ingredient dough = new Ingredient("dough", 0.4, 2);
             Ingredient test1 = new Ingredient("DeleteableNoDependency1", 0.25, 750);
             Ingredient test2 = new Ingredient("DeleteableNoDependency2", 0.12, 1200);
             Ingredient test3 = new Ingredient("DeleteableNoDependency3", 0.07, 380);
@@ -78,18 +78,18 @@ public class HomeController {
             }
 
 
-            Meal kebab = new Meal("kebab", 4.50, ingredients, amountOfIng);
-            Meal wrap = new Meal("pizza", 7, ingredients, amountOfIng);
-            Meal turkishPizza = new Meal("turkishPizza", 3.5, ingredients, amountOfIng);
-            Meal durum = new Meal("durum", 5, ingredients, amountOfIng);
-            Meal crog = new Meal("crog", 6, ingredients, amountOfIng);
-            Meal salat = new Meal("Salat", 4.20, ingredients, amountOfIng);
-            Meal coca = new Meal("Coke", 1.5, ingredients, amountOfIng);
-            Meal tee = new Meal("Tee", 1.2, ingredients, amountOfIng);
-            Meal fanta = new Meal("Fanta", 1.5, ingredients, amountOfIng);
-            Meal wasser = new Meal("Wasser", 1.1, Arrays.asList(wasserflasche), amountOfIng);
-            Meal bier = new Meal("Bier", 2.5, ingredients, amountOfIng);
-            Meal rum = new Meal("Rum", 3, ingredients, amountOfIng);
+            Meal kebab = new Meal("kebab", 4.50);
+            Meal wrap = new Meal("pizza", 7);
+            Meal turkishPizza = new Meal("turkishPizza", 3.5);
+            Meal durum = new Meal("durum", 5);
+            Meal crog = new Meal("crog", 6);
+            Meal salat = new Meal("Salat", 4.20);
+            Meal coca = new Meal("Coke", 1.5);
+            Meal tee = new Meal("Tee", 1.2);
+            Meal fanta = new Meal("Fanta", 1.5);
+            Meal wasser = new Meal("Wasser", 1.1);
+            Meal bier = new Meal("Bier", 2.5);
+            Meal rum = new Meal("Rum", 3);
 
 
 
@@ -135,7 +135,6 @@ public class HomeController {
                 Recipe recipe2 = new Recipe(turkishPizza.getId(), ingredient, i);
                 recipeRepository.save(recipe);
                 recipeRepository.save(recipe2);
-                i++;
             }
             Recipe recipe3 = new Recipe(wasser.getId(), wasserflasche, 1);
             recipeRepository.save(recipe3);

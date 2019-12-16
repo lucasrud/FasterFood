@@ -25,11 +25,7 @@ public class Meal {
     private double retailPrice;
     private double profit;
 
-//    @ManyToMany
-//    private List<Ingredient> ingredients;
-
-
-    public Meal(String name, double retailPrice, List<Ingredient> ingredients, HashMap amountOfIngredient) {
+    public Meal(String name, double retailPrice) {
         this.name = name;
         this.retailPrice = retailPrice;
         this.profit = retailPrice - purchasePrice;

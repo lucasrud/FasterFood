@@ -45,12 +45,13 @@ public class OrderService {
         HashMap<Integer, Integer> map = generateMap(meals);
         List <Process> processes = generateProcessesFromMap(map);
 
-        for (Process process : processes){
-            processRepository.save(process);
-        }
 
         Order order = new Order(LocalDate.now(), LocalTime.now(), processes);
         orderRepository.save(order);
+        for (Process process : processes){
+            process.setOrder(order);
+            processRepository.save(process);
+        }
     }
 
 

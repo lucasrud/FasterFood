@@ -9,7 +9,6 @@ import { IngredientsComponent } from './ingredients/ingredients.component';
 import { MealsComponent } from './editMeals/meals.component';
 import { CashregisterComponent } from './cashregister/cashregister.component';
 import { FinanceComponent } from './finance/finance.component';
-import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -18,8 +17,7 @@ import { MenuComponent } from './menu/menu.component';
     IngredientsComponent,
     MealsComponent,
     CashregisterComponent,
-    FinanceComponent,
-    MenuComponent
+    FinanceComponent
   ],
   imports: [
     BrowserModule,

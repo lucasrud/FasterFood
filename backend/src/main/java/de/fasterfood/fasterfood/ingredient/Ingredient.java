@@ -17,8 +17,8 @@ public class Ingredient {
     private int stock;
 
 
-    @OneToMany(mappedBy = "ingredient")
-    List<Recipe> recipes;
+//    @OneToMany(mappedBy = "ingredient")
+//    List<Recipe> recipes;
 
 
     public Ingredient(String name, double purchasePrice, int stock) {
@@ -69,11 +69,11 @@ public class Ingredient {
 
     public void addStock(int stock) { this.stock += stock;}
 
-    public List<Recipe> getRecipes() {
-        return recipes;
-    }
-
-    public void setRecipes(List<Recipe> recipes) {
-        this.recipes = recipes;
-    }
+//    public List<Recipe> getRecipes() {
+//        return recipes;
+//    }
+//
+//    public void setRecipes(List<Recipe> recipes) {
+//        this.recipes = recipes;
+//    }
 }

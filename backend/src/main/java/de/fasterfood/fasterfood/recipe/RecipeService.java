@@ -19,4 +19,8 @@ public class RecipeService {
     public List<Recipe> findAllByMeal(Meal meal) {
         return recipeRepository.findAllByMealId(meal.getId());
     }
+
+    public List<Recipe> findAll() {
+        return recipeRepository.findAll();
+    }
 }

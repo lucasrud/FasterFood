@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Ingredient} from '../ingredient';
 import {IngredientDTO} from '../ingredientDTO';
@@ -19,13 +19,14 @@ export class IngredientsComponent implements OnInit {
 
 
   constructor(private http: HttpClient) {
-    this.http.get<Ingredient[]>('/api/ingredients').subscribe( ingredients => this.ingredients = ingredients);
+    this.http.get<Ingredient[]>('/api/ingredients').subscribe(ingredients => this.ingredients = ingredients);
   }
 
-  ngOnInit() {  }
+  ngOnInit() {
+  }
 
   validateNumber(checknumber) {
-    return (!isNaN(Number(checknumber)) && !(checknumber === '')  && !(checknumber < 0));
+    return (!isNaN(Number(checknumber)) && !(checknumber === '') && !(checknumber < 0));
   }
 
   changePriceForIngredient(ingredient, price) {
@@ -38,7 +39,7 @@ export class IngredientsComponent implements OnInit {
   changeStockForIngredient(ingredient, stock) {
     if (this.validateNumber(stock)) {
       ingredient.stock = stock;
-      this.http.post<Ingredient[]>('/api/ingredients/changestock', ingredient).subscribe( ingredients => this.ingredients = ingredients);
+      this.http.post<Ingredient[]>('/api/ingredients/changestock', ingredient).subscribe(ingredients => this.ingredients = ingredients);
     }
   }
 
@@ -56,17 +57,16 @@ export class IngredientsComponent implements OnInit {
   deleteIngredient(ingredient) {
 
     this.dependentMealsInformation = '';
-    this.http.post<Meal[]>('/api/ingredients/mealdependencies', ingredient).subscribe(deps => this.dependentMeals = deps);
-    alert(this.dependentMeals.length); // Wenn diese Zeile gelöscht wird, dann funktioniert diese Methode nicht richtig, es ist verrückt! AK
-
-    if (this.dependentMeals.length > 0) {
-      this.dependentMealsInformation = 'Deletion not possible, ' + ingredient.name + ' is still in use for these Meals: ';
-      this.dependentMeals.forEach(dep => this.dependentMealsInformation += ' ' + dep.name);
-      this.dependentMeals = [];
-      // setTimeout(this.dependentMealsInformation = '', 3000);  // funzt noch nicht AK
-    } else {
-      this.http.post<Ingredient[]>('/api/ingredients/delete', ingredient).subscribe(ingredients => this.ingredients = ingredients);
-      this.dependentMeals = [];
-    }
+    this.http.post<Meal[]>('/api/ingredients/mealdependencies', ingredient).subscribe(deps => {
+      this.dependentMeals = deps;
+      if (this.dependentMeals.length > 0) {
+        this.dependentMealsInformation = 'Deletion not possible, ' + ingredient.name + ' is still in use for these Meals: ';
+        this.dependentMeals.forEach(dep => this.dependentMealsInformation += ' ' + dep.name);
+        this.dependentMeals = [];
+      } else {
+        this.http.post<Ingredient[]>('/api/ingredients/delete', ingredient).subscribe(ingredients => this.ingredients = ingredients);
+        this.dependentMeals = [];
+      }
+    });
   }
 }

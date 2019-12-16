@@ -11,14 +11,11 @@ public class MealService {
 
     public void changeRetailPrice(Meal meal){
         mealRepository.save(meal);
-
     }
 
     public void addMeal(MealDTO meal) {
 
-            Meal newMeal = new Meal();
-            newMeal.setName(meal.getName());
-            newMeal.setRetailPrice(meal.getPrice());
+            Meal newMeal = new Meal(meal.getName(), meal.getPrice());
             mealRepository.save(newMeal);
 
     }

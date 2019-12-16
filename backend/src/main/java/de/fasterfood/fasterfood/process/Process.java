@@ -14,6 +14,7 @@ public class Process {
 
     @ManyToOne
     private Order order;
+
     @OneToOne
     private Meal meal;
 

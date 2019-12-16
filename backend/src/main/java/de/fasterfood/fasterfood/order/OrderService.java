@@ -1,6 +1,7 @@
 package de.fasterfood.fasterfood.order;
 
 import de.fasterfood.fasterfood.editMeal.Meal;
+import de.fasterfood.fasterfood.editMeal.MealRepository;
 import de.fasterfood.fasterfood.ingredient.Ingredient;
 import de.fasterfood.fasterfood.ingredient.IngredientService;
 import de.fasterfood.fasterfood.process.Process;
@@ -20,55 +21,72 @@ import java.util.*;
 @Service
 public class OrderService {
 
+    private MealRepository mealRepository;
     private OrderRepository orderRepository;
     private ProcessRepository processRepository;
     private IngredientService ingredientService;
     private RecipeRepository recipeRepository;
 
     @Autowired
-    public OrderService(OrderRepository orderRepository, ProcessRepository processRepository, IngredientService ingredientService, RecipeRepository recipeRepository){
+    public OrderService(OrderRepository orderRepository, ProcessRepository processRepository,
+                        IngredientService ingredientService, RecipeRepository recipeRepository,
+                        MealRepository mealRepository){
         this.orderRepository = orderRepository;
         this.processRepository = processRepository;
         this.ingredientService = ingredientService;
         this.recipeRepository = recipeRepository;
+        this.mealRepository = mealRepository;
     }
+
 
     public void addOrderandProcess(List<Meal> meals) {
         decreaseStock(meals);
-        List<Process> processes = new LinkedList<>();
-        List<Process> newProcesses = new LinkedList<>();
-        for (Meal meal : meals) {
-            if (!processes.isEmpty()) {
-                for (int i = 0; i<processes.size(); i++) {
-                    if (processes.get(i).getMeal().getId() == meal.getId()) {
-                        processes.get(i).increaseQuantity();
-                        break;
 
-                    } else {
-                        Process newProcess = new Process(meal, meal.getRetailPrice());
-                        if (processes.contains(newProcess)) {  // check @Override Process.equals()
-                            processes.get(processes.indexOf(newProcess)).increaseQuantity();
+        HashMap<Integer, Integer> map = generateMap(meals);
+        List <Process> processes = generateProcessesFromMap(map);
 
-                        } else {
-                            newProcesses.add(newProcess);
-                        }
-                        break;
-                    }
-
-                }
-
-            } else {
-                Process newProcess = new Process(meal, meal.getRetailPrice());
-                newProcesses.add(newProcess);
-            }
-
-            processes = newProcesses;
-        }
-        for (Process process : processes) {
+        for (Process process : processes){
             processRepository.save(process);
         }
+
         Order order = new Order(LocalDate.now(), LocalTime.now(), processes);
         orderRepository.save(order);
+    }
+
+
+    private HashMap<Integer, Integer> generateMap(List<Meal> meals){
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        for (Meal meal : meals){
+
+            if(!map.containsKey(meal.getId())){
+                map.put(meal.getId(), 1);
+            } else{
+                int first = map.get(meal.getId());
+                int sum = first + 1;
+                map.put(meal.getId(), sum);
+            }
+
+        }
+
+        return map;
+    }
+
+    public List<Process> generateProcessesFromMap(HashMap<Integer, Integer> map){
+        List<Process> processes = new LinkedList<>();
+
+        for (Integer mealId : map.keySet()){
+
+            Optional<Meal> meal = mealRepository.findById(mealId);
+            double price = meal.get().getRetailPrice() * map.get(mealId);
+
+            Process newProcess = new Process(meal.get(), price);
+            newProcess.setQuantity(map.get(mealId));
+
+            processes.add(newProcess);
+        }
+
+        return processes;
     }
 
     private void decreaseStock(List<Meal> meals) {
@@ -81,7 +99,6 @@ public class OrderService {
             }
         }
     }
-
 
 
     public int orderCheck(List<Meal> meals){
@@ -110,15 +127,4 @@ public class OrderService {
         return 1;
 
     }
-
-
-    public int iterateMap(HashMap<Ingredient, Integer> map) {
-        for (Ingredient ingredient : map.keySet()){
-            if (ingredient.getStock() < map.get(ingredient)){
-                return 0;
-            }
-        }
-        return 1;
-    }
-
-}
+ }

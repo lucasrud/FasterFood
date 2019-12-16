@@ -17,6 +17,10 @@ public class Meal {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    public String getName() {
+        return name;
+    }
+
     private String name;
     private double purchasePrice;
     private double retailPrice;

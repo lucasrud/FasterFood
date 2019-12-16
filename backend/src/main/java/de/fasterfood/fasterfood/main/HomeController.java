@@ -78,18 +78,18 @@ public class HomeController {
             }
 
 
-            Meal kebab = new Meal("kebab", 4.50, ingredients, amountOfIng);
-            Meal wrap = new Meal("pizza", 7, ingredients, amountOfIng);
-            Meal turkishPizza = new Meal("turkishPizza", 3.5, ingredients, amountOfIng);
-            Meal durum = new Meal("durum", 5, ingredients, amountOfIng);
-            Meal crog = new Meal("crog", 6, ingredients, amountOfIng);
-            Meal salat = new Meal("Salat", 4.20, ingredients, amountOfIng);
-            Meal coca = new Meal("Coke", 1.5, ingredients, amountOfIng);
-            Meal tee = new Meal("Tee", 1.2, ingredients, amountOfIng);
-            Meal fanta = new Meal("Fanta", 1.5, ingredients, amountOfIng);
-            Meal wasser = new Meal("Wasser", 1.1, Arrays.asList(wasserflasche), amountOfIng);
-            Meal bier = new Meal("Bier", 2.5, ingredients, amountOfIng);
-            Meal rum = new Meal("Rum", 3, ingredients, amountOfIng);
+            Meal kebab = new Meal("kebab", 4.50);
+            Meal wrap = new Meal("pizza", 7);
+            Meal turkishPizza = new Meal("turkishPizza", 3.5);
+            Meal durum = new Meal("durum", 5);
+            Meal crog = new Meal("crog", 6);
+            Meal salat = new Meal("Salat", 4.20);
+            Meal coca = new Meal("Coke", 1.5);
+            Meal tee = new Meal("Tee", 1.2);
+            Meal fanta = new Meal("Fanta", 1.5);
+            Meal wasser = new Meal("Wasser", 1.1);
+            Meal bier = new Meal("Bier", 2.5);
+            Meal rum = new Meal("Rum", 3);
 
 
 

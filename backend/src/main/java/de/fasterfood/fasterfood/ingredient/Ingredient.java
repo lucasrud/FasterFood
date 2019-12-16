@@ -16,11 +16,6 @@ public class Ingredient {
     private double purchasePrice;
     private int stock;
 
-
-    @OneToMany(mappedBy = "ingredient")
-    List<Recipe> recipes;
-
-
     public Ingredient(String name, double purchasePrice, int stock) {
         this.name = name;
         this.purchasePrice = purchasePrice;
@@ -69,11 +64,4 @@ public class Ingredient {
 
     public void addStock(int stock) { this.stock += stock;}
 
-    public List<Recipe> getRecipes() {
-        return recipes;
-    }
-
-    public void setRecipes(List<Recipe> recipes) {
-        this.recipes = recipes;
-    }
 }

@@ -15,7 +15,6 @@ public class Recipe {
 
     private Integer mealId;
 
-    @JsonIgnore
     @ManyToOne
     private Ingredient ingredient;
 

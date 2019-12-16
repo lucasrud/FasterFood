@@ -30,11 +30,10 @@ public class Meal {
 //    private List<Ingredient> ingredients;
 
 
-    public Meal(String name, double retailPrice, List<Ingredient> ingredients, HashMap amountOfIngredient) {
+    public Meal(String name, double retailPrice) {
         this.name = name;
         this.retailPrice = retailPrice;
         this.profit = retailPrice - purchasePrice;
-//        this.ingredients = ingredients;
     }
 
     public Meal() {
@@ -60,8 +59,9 @@ public class Meal {
         return purchasePrice;
     }
 
-    public void setPurchasePrice(int purchasePrice) {
+    public void setPurchasePrice(double purchasePrice) {
         this.purchasePrice = purchasePrice;
+        this.profit = this.retailPrice - this.purchasePrice;
     }
 
     public double getRetailPrice() {
@@ -76,7 +76,7 @@ public class Meal {
         return profit;
     }
 
-    public void setProfit(int profit) {
+    public void setProfit(double profit) {
         this.profit = profit;
     }
 

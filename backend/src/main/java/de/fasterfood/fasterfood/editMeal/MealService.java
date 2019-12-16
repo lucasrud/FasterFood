@@ -26,23 +26,24 @@ public class MealService {
 
     public void addMeal(MealDTO meal) {
 
-            Meal newMeal = new Meal();
-            newMeal.setName(meal.getName());
-            newMeal.setRetailPrice(meal.getPrice());
-            mealRepository.save(newMeal);
+        Meal newMeal = new Meal(meal.getName(), meal.getPrice());
+        mealRepository.save(newMeal);
+
         for (RecipeDTO recipeDTO : meal.getRecipeDTOS()) {
             Recipe recipe = new Recipe(newMeal.getId(), recipeDTO.getIngredient(), recipeDTO.getAmount());
             recipeRepository.save(recipe);
         }
+        newMeal.setPurchasePrice(getPurchasePrice(newMeal));
+        mealRepository.save(newMeal);
     }
 
     public void deleteMeal(Meal meal) {
         mealRepository.delete(meal);
     }
 
-    public int getPurchasePrice(Meal meal){
+    public double getPurchasePrice(Meal meal){
         List<Recipe> recipe = recipeRepository.findAllByMealId(meal.getId());
-        int purchasePrice = 0;
+        double purchasePrice = 0;
         for (Recipe instruction : recipe) {
             purchasePrice += instruction.getIngredient().getPurchasePrice()*instruction.getAmount();
         }

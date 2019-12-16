@@ -5,5 +5,4 @@ export interface Meal {
   purchasePrice: number;
   retailPrice: number;
   profit: number;
-  ingredients: string[];
 }

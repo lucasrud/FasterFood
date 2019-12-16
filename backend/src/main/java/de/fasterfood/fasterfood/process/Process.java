@@ -1,5 +1,6 @@
 package de.fasterfood.fasterfood.process;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import de.fasterfood.fasterfood.editMeal.Meal;
 import de.fasterfood.fasterfood.order.Order;
 import javax.persistence.*;

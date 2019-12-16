@@ -25,14 +25,38 @@
     </table>
   </div>
 
-  <div class="roundBorder">
+  <div>
     <h2>Add new Meal</h2>
     <table>
       <tr><td>Name:</td><td><input type="text" #mealname placeholder="Meal"></td></tr>
       <tr><td>Price:</td><td><input type="text" #price placeholder="Price"></td></tr>
-      <input type="submit" (click)="addMeal(mealname.value, price.value)" value="Add">
+    </table>
+    <table>
+      <tr>
+        <th>Ingredient</th>
+        <th>Amount</th>
+      </tr>
+      <tr *ngFor="let recipe of recipes">
+        <td>{{recipe.ingredient.name}}</td>
+        <td>{{recipe.amount}}</td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <td>  <select name="dish" [(ngModel)]="ingredient">
+          <option [ngValue]="null" disabled selected>Select ingredient...</option>
+          <option *ngFor="let ingredient of ingredients" [ngValue]="ingredient">
+            {{ ingredient.name }}
+          </option>
+        </select>
+        </td>
+        <td><input type="number" #amount placeholder="0"></td>
+        <td>g</td>
+        <td><input type="submit" (click)="addIngredient(ingredient, amount.value)" value="Add ingredient"></td>
+      </tr>
     </table>
   </div>
+  <input type="submit" (click)="addMeal(mealname.value, price.value)" value="Add">
 
 </div>
 

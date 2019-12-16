@@ -3,6 +3,9 @@ import { OrderService} from '../order.service';
 import {Meal} from '../meal';
 import {MealDTO} from '../mealDTO';
 import {HttpClient} from '@angular/common/http';
+import {Ingredient} from '../ingredient';
+import {Recipe} from '../recipe';
+import {RecipeDTO} from '../recipeDTO';
 
 
 @Component({
@@ -18,14 +21,20 @@ export class MealsComponent implements OnInit {
   @Input()
   meals: Meal[];
   orderService: OrderService;
+  ingredients: Ingredient[] = [];
+  recipes: RecipeDTO[] = [];
+  ingredient: Ingredient;
 
   constructor(private http: HttpClient, orderService: OrderService) {
     this.orderService = orderService;
   }
 
   ngOnInit(): void {
+    // TODO: In Services auslagern!
     this.http.get<Meal[]>('/api/meals').subscribe(meals => this.meals = meals);
     // Diese Methoden sollten bei Gelegenheit in den/ einen Service ausgelagert werden? AK
+    this.http.get<Ingredient[]>('/api/ingredients').subscribe(ingredients => this.ingredients = ingredients)
+    this.listAllIngredients();
     this.resetNewMeal();
     this.newMeals = [];
   }
@@ -35,12 +44,29 @@ export class MealsComponent implements OnInit {
       const m: MealDTO = {
         name: nameE,
         price: priceE,
+        recipeDTOS: this.recipes,
       };
 
       this.http.post<Meal[]>('/api/meals/addMeal', m).subscribe(meals => this.meals = meals);
       this.newMeals.push(m);
       this.resetNewMeal();
     }
+  }
+  listAllIngredients() {
+    for (const ingred of this.ingredients) {
+      const recipe: RecipeDTO = {
+        ingredient: ingred,
+        amount: 0,
+      };
+      this.recipes.push(recipe);
+    }
+  }
+  addIngredient(newIngredient, chosenAmount) {
+    const recipe: RecipeDTO = {
+      ingredient: newIngredient,
+      amount: chosenAmount,
+    };
+    this.recipes.push(recipe);
   }
 
   // BUG:  Einmal bestellte Meals können aktuell nicht gelöscht werden. Das liegt daran, da sie in der DB in der Process

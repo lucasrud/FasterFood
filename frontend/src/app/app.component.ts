@@ -26,10 +26,10 @@ export class AppComponent implements OnInit {
   // Können die auskommentierten Inhalte von Ingredient.service gelöscht werden? AK
 
   ngOnInit(): void {
-    this.http.get<Meal[]>('/api/meals/order').subscribe(meals => this.meals = meals);
-    // Diese Methoden sollten bei Gelegenheit in den/ einen Service ausgelagert werden? AK
-    this.resetNewMeal();
-    this.newMeals = [];
+    // this.http.get<Meal[]>('/api/meals/order').subscribe(meals => this.meals = meals);
+    // // Diese Methoden sollten bei Gelegenheit in den/ einen Service ausgelagert werden? AK
+    // this.resetNewMeal();
+    // this.newMeals = [];
   }
 
   resetNewMeal() {

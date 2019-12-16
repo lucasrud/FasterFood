@@ -10,11 +10,11 @@ import de.fasterfood.fasterfood.recipe.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.sound.midi.Receiver;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 
 @Service
@@ -71,11 +71,10 @@ public class OrderService {
         orderRepository.save(order);
     }
 
-    public void decreaseStock(List<Meal> meals){
-
+    private void decreaseStock(List<Meal> meals) {
         for (Meal meal : meals) {
-            List<Recipe> recipe = recipeRepository.findAllByMealId(meal.getId());
-            for (Recipe instruction : recipe ){
+            List<Recipe> recipes = recipeRepository.findAllByMealId(meal.getId());
+            for (Recipe instruction : recipes) {
                 Ingredient ingredient = instruction.getIngredient();
                 int amount = instruction.getAmount();
                 ingredientService.decreaseStockFromOrder(ingredient, -amount);
@@ -83,17 +82,43 @@ public class OrderService {
         }
     }
 
+
+
     public int orderCheck(List<Meal> meals){
+        HashMap<Ingredient, Integer> map = new HashMap<>();
         for (Meal meal : meals) {
             List<Recipe> recipes = recipeRepository.findAllByMealId(meal.getId());
             for (Recipe instruction : recipes ){
                 Ingredient ingredient = instruction.getIngredient();
                 int amount = instruction.getAmount();
-                if (ingredient.getStock() < amount){
-                    return 0;
+
+                if(!map.containsKey(ingredient)){
+                    map.put(ingredient, amount);
+                }else{
+                    int first = map.get(ingredient);
+                    int sum = first + amount;
+                    map.put(ingredient, sum);
                 }
+            }
+        }
+
+        for (Ingredient ingredient : map.keySet()){
+            if (ingredient.getStock() < map.get(ingredient)){
+                return 0;
+            }
+        }
+        return 1;
+
+    }
+
+
+    public int iterateMap(HashMap<Ingredient, Integer> map) {
+        for (Ingredient ingredient : map.keySet()){
+            if (ingredient.getStock() < map.get(ingredient)){
+                return 0;
             }
         }
         return 1;
     }
+
 }

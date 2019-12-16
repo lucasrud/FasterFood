@@ -52,7 +52,7 @@ public class HomeController {
             Ingredient pita = new Ingredient("pita", 0.4, 20);
             Ingredient sauce = new Ingredient("sauce", 0.4, 20);
             Ingredient veggies = new Ingredient("veggies", 0.4, 20);
-            Ingredient dough = new Ingredient("dough", 0.4, 20);
+            Ingredient dough = new Ingredient("dough", 0.4, 2);
             Ingredient test1 = new Ingredient("DeleteableNoDependency1", 0.25, 750);
             Ingredient test2 = new Ingredient("DeleteableNoDependency2", 0.12, 1200);
             Ingredient test3 = new Ingredient("DeleteableNoDependency3", 0.07, 380);
@@ -135,7 +135,6 @@ public class HomeController {
                 Recipe recipe2 = new Recipe(turkishPizza.getId(), ingredient, i);
                 recipeRepository.save(recipe);
                 recipeRepository.save(recipe2);
-                i++;
             }
             Recipe recipe3 = new Recipe(wasser.getId(), wasserflasche, 1);
             recipeRepository.save(recipe3);

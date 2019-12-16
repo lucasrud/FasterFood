@@ -14,64 +14,50 @@ export class OrderService {
   private response = 1;
   private meals: BehaviorSubject<Meal[]>;
   currentCost = 0;
-  dbIngredients = [];               // All current ingredients in stock
-  // dbRecipes = [];
-  currentMealRecipes = [];          // Recipes needed for the whole current Meal
-  currentOrderRecipes = [];     // Ingredients needed for the whole current Orderlist
+  dbIngredients: Ingredient[];               // All current ingredients in stock
+  currentMealRecipes: Recipe[] = [];          // Recipes needed for the whole current Meal
+  currentOrderRecipes: Recipe[] = [];     // Ingredients needed for the whole current Orderlist
 
   constructor(private http: HttpClient) {
     const initialOrders: Meal[] = [];
     this.meals = new BehaviorSubject<Meal[]>(initialOrders);
     this.http.get<Ingredient[]>('/api/ingredients').subscribe(ingredients => this.dbIngredients = ingredients);
-    // this.dbIngredients = [];               // All current ingredients in stock
-    // this.dbRecipes = [];
-    // this.currentMealRecipes = [];          // Recipes needed for the whole current Meal
-    // this.currentOrderRecipes = [];     // Ingredients needed for the whole current Orderlist
+    this.dbIngredients = [];               // All current ingredients in stock
+    this.currentMealRecipes = [];          // Recipes needed for the whole current Meal
+    this.currentOrderRecipes = [];     // Ingredients needed for the whole current Orderlist
   }
 
   enoughIngredientsInStockCheck(meal): boolean {
 
-    let returnBool = false;
 
     this.http.post<Recipe[]>('/api/recipes/meal', meal).subscribe(recipes => {
       this.currentMealRecipes = recipes;
 
-      // alert('currentOrderRecipes ' + this.currentOrderRecipes);
-      // alert('dbngredients ' + this.dbIngredients);
-      // alert('currentMealRecipes ' + this.currentMealRecipes);
-
-      let containsRecipe = false;
-
       for (const recipe of this.currentMealRecipes) {
+
         for (const currentOrderRecipe of this.currentOrderRecipes) {
+          let containsRecipe = false;
           if (currentOrderRecipe.ingredient.name === recipe.ingredient.name) {
             currentOrderRecipe.amount += recipe.amount;
             containsRecipe = true;
-            break;
           }
-        }
-        if (!containsRecipe) {
-          this.currentOrderRecipes.push(recipe);
+          if (!containsRecipe) {
+            this.currentOrderRecipes.push(recipe);
+          }
         }
 
         for (const currentOrderRecipe of this.currentOrderRecipes) {
           for (const dbingredient of this.dbIngredients) {
             if (currentOrderRecipe.ingredient.name === dbingredient.name) {
-              // tslint:disable-next-line:max-line-length
-              // alert('currentorderRecipe.ingredient.name: ' + currentOrderRecipe.ingredient.name + ' urrentOrderRecipe.amount ' + currentOrderRecipe.amount + ' dbingredient: ' + dbingredient.name + ' ' + dbingredient.stock);
               if (currentOrderRecipe.amount > dbingredient.stock) {
                 return false;
-              } else {
-                break;
               }
             }
           }
         }
       }
-      returnBool = true;
-
     });
-    return returnBool;
+    return true;
   }
 
   addToMealList(meal: Meal): void {

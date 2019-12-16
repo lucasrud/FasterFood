@@ -12,7 +12,6 @@ import java.util.List;
 @Entity
 public class Meal {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -26,7 +25,11 @@ public class Meal {
     private double retailPrice;
     private double profit;
 
-    public Meal(String name, double retailPrice) {
+//    @ManyToMany
+//    private List<Ingredient> ingredients;
+
+
+    public Meal(String name, double retailPrice, List<Ingredient> ingredients, HashMap amountOfIngredient) {
         this.name = name;
         this.retailPrice = retailPrice;
         this.profit = retailPrice - purchasePrice;
@@ -47,8 +50,9 @@ public class Meal {
         return purchasePrice;
     }
 
-    public void setPurchasePrice(int purchasePrice) {
+    public void setPurchasePrice(double purchasePrice) {
         this.purchasePrice = purchasePrice;
+        this.profit = this.retailPrice - this.purchasePrice;
     }
 
     public double getRetailPrice() {
@@ -63,7 +67,7 @@ public class Meal {
         return profit;
     }
 
-    public void setProfit(int profit) {
+    public void setProfit(double profit) {
         this.profit = profit;
     }
 }

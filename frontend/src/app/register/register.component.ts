@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {SecurityService} from '../security.service';
+import {RegisterUserDTO} from '../registeruserDTO';
+
 
 @Component({
   selector: 'app-register',
@@ -7,13 +11,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+  securityService: SecurityService;
+
+  constructor(private http: HttpClient, securityService: SecurityService) {
+    this.securityService = securityService;
+  }
 
   ngOnInit() {
   }
 
-  register(username, password1, password2) {
-    alert(username + ' ' + password1 + ' ' + password2);
-  }
+  registerUserInDB(username1, password1, password2) {
 
+    if (password1 === password2) {
+      const registeredUser: RegisterUserDTO = {
+        username: username1,
+        password: password1
+      };
+      // alert(username + ' ' + password1 + ' ' + password2);
+      this.securityService.registerUserInDB(registeredUser);
+    }
+
+  }
 }

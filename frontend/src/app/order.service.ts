@@ -27,44 +27,6 @@ export class OrderService {
     this.currentMealRecipes = [];          // Recipes needed for the whole current Meal
     this.currentOrderRecipes = [];     // Ingredients needed for the whole current Orderlist
   }
-
-  enoughIngredientsInStockCheck(meal): Observable<boolean> {
-    const bool = new BehaviorSubject<boolean>(false);
-
-    this.http.post<Recipe[]>('/api/recipes/meal', meal).subscribe(recipes => {
-      this.currentMealRecipes = recipes;
-      let containsRecipe = false;
-      let nextBool = true;
-
-      for (const recipe of this.currentMealRecipes) {
-
-        for (const currentOrderRecipe of this.currentOrderRecipes) {
-          containsRecipe = false;
-          if (currentOrderRecipe.ingredient.name === recipe.ingredient.name) {
-            currentOrderRecipe.amount += recipe.amount;
-            containsRecipe = true;
-          }
-        }
-
-        if (!containsRecipe) {
-          this.currentOrderRecipes.push(recipe);
-        }
-
-        for (const currentOrderRecipe of this.currentOrderRecipes) {
-          for (const dbingredient of this.dbIngredients) {
-            if (currentOrderRecipe.ingredient.name === dbingredient.name) {
-              if (currentOrderRecipe.amount > dbingredient.stock) {
-                nextBool = false;
-              }
-            }
-          }
-        }
-      }
-      bool.next(nextBool);
-    });
-    return bool;
-  }
-
   addToMealList(meal: Meal): void {
     this.currentCost += meal.retailPrice;
     this.meals.next([...this.meals.value, meal]);
@@ -82,6 +44,7 @@ export class OrderService {
         newMeals.push(m);
       } else {
         this.currentCost -= m.retailPrice;
+        this.http.post<number>('/api/deleteFromCart', m).subscribe(num => alert(num));
       }
       i++;
     }

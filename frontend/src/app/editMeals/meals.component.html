@@ -1,64 +1,103 @@
-<div class="main" >
 
-<!--  <div class="main mealbutton" *ngFor="let meal of meals">-->
-<!--    <tr>-->
-<!--      <td > {{meal.id + ' ' + meal.name + ' ' + meal.retailPrice.toFixed(2) + ' €' }}</td>-->
-<!--      <button class="main mealbutton" (click)="deleteMeal(meal)"> X </button>-->
-<!--    </tr>-->
-<!--  </div>-->
+<!--Table where meal price can be changed and meal can be deleted-->
 
-  <div class="section">
-    <h2 class="title">Meal Prices</h2>
-    <table class="table">
-      <tr>
-        <th>Meal</th>
-        <th>Actual Price</th>
-        <th>New Price</th>
-      </tr>
-      <tr *ngFor="let meal of meals">
-        <td>{{meal.name}}</td>
-        <td class="alignMid">{{meal.retailPrice.toFixed(2) + ' €'}}</td>
-        <td><input type="text" placeholder="0" #price size="10"></td>
-        <td><button (click)="changePrice(meal, price.value)">Change</button></td>
-        <td><button class="main mealbutton" (click)="deleteMeal(meal)">Delete</button></td>
-      </tr>
-    </table>
+<section class="section">
+  <div class="container">
+    <div class="tile is-ancestor">
+      <div class="tile is-parent">
+        <div class="tile is-child box">
+          <h1 class="title">Edit Existing Meals</h1>
+          <table class="table ">
+            <thead>
+            <tr>
+              <th>Meal</th>
+              <th>Actual Price</th>
+              <th>New Price</th>
+              <th></th>
+              <th></th>
+            </tr>
+            </thead>
+
+            <tr *ngFor="let meal of meals">
+              <td>{{meal.name}}</td>
+              <td class="alignMid">{{meal.retailPrice.toFixed(2) + ' €'}}</td>
+              <td><input type="text" placeholder="0" #price size="10"></td>
+              <td>
+                <button class="button" (click)="changePrice(meal, price.value)">Change</button>
+              </td>
+              <td>
+                <button class="button" (click)="deleteMeal(meal)">Delete</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="section">
-    <h2 class="title">Add new Meal</h2>
 
-    <table class="table">
-      <tr>
-        <td><input type="text" #mealname placeholder="Meal"></td>
-        <td><input type="text" #price placeholder="Price">
-      </tr>
-      <tr>
-        <th>Ingredient</th>
-        <th>Amount</th>
-      </tr>
-      <tr *ngFor="let recipe of recipes">
-        <td>{{recipe.ingredient.name}}</td>
-        <td>{{recipe.amount}}</td>
-      </tr>
-      <tr>
-        <td>  <select name="dish" [(ngModel)]="ingredient">
-          <option [ngValue]="null" disabled selected>Select ingredient...</option>
-          <option *ngFor="let ingredient of ingredients" [ngValue]="ingredient">
-            {{ ingredient.name }}
-          </option>
-        </select>
-        </td>
-        <td><input type="number" #amount placeholder="0"></td>
-        <td>g</td>
-        <td><input type="submit" (click)="addIngredient(ingredient, amount.value)" value="Add ingredient"></td>
-      </tr>
-    </table>
-    <table class="table">
+  <!--  Add a new Meal box-->
+  <!--  add a new meal form-->
 
-    </table>
+  <div class="container">
+    <div class="tile is-parent">
+      <div class="tile is-child box">
+        <h2 class="title">Add new Meal</h2>
+
+        <div class="field">
+          <label class="label">Meal</label>
+          <div class="control">
+            <input class="input" type="text" #mealname placeholder="Name of new meal">
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Price</label>
+          <div class="control">
+            <input class="input" type="text" #price placeholder="Price of new meal">
+          </div>
+        </div>
+
+<!--            Ingredient Drop Down-->
+
+              <div class="control">
+                <label class="label">Ingredient</label>
+                <div class="select">
+                  <select  name="dish" [(ngModel)]="ingredient">
+                    <option class="option"[ngValue]="null" disabled selected> Select ingredient...</option>
+                    <option class="option"*ngFor="let ingredient of ingredients" [ngValue]="ingredient">
+                    {{ ingredient.name }}</option>
+                  </select>
+                </div>
+              </div>
+
+
+            <div class="field">
+              <label class="label">Amount in gramms</label>
+              <div class="control">
+                <input class="input" type="text" #amount placeholder="0g">
+              </div>
+            </div>
+
+<!--        List of ingredients that make up meal-->
+        <tr *ngFor="let recipe of recipes">
+          <td>{{recipe.ingredient.name}}</td>
+          <td>{{recipe.amount}}g</td>
+        </tr>
+        <tr>
+
+<!--              buttons-->
+
+              <div class="control">
+                <button class="button" (click)="addIngredient(ingredient, amount.value)">Add Ingredients</button>
+              </div>
+
+              <div class="control">
+                <button class="button" (click)="addMeal(mealname.value, price.value)">Add Meal</button>
+              </div>
+
+    </div>
   </div>
-  <input type="submit" (click)="addMeal(mealname.value, price.value)" value="Add">
-
-</div>
+  </div>
+</section>
 

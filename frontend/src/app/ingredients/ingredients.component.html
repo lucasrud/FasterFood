@@ -1,40 +1,83 @@
+<!--warning-->
 <span class="tag is-danger is-center is-size-6" *ngIf="dependentMealsInformation.length > 0">{{dependentMealsInformation}}</span>
-<div class="roundBorder">
-  <h2>Ingredient Purchase-Prices</h2>
-  <table>
-    <tr>
-        <th>Ingredient</th>
-        <th>Actual Price</th>
-        <th>New Price</th>
-        <th></th>
-        <th>Stock gramm</th>
-        <th>New Stock</th>
-        <th></th>
-    </tr>
 
-    <tr *ngFor="let ingredient of ingredients">
-        <td>{{ingredient.name}}</td>
+<!--Table purchase price ingredient-->
 
-        <td class="alignMid">{{ingredient.purchasePrice.toFixed(3) + ' €'}}</td>
-        <td><input type="text" placeholder="0.00 € / gram" #price size="10"></td>
-        <td><button (click)="changePriceForIngredient(ingredient, price.value)">Change</button></td>
+<section class="section">
+  <div class="container">
+    <div class="box">
+      <h1 class="title">Ingredient purchase prices</h1>
+      <table class="table ">
+        <thead>
+        <tr>
+          <th>Ingredient</th>
+          <th>Actual Price</th>
+          <th>New Price</th>
+          <th></th>
+          <th>Stock gramm</th>
+          <th>New Stock</th>
+          <th></th>
+          <th></th>
+        </tr>
+        </thead>
 
-        <td class="alignMid">{{ingredient.stock + ' g'}}</td>
-        <td><input type="text" placeholder="0 g" #stock size="10"></td>
-        <td><button (click)="changeStockForIngredient(ingredient, stock.value)">Change</button></td>
-        <td><button (click)="deleteIngredient(ingredient)">Delete</button></td>
-    </tr>
-  </table>
-</div>
+        <tr *ngFor="let ingredient of ingredients">
+          <td>{{ingredient.name}}</td>
 
-<div class="roundBorder">
-  <h2>Add new Ingredient</h2>
-  <table>
-    <tr><td>Name:</td><td><input type="text" #ingredientname placeholder="Ingredient"></td></tr>
-    <tr><td>Price:</td><td><input type="text" #price placeholder="0.00 € / gram"></td></tr>
-    <tr><td>Stock:</td><td><input type="text" #stock placeholder="0 g"></td></tr>
-    <input type="submit" (click)="addIngredient(ingredientname.value, price.value, stock.value)" value="Add Ingredient">
-  </table>
+          <td class="alignMid">{{ingredient.purchasePrice.toFixed(3) + ' €'}}</td>
+          <td><input type="text" placeholder="0.00 € / gram" #price size="10"></td>
+          <td>
+            <button class="button"(click)="changePriceForIngredient(ingredient, price.value)">Change</button>
+          </td>
+
+          <td class="alignMid">{{ingredient.stock + ' g'}}</td>
+          <td><input type="text" placeholder="0 g" #stock size="10"></td>
+          <td>
+            <button class="button"(click)="changeStockForIngredient(ingredient, stock.value)">Change</button>
+          </td>
+          <td>
+            <button class="button" (click)="deleteIngredient(ingredient)">Delete</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!--Add new Ingredient form-->
+
+<div class="container">
+  <div class="tile is-parent">
+    <div class="tile is-child box">
+      <h2 class="title">Add new Ingredient</h2>
+
+      <div class="field">
+        <label class="label">Name</label>
+        <div class="control">
+          <input class="input" type="text" #ingredientname placeholder="Name of ingredient">
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Price</label>
+        <div class="control">
+          <input class="input" type="text" #price placeholder="0.00 € / gram">
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Stock</label>
+        <div class="control">
+          <input class="input" type="text" #stock placeholder="0g">
+        </div>
+      </div>
+
+      <div class="control">
+        <button class="button" (click)="addIngredient(ingredientname.value, price.value, stock.value)">Add Ingredient</button>
+      </div>
+
+    </div>
+  </div>
 </div>
 
 <router-outlet></router-outlet>

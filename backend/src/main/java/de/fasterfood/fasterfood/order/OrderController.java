@@ -24,6 +24,7 @@ public class OrderController {
 
     @GetMapping("/api/order")
     public List<Meal> listOfItems () {
+        orderService.resetMap();
         return mealRepository.findAll();
     }
 
@@ -32,10 +33,27 @@ public class OrderController {
         orderService.addOrderandProcess(meals);
         return listOfItems();
     }
+//
+//    @PostMapping("/api/order/check")
+//    public int orderCheck(@RequestBody List<Meal> meals){
+//        return orderService.orderCheck(meals);
+//    }
 
-    @PostMapping("/api/order/check")
-    public int orderCheck(@RequestBody List<Meal> meals){
-        return orderService.orderCheck(meals);
+    @PostMapping("/api/stockcheck")
+    public int stockCheck(@RequestBody Meal meal) {
+//        if(meal.getId() == 0){
+//            return 1;
+//        }
+
+        boolean a = orderService.generateIngredientMap(meal, "+");
+        if(a){ return 1; }
+        else { return 0; }
     }
 
+    @PostMapping("/api/deleteFromCart")
+    public int deleteFromCart(@RequestBody Meal meal){
+        boolean a = orderService.generateIngredientMap(meal, "-");
+        if(a){ return 1; }
+        else { return 0; }
+    }
 }

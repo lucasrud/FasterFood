@@ -17,15 +17,27 @@ export class CashregisterComponent implements OnInit {
   @Input()
   meals: Meal[];
   orderService: OrderService;
+  stockBool: number;
+  httpMeal: Meal;
 
   constructor(private http: HttpClient, orderService: OrderService) {
     this.orderService = orderService;
+    this.stockBool = 0;
+    this.httpMeal = {
+      id: 0,
+    name: 'No',
+    purchasePrice: 0,
+    retailPrice: 0,
+    profit: 0,
+    };
+    this.stockBool = 3;
   }
 
   ngOnInit(): void {
     this.http.get<Meal[]>('/api/order').subscribe(meals => this.meals = meals);
     this.resetNewMeal();
     this.newMeals = [];
+    // this.http.post<number>('/api/stockcheck', this.httpMeal).subscribe(returnVal => this.stockBool = returnVal);
   }
 
   resetNewMeal() {
@@ -33,12 +45,12 @@ export class CashregisterComponent implements OnInit {
   }
 
   addProcess(meal: Meal) {
-
-    this.orderService.enoughIngredientsInStockCheck(meal).subscribe((bool) => {
-      if (bool) {
-        this.orderService.addToMealList(meal);
-        this.orderService.getOrderCost();
-      }
-    });
+      this.http.post<number>('/api/stockcheck', meal).subscribe(returnVal => {
+        this.stockBool = returnVal;
+        if (this.stockBool === 1) {
+          this.orderService.addToMealList(meal);
+          this.orderService.getOrderCost();
+        }
+      });
   }
 }

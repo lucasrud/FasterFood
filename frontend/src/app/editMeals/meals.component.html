@@ -66,27 +66,19 @@
           </div>
         </div>
 
-        <div class="control">
-          <button class="button" (click)="addMeal(mealname.value, price.value)">Add</button>
-        </div>
+<!--            Ingredient Drop Down-->
 
-<!--        ingredients for new meal-->
+              <div class="control">
+                <label class="label">Ingredient</label>
+                <div class="select">
+                  <select  name="dish" [(ngModel)]="ingredient">
+                    <option class="option"[ngValue]="null" disabled selected> Select ingredient...</option>
+                    <option class="option"*ngFor="let ingredient of ingredients" [ngValue]="ingredient">
+                    {{ ingredient.name }}</option>
+                  </select>
+                </div>
+              </div>
 
-          <tr>
-            <th>Ingredient</th>
-            <th>Amount</th>
-          </tr>
-          <tr *ngFor="let recipe of recipes">
-            <td>{{recipe.ingredient.name}}</td>
-            <td>{{recipe.amount}}</td>
-          </tr>
-          <tr>
-            <td><select name="dish" [(ngModel)]="ingredient">
-              <option [ngValue]="null" disabled selected>Select ingredient...</option>
-              <option *ngFor="let ingredient of ingredients" [ngValue]="ingredient">
-                {{ ingredient.name }}
-              </option>
-            </select>
 
 <!--            </td>-->
 <!--            <td><input type="number" #amount placeholder="0"></td>-->
@@ -99,8 +91,22 @@
               </div>
             </div>
 
+<!--        List of ingredients that make up meal-->
+        <tr *ngFor="let recipe of recipes">
+          <td>{{recipe.ingredient.name}}</td>
+          <td>{{recipe.amount}}g</td>
+        </tr>
+        <tr>
+
+
+<!--              buttons-->
+
               <div class="control">
-                <button class="button" (click)="addIngredient(ingredient, amount.value)">Add</button>
+                <button class="button" (click)="addIngredient(ingredient, amount.value)">Add Ingredients</button>
+              </div>
+
+              <div class="control">
+                <button class="button" (click)="addMeal(mealname.value, price.value)">Add Meal</button>
               </div>
 
 <!--            <td><input type="submit" (click)="addIngredient(ingredient, amount.value)" value="Add ingredient"></td>-->

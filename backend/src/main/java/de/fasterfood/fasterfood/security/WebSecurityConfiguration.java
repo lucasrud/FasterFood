@@ -28,15 +28,15 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable();
 
 
-//        http.httpBasic();
-//        http.authorizeRequests().anyRequest().authenticated();
-        http.authorizeRequests().anyRequest().permitAll();
-//        http.exceptionHandling()
-//                .authenticationEntryPoint(new Http403ForbiddenEntryPoint());
+        http.httpBasic();
+        http.authorizeRequests().anyRequest().authenticated();
+//        http.authorizeRequests().anyRequest().permitAll();
+        http.exceptionHandling()
+                .authenticationEntryPoint(new Http403ForbiddenEntryPoint());
 //
-//        http.logout().logoutUrl("/api/logout")
-//                .logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler());
+        http.logout().logoutUrl("/api/logout")
+                .logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler());
 //
-//        http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+        http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
     }
 }

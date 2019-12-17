@@ -62,12 +62,12 @@ public class HomeController {
 
 
             List<Ingredient> ingredients = new LinkedList<>();
-            ingredients.add(cowMeat);
-            ingredients.add(salad);
-            ingredients.add(pita);
-            ingredients.add(sauce);
-            ingredients.add(veggies);
             ingredients.add(dough);
+//            ingredients.add(cowMeat);
+//            ingredients.add(salad);
+//            ingredients.add(pita);
+//            ingredients.add(sauce);
+//            ingredients.add(veggies);
 
 
             HashMap<String, Integer> amountOfIng = new HashMap<>();

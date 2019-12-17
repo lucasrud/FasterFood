@@ -5,11 +5,12 @@ import de.fasterfood.fasterfood.recipe.RecipeDTO;
 import de.fasterfood.fasterfood.recipe.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
+
 
 @Service
 public class MealService {
+
     private MealRepository mealRepository;
     private RecipeRepository recipeRepository;
 
@@ -19,9 +20,12 @@ public class MealService {
         this.recipeRepository = recipeRepository;
     }
 
+    public List<Meal> findAll() {
+        return mealRepository.findAll();
+    }
+
     public void changeRetailPrice(Meal meal){
         mealRepository.save(meal);
-
     }
 
     public void addMeal(MealDTO meal) {

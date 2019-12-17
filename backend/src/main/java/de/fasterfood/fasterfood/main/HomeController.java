@@ -47,12 +47,23 @@ public class HomeController {
     public void setupData(){
 
         if (mealRepository.count() == 0) {
-            Ingredient cowMeat = new Ingredient("cowMeat", 0.4, 20);
-            Ingredient salad = new Ingredient("salad", 0.4, 20);
-            Ingredient pita = new Ingredient("pita", 0.4, 20);
-            Ingredient sauce = new Ingredient("sauce", 0.4, 20);
-            Ingredient veggies = new Ingredient("veggies", 0.4, 20);
-            Ingredient dough = new Ingredient("dough", 0.4, 2);
+            Ingredient pita = new Ingredient("Pita", 0.4, 300);
+            Ingredient dough = new Ingredient("Dough", 0.1, 5000);
+            Ingredient wrap = new Ingredient("Wrap", 0.6, 400);
+            Ingredient baguette = new Ingredient("Baguette", 0.6, 100);
+            Ingredient beef = new Ingredient("Beef", 0.6, 20000);
+            Ingredient falafel = new Ingredient("Falafel", 0.4, 10000);
+            Ingredient chicken = new Ingredient("Chicken", 0.5, 20000);
+            Ingredient salad = new Ingredient("Salad", 0.1, 30000);
+            Ingredient tomatos = new Ingredient("Tomatos", 0.3, 25000);
+            Ingredient cucumber = new Ingredient("Cucumber", 0.2, 15000);
+            Ingredient cabbage = new Ingredient("Cabbage", 0.2, 10000);
+            Ingredient onion = new Ingredient("Onions", 0.1, 20000);
+            Ingredient cocktailSauce = new Ingredient("Cocktail sauce", 0.4, 500);
+            Ingredient tomatoSauce = new Ingredient("Tomato sauce", 0.2, 200);
+            Ingredient garlicSauce = new Ingredient("Garlic sauce", 0.4, 400);
+            Ingredient spicySauce = new Ingredient("Spicy sauce", 0.4, 500);
+
             Ingredient test1 = new Ingredient("DeleteableNoDependency1", 0.25, 750);
             Ingredient test2 = new Ingredient("DeleteableNoDependency2", 0.12, 1200);
             Ingredient test3 = new Ingredient("DeleteableNoDependency3", 0.07, 380);
@@ -63,7 +74,7 @@ public class HomeController {
 
             List<Ingredient> ingredients = new LinkedList<>();
             ingredients.add(dough);
-//            ingredients.add(cowMeat);
+//            ingredients.add(beef);
 //            ingredients.add(salad);
 //            ingredients.add(pita);
 //            ingredients.add(sauce);
@@ -78,23 +89,26 @@ public class HomeController {
             }
 
 
-            Meal kebab = new Meal("kebab", 4.50);
-            Meal wrap = new Meal("pizza", 7);
-            Meal turkishPizza = new Meal("turkishPizza", 3.5);
-            Meal durum = new Meal("durum", 5);
-            Meal crog = new Meal("crog", 6);
-            Meal salat = new Meal("Salat", 4.20);
+            Meal beef_kebab = new Meal("Beef Kebab", 4.50);
+            Meal chicken_kebab = new Meal("Chicken Kebab", 4.50);
+            Meal falafel_kebab = new Meal("Falafel Kebab", 4);
+            Meal falafel_durum = new Meal("Falafel Durum", 4.5);
+            Meal turkishPizza = new Meal("Turkish Pizza", 3.5);
+            Meal beef_durum = new Meal("Beef Durum", 5);
+            Meal chicken_durum = new Meal("Chicken Durum", 5);
+            Meal crog = new Meal("Croque", 4);
+            Meal salat = new Meal("Salad", 4.20);
             Meal coca = new Meal("Coke", 1.5);
-            Meal tee = new Meal("Tee", 1.2);
+            Meal tee = new Meal("Turkish Tea", 1.2);
             Meal fanta = new Meal("Fanta", 1.5);
-            Meal wasser = new Meal("Wasser", 1.1);
-            Meal bier = new Meal("Bier", 2.5);
+            Meal wasser = new Meal("Water", 1.5);
+            Meal bier = new Meal("Beer", 2.5);
             Meal rum = new Meal("Rum", 3);
 
 
 
-            Process process0 = new Process(kebab, kebab.getRetailPrice());
-            Process process1 = new Process(kebab, kebab.getRetailPrice());
+            Process process0 = new Process(beef_kebab, beef_kebab.getRetailPrice());
+            Process process1 = new Process(beef_kebab, beef_kebab.getRetailPrice());
 
             List<Process> processes = new LinkedList<>();
             processes.add(process0);
@@ -115,11 +129,14 @@ public class HomeController {
             ingredientRepository.save(test4);    // without dependency to a meal
             ingredientRepository.save(wasserflasche);    // has dependency to Water
 
-            mealRepository.save(kebab);
+            mealRepository.save(beef_kebab);
+            mealRepository.save(chicken_kebab);
             mealRepository.save(turkishPizza);
             mealRepository.save(crog);
-            mealRepository.save(durum);
-            mealRepository.save(wrap);
+            mealRepository.save(chicken_durum);
+            mealRepository.save(beef_durum);
+            mealRepository.save(falafel_durum);
+            mealRepository.save(falafel_kebab);
             mealRepository.save(salat);
             mealRepository.save(coca);
             mealRepository.save(tee);
@@ -131,7 +148,7 @@ public class HomeController {
 
             int i = 1;
             for ( Ingredient ingredient : ingredients ){
-                Recipe recipe = new Recipe(kebab.getId(), ingredient, i);
+                Recipe recipe = new Recipe(beef_kebab.getId(), ingredient, i);
                 Recipe recipe2 = new Recipe(turkishPizza.getId(), ingredient, i);
                 recipeRepository.save(recipe);
                 recipeRepository.save(recipe2);

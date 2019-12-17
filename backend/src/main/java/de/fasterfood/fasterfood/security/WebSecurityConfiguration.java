@@ -27,16 +27,16 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 "/api/ingredients/delete", "/api/ingredients/checkdependencies", "/api/order").permitAll();
         http.cors().and().csrf().disable();
 
-
-        http.httpBasic();
-        http.authorizeRequests().anyRequest().authenticated();
+//
+//        http.httpBasic();
+//        http.authorizeRequests().anyRequest().authenticated();
 //        http.authorizeRequests().anyRequest().permitAll();
-        http.exceptionHandling()
-                .authenticationEntryPoint(new Http403ForbiddenEntryPoint());
-//
-        http.logout().logoutUrl("/api/logout")
-                .logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler());
-//
-        http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+//        http.exceptionHandling()
+//                .authenticationEntryPoint(new Http403ForbiddenEntryPoint());
+////
+//        http.logout().logoutUrl("/api/logout")
+//                .logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler());
+////
+//        http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
     }
 }

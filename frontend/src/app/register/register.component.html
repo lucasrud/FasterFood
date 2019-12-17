@@ -2,16 +2,33 @@
 <section class="section">
   <div class="container">
     <div class="box">
-      <h1 class="title is-4">Registrierung</h1>
+      <h1 class="title">Registrierung</h1>
 
-      <div>
-        <table>
-          <tr><td><input type="text" placeholder="Nutzername" #username></td></tr>
-          <tr><td><input type="text" placeholder="Passwort" #password1></td></tr>
-          <tr><td><input type="text" placeholder="Passwort bestätigen" #password2></td></tr>
-        </table>
+      <div class="field">
+        <label class="label">Username</label>
+        <div class="control">
+          <input class="input" type="text" #username>
+        </div>
       </div>
+
+      <div class="field">
+        <label class="label">Password</label>
+        <div class="control">
+          <input class="input" type="text" #password1>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Repeat password</label>
+        <div class="control">
+          <input class="input" type="text" #password2>
+        </div>
+      </div>
+
+      <div class="contol">
       <button class="button" (click)="register(username.value, password1.value, password2.value)">Register</button>
+      </div>
+
     </div>
   </div>
 </section>

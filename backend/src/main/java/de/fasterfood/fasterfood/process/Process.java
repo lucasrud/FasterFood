@@ -14,6 +14,7 @@ public class Process {
 
     @ManyToOne
     private Order order;
+
     @OneToOne
     private Meal meal;
 
@@ -81,6 +82,10 @@ public class Process {
     }
     public int getQuantity() {
         return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 }
 

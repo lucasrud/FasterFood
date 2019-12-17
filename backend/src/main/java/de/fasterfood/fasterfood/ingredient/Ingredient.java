@@ -1,8 +1,9 @@
 package de.fasterfood.fasterfood.ingredient;
 
-import de.fasterfood.fasterfood.editMeal.Meal;
-import de.fasterfood.fasterfood.recipe.Recipe;
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.List;
 
 
@@ -15,11 +16,6 @@ public class Ingredient {
     private String name;
     private double purchasePrice;
     private int stock;
-
-//
-//    @OneToMany(mappedBy = "ingredient")
-//    List<Recipe> recipes;
-
 
     public Ingredient(String name, double purchasePrice, int stock) {
         this.name = name;
@@ -68,12 +64,5 @@ public class Ingredient {
     }
 
     public void addStock(int stock) { this.stock += stock;}
-//
-//    public List<Recipe> getRecipes() {
-//        return recipes;
-//    }
-//
-//    public void setRecipes(List<Recipe> recipes) {
-//        this.recipes = recipes;
-//    }
+
 }

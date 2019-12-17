@@ -3,8 +3,8 @@ package de.fasterfood.fasterfood.recipe;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import de.fasterfood.fasterfood.ingredient.Ingredient;
 import de.fasterfood.fasterfood.editMeal.Meal;
-
 import javax.persistence.*;
+
 
 @Entity
 public class Recipe {

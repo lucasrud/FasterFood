@@ -62,7 +62,6 @@ public class IngredientService {
         for (Recipe dependentRecipe : dependentRecipes) {
             dependentMeals.add(mealRepository.findById(dependentRecipe.getMealId()).get());
         }
-
         return dependentMeals;
     }
 }

@@ -11,6 +11,7 @@ import { CashregisterComponent } from './cashregister/cashregister.component';
 import { FinanceComponent } from './finance/finance.component';
 import { SessionUserComponent } from './session-user/session-user.component';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { LoginComponent } from './login/login.component';
     CashregisterComponent,
     FinanceComponent,
     SessionUserComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

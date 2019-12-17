@@ -4,6 +4,7 @@ import {IngredientsComponent} from './ingredients/ingredients.component';
 import {MealsComponent} from './editMeals/meals.component';
 import {CashregisterComponent} from './cashregister/cashregister.component';
 import {FinanceComponent} from './finance/finance.component';
+import {RegisterComponent} from './register/register.component';
 
 
 const routes: Routes = [
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'ingredients', component: IngredientsComponent},
   { path: 'edit-meals', component: MealsComponent },
   { path: 'finance', component: FinanceComponent },
+  { path: 'register', component: RegisterComponent },
   ];
 
 @NgModule({

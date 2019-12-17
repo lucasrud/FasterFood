@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject} from 'rxjs';
 import {Ingredient} from './ingredient';
 import {Recipe} from './recipe';
+import {variable} from '@angular/compiler/src/output/output_ast';
 
 
 @Injectable({
@@ -32,18 +33,20 @@ export class OrderService {
 
     this.http.post<Recipe[]>('/api/recipes/meal', meal).subscribe(recipes => {
       this.currentMealRecipes = recipes;
+      let containsRecipe = false;
 
       for (const recipe of this.currentMealRecipes) {
 
         for (const currentOrderRecipe of this.currentOrderRecipes) {
-          let containsRecipe = false;
+          containsRecipe = false;
           if (currentOrderRecipe.ingredient.name === recipe.ingredient.name) {
             currentOrderRecipe.amount += recipe.amount;
             containsRecipe = true;
           }
-          if (!containsRecipe) {
-            this.currentOrderRecipes.push(recipe);
-          }
+        }
+
+        if (!containsRecipe) {
+          this.currentOrderRecipes.push(recipe);
         }
 
         for (const currentOrderRecipe of this.currentOrderRecipes) {

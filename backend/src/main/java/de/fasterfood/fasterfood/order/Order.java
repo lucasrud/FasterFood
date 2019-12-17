@@ -1,9 +1,12 @@
 package de.fasterfood.fasterfood.order;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import de.fasterfood.fasterfood.process.Process;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 
@@ -14,19 +17,24 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+//
+//    @OneToMany(mappedBy = "order")
+//    @JsonManagedReference
+//    private List<Process> processList;
 
-    @OneToMany(mappedBy = "order")
-    private List<Process> processList;
+    private String date;
 
-    private LocalDate date;
-    private LocalTime time;
+    private String time;
+
     private double retailPrice;
 
 
     public Order(LocalDate date, LocalTime time, List<Process> processes) {
-        this.date = date;
-        this.time = time;
-        this.processList = processes;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+
+        this.date = date.toString();
+        this.time = formatter.format(time);
+//        this.processList = processes;
         this.retailPrice = 0;
         for(Process process: processes){
             retailPrice += process.getRetailPrice();
@@ -44,20 +52,20 @@ public class Order {
         this.id = id;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
     public void setDate(LocalDate date) {
-        this.date = date;
+        this.date = date.toString();
     }
 
-    public LocalTime getTime() {
+    public String getTime() {
         return time;
     }
 
     public void setTime(LocalTime time) {
-        this.time = time;
+        this.time = time.toString();
     }
 
     public double getRetailPrice() {
@@ -68,11 +76,11 @@ public class Order {
         this.retailPrice = retailPrice;
     }
 
-    public List<Process> getProcessList() {
-        return processList;
-    }
+//    public List<Process> getProcessList() {
+//        return processList;
+//    }
 
-    public void setProcessList(List<Process> processList) {
-        this.processList = processList;
-    }
+//    public void setProcessList(List<Process> processList) {
+//        this.processList = processList;
+//    }
 }

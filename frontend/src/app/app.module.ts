@@ -9,6 +9,9 @@ import { IngredientsComponent } from './ingredients/ingredients.component';
 import { MealsComponent } from './editMeals/meals.component';
 import { CashregisterComponent } from './cashregister/cashregister.component';
 import { FinanceComponent } from './finance/finance.component';
+import { SessionUserComponent } from './session-user/session-user.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,10 @@ import { FinanceComponent } from './finance/finance.component';
     IngredientsComponent,
     MealsComponent,
     CashregisterComponent,
-    FinanceComponent
+    FinanceComponent,
+    SessionUserComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

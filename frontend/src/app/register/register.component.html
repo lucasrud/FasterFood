@@ -1,0 +1,17 @@
+
+<section class="section">
+  <div class="container">
+    <div class="box">
+      <h1 class="title is-4">Registrierung</h1>
+
+      <div>
+        <table>
+          <tr><td><input type="text" placeholder="Nutzername" #username></td></tr>
+          <tr><td><input type="text" placeholder="Passwort" #password1></td></tr>
+          <tr><td><input type="text" placeholder="Passwort bestätigen" #password2></td></tr>
+        </table>
+      </div>
+      <button class="button" (click)="register(username.value, password1.value, password2.value)">Register</button>
+    </div>
+  </div>
+</section>

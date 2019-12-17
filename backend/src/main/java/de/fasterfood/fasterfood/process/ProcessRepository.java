@@ -9,6 +9,6 @@ import java.util.List;
 public interface ProcessRepository extends CrudRepository<Process, Integer> {
 
     List<Process> findAll();
-    List<Process> findAllByOrderDate(LocalDate localDate);
+    List<Process> findAllByOrderDate(String localDate);
 
 }

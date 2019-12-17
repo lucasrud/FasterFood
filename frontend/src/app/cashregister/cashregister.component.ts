@@ -33,9 +33,12 @@ export class CashregisterComponent implements OnInit {
   }
 
   addProcess(meal: Meal) {
-    if (this.orderService.enoughIngredientsInStockCheck(meal)) {
-      this.orderService.addToMealList(meal);
-      this.orderService.getOrderCost();
-    }
+
+    this.orderService.enoughIngredientsInStockCheck(meal).subscribe((bool) => {
+      if (bool) {
+        this.orderService.addToMealList(meal);
+        this.orderService.getOrderCost();
+      }
+    });
   }
 }

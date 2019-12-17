@@ -1,7 +1,7 @@
 import {Meal} from './meal';
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {BehaviorSubject} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {Ingredient} from './ingredient';
 import {Recipe} from './recipe';
 import {variable} from '@angular/compiler/src/output/output_ast';
@@ -28,12 +28,13 @@ export class OrderService {
     this.currentOrderRecipes = [];     // Ingredients needed for the whole current Orderlist
   }
 
-  enoughIngredientsInStockCheck(meal): boolean {
-
+  enoughIngredientsInStockCheck(meal): Observable<boolean> {
+    const bool = new BehaviorSubject<boolean>(false);
 
     this.http.post<Recipe[]>('/api/recipes/meal', meal).subscribe(recipes => {
       this.currentMealRecipes = recipes;
       let containsRecipe = false;
+      let nextBool = true;
 
       for (const recipe of this.currentMealRecipes) {
 
@@ -53,14 +54,15 @@ export class OrderService {
           for (const dbingredient of this.dbIngredients) {
             if (currentOrderRecipe.ingredient.name === dbingredient.name) {
               if (currentOrderRecipe.amount > dbingredient.stock) {
-                return false;
+                nextBool = false;
               }
             }
           }
         }
       }
+      bool.next(nextBool);
     });
-    return true;
+    return bool;
   }
 
   addToMealList(meal: Meal): void {

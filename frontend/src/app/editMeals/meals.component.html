@@ -1,4 +1,4 @@
-<div class="main" >
+
 
 <!--  <div class="main mealbutton" *ngFor="let meal of meals">-->
 <!--    <tr>-->
@@ -7,32 +7,108 @@
 <!--    </tr>-->
 <!--  </div>-->
 
-  <div class="roundBorder">
-    <h2>Meal Prices</h2>
-    <table>
-      <tr>
-        <th>Meal</th>
-        <th>Actual Price</th>
-        <th>New Price</th>
-      </tr>
-      <tr *ngFor="let meal of meals">
-        <td>{{meal.name}}</td>
-        <td class="alignMid">{{meal.retailPrice.toFixed(2) + ' €'}}</td>
-        <td><input type="text" placeholder="0" #price size="10"></td>
-        <td><button (click)="changePrice(meal, price.value)">Change</button></td>
-        <td><button class="main mealbutton" (click)="deleteMeal(meal)">Delete</button></td>
-      </tr>
-    </table>
+<!--Table where meal price can be changed and meal can be deleted-->
+
+<section class="section">
+  <div class="container">
+    <div class="tile is-ancestor">
+      <div class="tile is-parent">
+        <div class="tile is-child box">
+          <h1 class="title">Edit Existing Meals</h1>
+          <table class="table ">
+            <thead>
+            <tr>
+              <th>Meal</th>
+              <th>Actual Price</th>
+              <th>New Price</th>
+              <th>Change Price</th>
+              <th>Delete Meal</th>
+            </tr>
+            </thead>
+
+            <tr *ngFor="let meal of meals">
+              <td>{{meal.name}}</td>
+              <td class="alignMid">{{meal.retailPrice.toFixed(2) + ' €'}}</td>
+              <td><input type="text" placeholder="0" #price size="10"></td>
+              <td>
+                <button (click)="changePrice(meal, price.value)">Change</button>
+              </td>
+              <td>
+                <button class="main mealbutton" (click)="deleteMeal(meal)">Delete</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="roundBorder">
-    <h2>Add new Meal</h2>
-    <table>
-      <tr><td>Name:</td><td><input type="text" #mealname placeholder="Meal"></td></tr>
-      <tr><td>Price:</td><td><input type="text" #price placeholder="Price"></td></tr>
-      <input type="submit" (click)="addMeal(mealname.value, price.value)" value="Add">
-    </table>
-  </div>
 
-</div>
+  <!--  Add a new Meal box-->
+  <!--  add a new meal form-->
+
+  <div class="container">
+    <div class="tile is-parent">
+      <div class="tile is-child box">
+        <h2 class="title">Add new Meal</h2>
+
+        <div class="field">
+          <label class="label">Meal</label>
+          <div class="control">
+            <input class="input" type="text" #mealname placeholder="Name of new meal">
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Price</label>
+          <div class="control">
+            <input class="input" type="text" #price placeholder="Price of new meal">
+          </div>
+        </div>
+
+        <div class="control">
+          <button class="button" (click)="addMeal(mealname.value, price.value)">Add</button>
+        </div>
+
+<!--        ingredients for new meal-->
+
+          <tr>
+            <th>Ingredient</th>
+            <th>Amount</th>
+          </tr>
+          <tr *ngFor="let recipe of recipes">
+            <td>{{recipe.ingredient.name}}</td>
+            <td>{{recipe.amount}}</td>
+          </tr>
+          <tr>
+            <td><select name="dish" [(ngModel)]="ingredient">
+              <option [ngValue]="null" disabled selected>Select ingredient...</option>
+              <option *ngFor="let ingredient of ingredients" [ngValue]="ingredient">
+                {{ ingredient.name }}
+              </option>
+            </select>
+
+<!--            </td>-->
+<!--            <td><input type="number" #amount placeholder="0"></td>-->
+<!--            <td>g</td>-->
+
+            <div class="field">
+              <label class="label">Amount in gramms</label>
+              <div class="control">
+                <input class="input" type="text" #amount placeholder="0g">
+              </div>
+            </div>
+
+              <div class="control">
+                <button class="button" (click)="addIngredient(ingredient, amount.value)">Add</button>
+              </div>
+
+<!--            <td><input type="submit" (click)="addIngredient(ingredient, amount.value)" value="Add ingredient"></td>-->
+<!--          </tr>-->
+
+
+    </div>
+  </div>
+  </div>
+</section>
 

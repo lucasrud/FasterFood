@@ -46,6 +46,7 @@ public class Meal {
         return purchasePrice;
     }
 
+    //TODO: purchaseprice muss ingrendwo gesettet werden
     public void setPurchasePrice(double purchasePrice) {
         this.purchasePrice = purchasePrice;
         this.profit = this.retailPrice - this.purchasePrice;

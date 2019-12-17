@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {User} from './user';
+import {RegisterUserDTO} from './registeruserDTO';
 
 
 @Injectable({
@@ -11,8 +12,8 @@ export class SecurityService {
 
   private sessionUser = new BehaviorSubject<User|null>(null);
 
-  constructor(private httpClient: HttpClient) {
-    this.httpClient.get<User>('/api/sessionUser').subscribe(
+  constructor(private http: HttpClient) {
+    this.http.get<User>('/api/sessionUser').subscribe(
       u => this.sessionUser.next(u)
     );
   }
@@ -22,7 +23,7 @@ export class SecurityService {
   }
 
   public login(username: string, password: string) {
-    this.httpClient.get<User>('/api/sessionUser', {
+    this.http.get<User>('/api/sessionUser', {
       headers: {
         authorization : 'Basic ' + btoa(username + ':' + password)
       }
@@ -32,8 +33,13 @@ export class SecurityService {
     );
   }
 
+  // Baustelle
+  public registerUserInDB(registerUserDTO: RegisterUserDTO) {
+    this.http.post('/api/register/user', registerUserDTO).subscribe(() => this.sessionUser.next(null));
+  }
+
   public logout() {
-    this.httpClient.post('/api/logout', null).subscribe(
+    this.http.post('/api/logout', null).subscribe(
       () => this.sessionUser.next(null),
     );
   }

@@ -11,7 +11,10 @@
           <tr><td><input type="text" placeholder="Passwort bestätigen" #password2></td></tr>
         </table>
       </div>
-      <button class="button" (click)="register(username.value, password1.value, password2.value)">Register</button>
+      <button class="button" (click)="registerUserInDB(username.value, password1.value, password2.value)">Register</button>
+
     </div>
   </div>
 </section>
+
+<router-outlet></router-outlet>

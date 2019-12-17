@@ -48,7 +48,7 @@ public class HomeController {
 
         if (mealRepository.count() == 0) {
             Ingredient pita = new Ingredient("Pita", 0.4, 300);
-            Ingredient dough = new Ingredient("Dough", 0.1, 5000);
+            Ingredient dough = new Ingredient("Dough", 0.1, 2);
             Ingredient wrap = new Ingredient("Wrap", 0.6, 400);
             Ingredient baguette = new Ingredient("Baguette", 0.6, 100);
             Ingredient beef = new Ingredient("Beef", 0.6, 20000);

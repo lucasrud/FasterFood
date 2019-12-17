@@ -18,9 +18,11 @@ export class AppComponent implements OnInit {
   @Input()
   meals: Meal[];
   orderService: OrderService;
+  sessionUser: null;
 
   constructor(private http: HttpClient, orderService: OrderService) {
     this.orderService = orderService;
+    alert(this.sessionUser);
   }
 
   // Können die auskommentierten Inhalte von Ingredient.service gelöscht werden? AK

@@ -1,7 +1,5 @@
 package de.fasterfood.fasterfood.order;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import de.fasterfood.fasterfood.process.Process;
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -17,15 +15,9 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-//
-//    @OneToMany(mappedBy = "order")
-//    @JsonManagedReference
-//    private List<Process> processList;
 
     private String date;
-
     private String time;
-
     private double retailPrice;
 
 
@@ -34,7 +26,6 @@ public class Order {
 
         this.date = date.toString();
         this.time = formatter.format(time);
-//        this.processList = processes;
         this.retailPrice = 0;
         for(Process process: processes){
             retailPrice += process.getRetailPrice();
@@ -75,12 +66,4 @@ public class Order {
     public void setRetailPrice(int retailPrice) {
         this.retailPrice = retailPrice;
     }
-
-//    public List<Process> getProcessList() {
-//        return processList;
-//    }
-
-//    public void setProcessList(List<Process> processList) {
-//        this.processList = processList;
-//    }
 }

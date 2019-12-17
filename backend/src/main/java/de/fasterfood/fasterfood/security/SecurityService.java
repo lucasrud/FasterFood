@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import java.util.Arrays;
+import java.util.List;
 
 
 @Service
@@ -28,7 +28,7 @@ public class SecurityService implements UserDetailsService {
 
 
         if(username.equalsIgnoreCase("philip")) {
-            return new User("philip", this.passwordEncoder.encode("hallo"), Arrays.asList());
+            return new User("philip", this.passwordEncoder.encode("hallo"), List.of());
         }
 
         throw new UsernameNotFoundException("nö");

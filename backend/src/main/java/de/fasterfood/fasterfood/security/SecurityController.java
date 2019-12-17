@@ -3,6 +3,7 @@ package de.fasterfood.fasterfood.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,10 +16,12 @@ public class SecurityController {
 
 
     private UserRepository userRepository;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public SecurityController(UserRepository userRepository) {
+    public SecurityController(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
 
@@ -31,12 +34,14 @@ public class SecurityController {
     public User registerNewUser(@RequestBody RegisterUserDTO registerUserDTO) {
 
         Optional<User> optionalUser = userRepository.findByUsername(registerUserDTO.getUsername());
-        if (optionalUser.isPresent()) {
-            // User ist vorhanden
+        User regUser = new User(null,null);
+
+        if (!optionalUser.isPresent()) {
+            regUser = new User(registerUserDTO.getUsername(), passwordEncoder.encode(registerUserDTO.getPassword()));
+            userRepository.save(regUser);
         }
 
-
-        return null;
+        return regUser;
     }
 
 

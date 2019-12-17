@@ -36,7 +36,7 @@ export class OrderService {
     return this.currentCost;
   }
 
-  deleteMeal(index: number): void {
+  deleteMealFromCart(index: number): void {
     const newMeals: Meal[] = [];
     let i = 0;
     for (const m of this.meals.value) {

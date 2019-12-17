@@ -1,0 +1,8 @@
+<p>session-user works!</p>
+<div *ngIf="sessionUser === null">
+  Du bist nicht eingeloggt.
+</div>
+<div *ngIf="sessionUser !== null">
+  Du bist eingeloggt, {{ sessionUser.username }}!!!!!!!!!!!
+</div>
+

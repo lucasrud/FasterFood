@@ -1,12 +1,4 @@
 
-
-<!--  <div class="main mealbutton" *ngFor="let meal of meals">-->
-<!--    <tr>-->
-<!--      <td > {{meal.id + ' ' + meal.name + ' ' + meal.retailPrice.toFixed(2) + ' €' }}</td>-->
-<!--      <button class="main mealbutton" (click)="deleteMeal(meal)"> X </button>-->
-<!--    </tr>-->
-<!--  </div>-->
-
 <!--Table where meal price can be changed and meal can be deleted-->
 
 <section class="section">
@@ -21,8 +13,8 @@
               <th>Meal</th>
               <th>Actual Price</th>
               <th>New Price</th>
-              <th>Change Price</th>
-              <th>Delete Meal</th>
+              <th></th>
+              <th></th>
             </tr>
             </thead>
 
@@ -31,10 +23,10 @@
               <td class="alignMid">{{meal.retailPrice.toFixed(2) + ' €'}}</td>
               <td><input type="text" placeholder="0" #price size="10"></td>
               <td>
-                <button (click)="changePrice(meal, price.value)">Change</button>
+                <button class="button" (click)="changePrice(meal, price.value)">Change</button>
               </td>
               <td>
-                <button class="main mealbutton" (click)="deleteMeal(meal)">Delete</button>
+                <button class="button" (click)="deleteMeal(meal)">Delete</button>
               </td>
             </tr>
           </table>
@@ -80,10 +72,6 @@
               </div>
 
 
-<!--            </td>-->
-<!--            <td><input type="number" #amount placeholder="0"></td>-->
-<!--            <td>g</td>-->
-
             <div class="field">
               <label class="label">Amount in gramms</label>
               <div class="control">
@@ -98,7 +86,6 @@
         </tr>
         <tr>
 
-
 <!--              buttons-->
 
               <div class="control">
@@ -108,9 +95,6 @@
               <div class="control">
                 <button class="button" (click)="addMeal(mealname.value, price.value)">Add Meal</button>
               </div>
-
-<!--            <td><input type="submit" (click)="addIngredient(ingredient, amount.value)" value="Add ingredient"></td>-->
-<!--          </tr>-->
 
 
     </div>

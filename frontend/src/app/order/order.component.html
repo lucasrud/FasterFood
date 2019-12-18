@@ -1,15 +1,8 @@
-<section class="section">
-  <div class="container">
-<!--    <div class="tile is-parent is-vertical">-->
-<!--          <div class="tile is-child box">-->
-    <div class="box">
-        <h1 class="title is-4">Current Order {{orderCostNum.toFixed(2) + ' €'}}</h1>
-        <div *ngFor="let meal of meals">
-          <button *ngIf="meal" class="button" (click)="deleteMealFromOrder(meals.indexOf(meal))"> X </button>
-          <span>{{meal.retailPrice.toFixed(2) + ' € ' }} {{meal.name}}</span>
-        </div>
-      <button class="button" (click)="order(meals)">Order</button>
-      </div>
-    </div>
-</section>
+<h1 class="title is-4">Current Order {{orderCostNum.toFixed(2) + ' €'}}</h1>
+<div *ngFor="let meal of meals">
+  <button *ngIf="meal" class="button" (click)="deleteMealFromOrder(meals.indexOf(meal))"> X</button>
+  <span>{{meal.retailPrice.toFixed(2) + ' € ' }} {{meal.name}}</span>
+</div>
+<button class="button" (click)="order(meals)">Order</button>
+
 

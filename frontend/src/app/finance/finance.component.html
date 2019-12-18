@@ -1,12 +1,10 @@
 <section class="section">
-  <div class="container">
-    <div class="tile is-ancestor">
-      <div class="tile is-vertical">
-        <div class="tile ">
-
-          <div class="tile is-parent ">
-            <div class="tile is-child box">
-
+  <div class="tile is-ancestor">
+    <div class="tile is is-vertical">
+      <div class="tile">
+        <div class="tile is-parent is-9">
+          <div class="tile is-child box ">
+            <div class="columns is-multiline">
               <div class="buttons has-addons">
                 <button class="button" (click)="changeView()">Daily</button>
                 <button class="button" (click)="changeView()">Total</button>
@@ -22,16 +20,16 @@
                   <th>Meal Nr.</th>
                   <th>Meal Name</th>
                   <th>Quantity</th>
-                  <th>Unit Cost</th>
-                  <th>Total Process Cost</th>
-                  <th>Total Process Purchase Price</th>
-                  <th>Total Process Profit</th>
-                  <th>Total Order Cost</th>
+                  <th>Unit Price</th>
+                  <th>Process Price</th>
+                  <th>Order Cost</th>
+                  <th>Process Purchase Price</th>
+                  <th>Process Profit</th>
+
                 </tr>
                 </thead>
 
                 <tr *ngFor="let process of processes">
-                  <!-- das hier ist nicht fertig, ist nur Platzhalter, noch bei Gelegenheit aufräumen -->
                   <td>{{process.id}}</td>
                   <td>{{process.order.date}}</td>
                   <td>{{process.order.time}}</td>
@@ -51,32 +49,26 @@
         </div>
 
 
-        <div class="container">
-          <div class="tile is-parent ">
-            <div class="tile is-child box">
-              <table class="table">
-                <tr>
-                  <th>Total Turnover</th>
-                  <th>{{processesTotalTurnover(processes).toFixed(2) + ' €'}}</th>
-                </tr>
-                <tr>
-                  <th>Total Expanses of Meals</th>
-                  <th>{{processesTotalPurchasePrice(processes).toFixed(2) + ' €'}}</th>
-                </tr>
-                <tr>
-                  <th>Total Profit</th>
-                  <th>{{processesTotalProfit(processes).toFixed(2) + ' €'}}</th>
-                </tr>
-              </table>
-            </div>
-          </div>
+        <div class="tile is-parent">
+          <!--            <div class="tile is-child box">-->
+          <table class="table">
+            <tr>
+              <th>Total Turnover</th>
+              <th>{{processesTotalTurnover(processes).toFixed(2) + ' €'}}</th>
+            </tr>
+            <tr>
+              <th>Total Expanses of Meals</th>
+              <th>{{processesTotalPurchasePrice(processes).toFixed(2) + ' €'}}</th>
+            </tr>
+            <tr>
+              <th>Total Profit</th>
+              <th>{{processesTotalProfit(processes).toFixed(2) + ' €'}}</th>
+            </tr>
+          </table>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-
-<!--<td><input type="text" placeholder="0" #stock size="10"></td>-->
-<!--<td><button (click)="changeStockForIngredient(ingredient, stock.value)">Change</button></td>-->
 

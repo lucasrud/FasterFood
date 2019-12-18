@@ -19,10 +19,10 @@ public class RecipeController {
         this.recipeService = recipeService;
     }
 
-    @GetMapping("/api/recipes")  // wird das benötigt?
-    public List<Recipe> getRecipes() {
-        return recipeService.findAll();
-    }
+//    @GetMapping("/api/recipes")  // wird das benötigt?
+//    public List<Recipe> getRecipes() {
+//        return recipeService.findAll();
+//    }
 
     @PostMapping("/api/recipes/meal")
     public List<Recipe> getRecipeByMeal(@RequestBody Meal meal) {

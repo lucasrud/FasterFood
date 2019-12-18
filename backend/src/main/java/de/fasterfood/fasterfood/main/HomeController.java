@@ -10,7 +10,10 @@ import de.fasterfood.fasterfood.process.Process;
 import de.fasterfood.fasterfood.process.ProcessRepository;
 import de.fasterfood.fasterfood.recipe.Recipe;
 import de.fasterfood.fasterfood.recipe.RecipeRepository;
+import de.fasterfood.fasterfood.user.UserEntity;
+import de.fasterfood.fasterfood.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.PostConstruct;
@@ -27,15 +30,19 @@ public class HomeController {
     private OrderRepository orderRepository;
     private ProcessRepository processRepository;
     private RecipeRepository recipeRepository;
+    private UserRepository userRepository;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     public HomeController(IngredientRepository ingredientRepository, MealRepository mealRepository, OrderRepository orderRepository,
-                          ProcessRepository processRepository, RecipeRepository recipeRepository){
+                          ProcessRepository processRepository, RecipeRepository recipeRepository, UserRepository userRepository, PasswordEncoder passwordEncoder){
         this.ingredientRepository = ingredientRepository;
         this.mealRepository = mealRepository;
         this.orderRepository = orderRepository;
         this.processRepository = processRepository;
         this.recipeRepository = recipeRepository;
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping("/")
@@ -45,6 +52,10 @@ public class HomeController {
 
     @PostConstruct
     public void setupData(){
+
+        if (userRepository.count() == 0) {
+            userRepository.save(new UserEntity("admin", passwordEncoder.encode("hallo")));
+        }
 
         if (mealRepository.count() == 0) {
             Ingredient pita = new Ingredient("Pita", 0.4, 300);

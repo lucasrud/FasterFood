@@ -121,15 +121,20 @@ public class OrderService {
                 ingredients.put(id, recipe.getAmount());
             }
         }
-        return orderCheck();
+        return orderCheck(meal);
     }
 
 
-    public boolean orderCheck() {
+    public boolean orderCheck(Meal meal) {
 
         for (Integer ingredientId : ingredients.keySet()) {
             Optional<Ingredient> ingredient = ingredientRepository.findById(ingredientId);
+            Recipe recipe = recipeRepository.findByIngredientIdAndMealId(ingredientId, meal.getId());
+
             if (ingredients.get(ingredientId) > ingredient.get().getStock()) {
+                // hier muss außer dem return false noch die ingredient hashmap zurückgesetzt werden
+                // der amount vom meal (welches nicht hinzugefügt werden kann) wird abgezogen
+                ingredients.put(ingredientId,ingredients.get(ingredientId)-recipe.getAmount());
                 return false;
             }
         }

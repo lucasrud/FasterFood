@@ -64,11 +64,7 @@ public class HomeController {
             Ingredient garlicSauce = new Ingredient("Garlic sauce", 0.4, 400);
             Ingredient spicySauce = new Ingredient("Spicy sauce", 0.4, 500);
 
-            Ingredient test1 = new Ingredient("DeleteableNoDependency1", 0.25, 750);
-            Ingredient test2 = new Ingredient("DeleteableNoDependency2", 0.12, 1200);
-            Ingredient test3 = new Ingredient("DeleteableNoDependency3", 0.07, 380);
-            Ingredient test4 = new Ingredient("DeleteableNoDependency4", 0.03, 8400);
-            Ingredient wasserflasche = new Ingredient("Bottle of Water - Bonaqua", 0.03, 8400);
+            Ingredient wasserflasche = new Ingredient("Bottle of Water - Bonaqua", 0.03, 400);
 
 
 
@@ -123,11 +119,23 @@ public class HomeController {
                 ingredientRepository.save(ingredient);
             }
 
-            ingredientRepository.save(test1);    // without dependency to a meal
-            ingredientRepository.save(test2);    // without dependency to a meal
-            ingredientRepository.save(test3);    // without dependency to a meal
-            ingredientRepository.save(test4);    // without dependency to a meal
-            ingredientRepository.save(wasserflasche);    // has dependency to Water
+
+            ingredientRepository.save(wasserflasche); // has dependency to Water
+            ingredientRepository.save(pita);
+            ingredientRepository.save(wrap);
+            ingredientRepository.save(baguette);
+            ingredientRepository.save(beef);
+            ingredientRepository.save(chicken);
+            ingredientRepository.save(falafel);
+            ingredientRepository.save(salad);
+            ingredientRepository.save(tomatos);
+            ingredientRepository.save(cucumber);
+            ingredientRepository.save(cabbage);
+            ingredientRepository.save(onion);
+            ingredientRepository.save(cocktailSauce);
+            ingredientRepository.save(garlicSauce);
+            ingredientRepository.save(spicySauce);
+            ingredientRepository.save(tomatoSauce);
 
             mealRepository.save(beef_kebab);
             mealRepository.save(chicken_kebab);

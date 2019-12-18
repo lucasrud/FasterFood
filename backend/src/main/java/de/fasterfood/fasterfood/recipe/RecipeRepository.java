@@ -9,4 +9,6 @@ public interface RecipeRepository extends CrudRepository<Recipe, Integer> {
     List<Recipe> findAll();
     List<Recipe> findAllByMealId(Integer mealId);
     List<Recipe> findAllByIngredientId(Integer ingredientId);
+
+    Recipe findByIngredientIdAndMealId(Integer ingredientId, Integer id);
 }

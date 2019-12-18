@@ -1,12 +1,23 @@
 <section class="section">
   <div class="container">
     <div class="tile is-ancestor">
-      <div class="tile is-parent">
-        <div class="tile is-child box">
-          <div class="columns is-multiline">
-            <button class="button column is-one-fifth" *ngFor="let meal of meals">
-              <div (click)="addProcess(meal)"> {{ meal.name + ' ' + meal.retailPrice.toFixed(2) + ' €' }}</div>
-            </button>
+      <div class="tile is is-vertical">
+        <div class="tile">
+          <div class="tile is-parent is-9">
+            <div class="tile is-child box ">
+              <div class="columns is-multiline">
+                <button class="button column is-one-third" *ngFor="let meal of meals">
+                  <div (click)="addProcess(meal)"> {{ meal.name + ' ' + meal.retailPrice.toFixed(2) + ' €' }}</div>
+                </button>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="tile is-parent">
+            <div class="tile is-child box">
+              <app-order></app-order>
+            </div>
           </div>
         </div>
       </div>
@@ -14,8 +25,4 @@
   </div>
 </section>
 <div>{{sessionUser.username}}</div>
-
-
-<app-order></app-order>
-
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Meal} from '../meal';
 import { OrderService } from '../order.service';
+import {User} from '../User';
 
 
 @Component({
@@ -13,6 +14,7 @@ export class OrderComponent implements OnInit {
   meals: Meal[];
   orderService: OrderService;
   orderCostNum = 0;
+  sessionUser: User|null = null;
 
   constructor(orderService: OrderService) {
     this.orderService = orderService;

@@ -3,6 +3,8 @@ import {MealDTO} from '../mealDTO';
 import {Meal} from '../meal';
 import {OrderService} from '../order.service';
 import {HttpClient} from '@angular/common/http';
+import {User} from '../User';
+import {SecurityService} from '../security.service';
 
 
 @Component({
@@ -19,8 +21,10 @@ export class CashregisterComponent implements OnInit {
   orderService: OrderService;
   stockBool: number;
   httpMeal: Meal;
+  sessionUser: User|null = null;
+  securityService: SecurityService;
 
-  constructor(private http: HttpClient, orderService: OrderService) {
+  constructor(private http: HttpClient, orderService: OrderService, securityService: SecurityService) {
     this.orderService = orderService;
     this.stockBool = 0;
     this.httpMeal = {
@@ -31,9 +35,13 @@ export class CashregisterComponent implements OnInit {
     profit: 0,
     };
     this.stockBool = 3;
+    this.securityService = securityService;
   }
 
   ngOnInit(): void {
+    this.securityService.getSessionUser().subscribe(
+      u => this.sessionUser = u
+    );
     this.http.get<Meal[]>('/api/order').subscribe(meals => this.meals = meals);
     this.resetNewMeal();
     this.newMeals = [];

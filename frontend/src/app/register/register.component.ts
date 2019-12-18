@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {SecurityService} from '../security.service';
+import {User} from '../User';
 import {RegisterUserDTO} from '../registeruserDTO';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -12,8 +14,12 @@ import {RegisterUserDTO} from '../registeruserDTO';
 export class RegisterComponent implements OnInit {
 
   securityService: SecurityService;
+  registeredUser: RegisterUserDTO;
+  registeredUserNumber = 0;
+  // sessionUser: User|null = null;
+  sessionUser: User;
 
-  constructor(private http: HttpClient, securityService: SecurityService) {
+  constructor(private http: HttpClient, securityService: SecurityService, private router: Router) {
     this.securityService = securityService;
   }
 
@@ -21,14 +27,14 @@ export class RegisterComponent implements OnInit {
   }
 
   registerUserInDB(username1, password1, password2) {
-
+    this.registeredUserNumber = 0;
     if (password1 === password2) {
-      const registeredUser: RegisterUserDTO = {
+      this.registeredUser = {
         username: username1,
         password: password1
       };
-      // alert(username + ' ' + password1 + ' ' + password2);
-      this.securityService.registerUserInDB(registeredUser);
+      this.registeredUserNumber = this.securityService.registerUserInDB(this.registeredUser);
+      this.router.navigate(['/login']);
     }
 
   }

@@ -27,5 +27,8 @@ export class LoginComponent implements OnInit {
 
   logout() {
     this.securityService.logout();
+    this.loginData.username = null;
+    this.loginData.password = null;
+    this.sessionUser = null;
   }
 }

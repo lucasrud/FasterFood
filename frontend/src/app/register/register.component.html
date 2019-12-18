@@ -14,21 +14,23 @@
       <div class="field">
         <label class="label">Password</label>
         <div class="control">
-          <input class="input" type="text" #password1>
+          <input class="input" type="password" #password1>
         </div>
       </div>
 
       <div class="field">
         <label class="label">Repeat password</label>
         <div class="control">
-          <input class="input" type="text" #password2>
+          <input class="input" type="password" #password2>
         </div>
       </div>
 
       <div class="control">
-      <button class="button" (click)="register(username.value, password1.value, password2.value)">Register</button>
+      <button class="button" (click)="registerUserInDB(username.value, password1.value, password2.value)">Register</button>
       </div>
 
     </div>
   </div>
+  <span class="tag is-success is-center is-size-6" *ngIf="registeredUser.username.length > 0 && registeredUserNumber == 1">{{registeredUser.username}}</span>
+  <span class="tag is-danger is-center is-size-6" *ngIf="registeredUser.username.length > 0 && registeredUserNumber == 2">{{registeredUser.username + ' is already taken'}}</span>
 </section>

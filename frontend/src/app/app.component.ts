@@ -3,6 +3,8 @@ import { OrderService } from './order.service';
 import {Meal} from './meal';
 import {MealDTO} from './mealDTO';
 import {HttpClient} from '@angular/common/http';
+import {User} from './User';
+import {SecurityService} from './security.service';
 
 
 @Component({
@@ -15,23 +17,24 @@ export class AppComponent implements OnInit {
 
   newMeals: MealDTO[];
   name = '';
+  securityService: SecurityService;
   @Input()
   meals: Meal[];
   orderService: OrderService;
-  sessionUser: null;
-
-  constructor(private http: HttpClient, orderService: OrderService) {
+  sessionUser: User|null = null;
+  constructor(private http: HttpClient, orderService: OrderService, securityService: SecurityService) {
     this.orderService = orderService;
-    alert(this.sessionUser);
+    this.securityService = securityService;
   }
-
-  // Können die auskommentierten Inhalte von Ingredient.service gelöscht werden? AK
 
   ngOnInit(): void {
     // this.http.get<Meal[]>('/api/meals/order').subscribe(meals => this.meals = meals);
     // // Diese Methoden sollten bei Gelegenheit in den/ einen Service ausgelagert werden? AK
     // this.resetNewMeal();
     // this.newMeals = [];
+    this.securityService.getSessionUser().subscribe(
+      u => this.sessionUser = u
+    );
   }
 
   resetNewMeal() {

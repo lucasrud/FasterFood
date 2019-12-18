@@ -1,3 +1,21 @@
-<p>login works!</p>
+<div class="columns is-centered">
+  <h2 class="title is-3" style="padding-top: 3%">Please log in</h2>
+</div>
+<div class="columns is-centered" style="padding: 30px">
+  <form class="column is-4-desktop is-6-touch has-text-centered" (ngSubmit)="login()">
+<input class="input is-info is-hovered" style="margin: 10px 0" type="text" name="Nutzername" placeholder="Nutzername" [(ngModel)]="loginData.username">
+    <br>
+<input class="input is-info is-hovered" style="margin: 10px 0" type="password" name="Passwort" placeholder="Passwort" [(ngModel)]="loginData.password">
+    <br>
+    <button class="button is-info is-light" style="margin: 10px 0" type="submit">Login</button>
+  </form>
+</div>
 
+<!--<form *ngIf="sessionUser === null" (ngSubmit)="login()">-->
+<!--<form *ngIf="sessionUser === null">-->
+<!--  <label>Username: <input name="username" [(ngModel)]="loginData.username"></label><br>-->
+<!--  <label>Password: <input type="password" name="password" [(ngModel)]="loginData.password"></label><br>-->
+<!--  <button (click)="login()"  type="submit">Los</button>-->
+<!--</form>-->
 
+<button *ngIf="sessionUser !== null" (click)="logout()">Logout</button>

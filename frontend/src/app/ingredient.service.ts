@@ -15,19 +15,4 @@ export class IngredientService {
   }
 
   private meals: BehaviorSubject<Meal[]>;
-  // currentCost = 0;
-  //
-  // addToMealList(meal: Meal): void {
-  //   this.currentCost += meal.retailPrice;
-  //   this.meals.next([...this.meals.value, meal]);
-  // }
-  //
-  // getMeals(): BehaviorSubject<Meal[]> {
-  //   return this.meals;
-  // }
-  //
-  // getOrderCost(): number {
-  //   return this.currentCost;
-  // }
-
 }

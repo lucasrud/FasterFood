@@ -1,4 +1,4 @@
-package de.fasterfood.fasterfood.security;
+package de.fasterfood.fasterfood.user;
 
 
 public class RegisterUserDTO {
@@ -6,9 +6,11 @@ public class RegisterUserDTO {
     private String username;
     private String password;
 
+    public RegisterUserDTO(){}
 
-    public RegisterUserDTO(String username) {
+    public RegisterUserDTO(String username, String password) {
         this.username = username;
+        this.password = password;
     }
 
     public String getUsername() {

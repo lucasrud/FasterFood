@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {User} from './user';
 import {RegisterUserDTO} from './registeruserDTO';
+import {Router} from '@angular/router';
 
 
 @Injectable({
@@ -11,11 +12,12 @@ import {RegisterUserDTO} from './registeruserDTO';
 export class SecurityService {
 
   private sessionUser = new BehaviorSubject<User|null>(null);
+  private regUser = 0;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.http.get<User>('/api/sessionUser').subscribe(
-      u => this.sessionUser.next(u)
-    );
+      u => this.sessionUser.next(u));
+
   }
 
   public getSessionUser(): Observable<User|null> {
@@ -25,17 +27,21 @@ export class SecurityService {
   public login(username: string, password: string) {
     this.http.get<User>('/api/sessionUser', {
       headers: {
-        authorization : 'Basic ' + btoa(username + ':' + password)
+        authorization: 'Basic ' + btoa(username + ':' + password)
       }
     }).subscribe(
       u => this.sessionUser.next(u),
       () => this.sessionUser.next(null),
     );
+    this.router.navigate(['/']);
   }
 
-  // Baustelle
+
   public registerUserInDB(registerUserDTO: RegisterUserDTO) {
-    this.http.post('/api/register/user', registerUserDTO).subscribe(() => this.sessionUser.next(null));
+    this.http.post<number>('/api/register/user', registerUserDTO).subscribe(u => {
+      this.regUser = u;
+    });
+    return this.regUser;
   }
 
   public logout() {

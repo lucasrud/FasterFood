@@ -24,19 +24,22 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests().antMatchers("/", "/meals", "/api/meals/order", "/api/meals/price",
                 "/api/meals/addMeal", "/api/meals/deleteMeal", "/api/finance", "/api/ingredients",  "/api/ingredients/price",
-                "/api/ingredients/delete", "/api/ingredients/checkdependencies", "/api/order").permitAll();
-        http.cors().and().csrf().disable();
+                "/api/ingredients/delete", "/api/ingredients/checkdependencies", "/api/order", "/api/sessionUser", "/api/register/user").permitAll();
+
+//        http.cors().and().csrf().disable();
 
 
-//        http.httpBasic();
-//        http.authorizeRequests().anyRequest().authenticated();
-        http.authorizeRequests().anyRequest().permitAll();
-//        http.exceptionHandling()
-//                .authenticationEntryPoint(new Http403ForbiddenEntryPoint());
-//
-//        http.logout().logoutUrl("/api/logout")
-//                .logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler());
-//
-//        http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+        http.httpBasic();
+        http.authorizeRequests().anyRequest().authenticated();
+//        http.authorizeRequests().anyRequest().permitAll();
+        http.exceptionHandling()
+                .authenticationEntryPoint(new Http403ForbiddenEntryPoint());
+
+        http.logout().logoutUrl("/api/logout")
+                .logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler());
+
+        http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+
+
     }
 }

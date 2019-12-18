@@ -6,6 +6,7 @@ import {HttpClient} from '@angular/common/http';
 import {Ingredient} from '../ingredient';
 import {Recipe} from '../recipe';
 import {RecipeDTO} from '../recipeDTO';
+import {User} from '../User';
 
 
 @Component({
@@ -24,6 +25,7 @@ export class MealsComponent implements OnInit {
   ingredients: Ingredient[] = [];
   recipes: RecipeDTO[] = [];
   ingredient: Ingredient;
+  sessionUser: User|null = null;
 
   constructor(private http: HttpClient, orderService: OrderService) {
     this.orderService = orderService;

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Process} from '../process';
 import {HttpClient} from '@angular/common/http';
+import {User} from '../User';
 
 
 @Component({
@@ -12,6 +13,7 @@ export class FinanceComponent implements OnInit {
 
   processes: Process[];
   daily: boolean;
+  sessionUser: User|null = null;
 
   constructor(private http: HttpClient) { }
 

@@ -1,47 +1,51 @@
 package de.fasterfood.fasterfood.security;
 
+import de.fasterfood.fasterfood.user.RegisterUserDTO;
+import de.fasterfood.fasterfood.user.UserDTO;
+import de.fasterfood.fasterfood.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import java.util.Optional;
+
+import javax.naming.AuthenticationException;
+import javax.servlet.http.HttpSession;
 
 
 @RestController
 public class SecurityController {
 
 
-    private UserRepository userRepository;
-    private PasswordEncoder passwordEncoder;
+    private UserService userService;
 
     @Autowired
-    public SecurityController(UserRepository userRepository, PasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
+    public SecurityController(UserService userService) {
+        this.userService = userService;
     }
 
 
     @GetMapping("/api/sessionUser")
     public UserDTO sessionUser(@AuthenticationPrincipal UserDetails userDetails) {
+//
+//        System.out.println(userDetails.getUsername() + " test hier");
+        if (userDetails == null) {
+            return null;
+        }
         return new UserDTO(userDetails.getUsername());
     }
 
     @PostMapping("/api/register/user")
-    public User registerNewUser(@RequestBody RegisterUserDTO registerUserDTO) {
+    public int registerNewUser(@RequestBody RegisterUserDTO registerUserDTO) throws AuthenticationException {
+        int testNumber = userService.registerUser(registerUserDTO);
+        return testNumber;
+    }
 
-        Optional<User> optionalUser = userRepository.findByUsername(registerUserDTO.getUsername());
-        User regUser = new User(null,null);
-
-        if (!optionalUser.isPresent()) {
-            regUser = new User(registerUserDTO.getUsername(), passwordEncoder.encode(registerUserDTO.getPassword()));
-            userRepository.save(regUser);
-        }
-
-        return regUser;
+    @PostMapping("/api/logout")
+    public void logoutUser(HttpSession session ) {
+        session.invalidate();
     }
 
 

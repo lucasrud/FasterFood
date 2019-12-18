@@ -174,6 +174,16 @@ public class HomeController {
             Recipe recipe3 = new Recipe(wasser.getId(), wasserflasche, 1);
             recipeRepository.save(recipe3);
 
+            for (Meal meal : mealRepository.findAll()) {
+                List<Recipe> recipesForMeal = recipeRepository.findAllByMealId(meal.getId());
+                double sum=0;
+                for (Recipe recipe : recipesForMeal) {
+                    sum += recipe.getIngredient().getPurchasePrice() * recipe.getAmount();
+                }
+                meal.setPurchasePrice(sum);
+                mealRepository.save(meal);
+            }
+
             for (Process process : processes){
                 processRepository.save(process);
             }

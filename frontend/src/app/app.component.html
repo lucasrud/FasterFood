@@ -1,10 +1,12 @@
 <nav class="navbar is-success">
-  <a class="navbar-item" routerLink="">Cash Register</a>
-  <a class="navbar-item" routerLink="edit-meals">Edit Meals</a>
-  <a class="navbar-item" routerLink="ingredients">Ingredients & Stock</a>
-  <a class="navbar-item" routerLink="finance">Finances</a>
-  <a class="navbar-item" routerLink="register">Register</a>
-  <a class="navbar-item" routerLink="login">Login</a>
+  <a class="navbar-item" routerLink="" *ngIf="sessionUser !== null">Cash Register</a>
+  <a class="navbar-item" routerLink="edit-meals" *ngIf="sessionUser !== null" >Edit Meals</a>
+  <a class="navbar-item" routerLink="ingredients" *ngIf="sessionUser !== null">Ingredients & Stock</a>
+  <a class="navbar-item" routerLink="finance" *ngIf="sessionUser !== null">Finances</a>
+  <a class="navbar-item" routerLink="register" *ngIf="sessionUser !== null">Register</a>
+  <a class="navbar-item" routerLink="login" *ngIf="sessionUser === null">Login</a>
+  <a class="navbar-item" routerLink="login" *ngIf="sessionUser !== null" (click)="logout()">Logout</a>
+
 </nav>
 <router-outlet></router-outlet>
 

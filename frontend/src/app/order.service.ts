@@ -44,7 +44,7 @@ export class OrderService {
         newMeals.push(m);
       } else {
         this.currentCost -= m.retailPrice;
-        this.http.post<number>('/api/deleteFromCart', m).subscribe(num => alert(num));
+        this.http.post<number>('/api/deleteFromCart', m).subscribe();
       }
       i++;
     }

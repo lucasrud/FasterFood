@@ -40,4 +40,11 @@ export class AppComponent implements OnInit {
   resetNewMeal() {
     this.name = '';
   }
+
+  logout() {
+    this.securityService.logout();
+    // this.loginData.username = null;
+    // this.loginData.password = null;
+    this.sessionUser = null;
+  }
 }

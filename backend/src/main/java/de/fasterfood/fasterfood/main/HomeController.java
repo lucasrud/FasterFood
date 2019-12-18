@@ -120,7 +120,22 @@ public class HomeController {
             }
 
 
-            ingredientRepository.save(wasserflasche);    // has dependency to Water
+            ingredientRepository.save(wasserflasche); // has dependency to Water
+            ingredientRepository.save(pita);
+            ingredientRepository.save(wrap);
+            ingredientRepository.save(baguette);
+            ingredientRepository.save(beef);
+            ingredientRepository.save(chicken);
+            ingredientRepository.save(falafel);
+            ingredientRepository.save(salad);
+            ingredientRepository.save(tomatos);
+            ingredientRepository.save(cucumber);
+            ingredientRepository.save(cabbage);
+            ingredientRepository.save(onion);
+            ingredientRepository.save(cocktailSauce);
+            ingredientRepository.save(garlicSauce);
+            ingredientRepository.save(spicySauce);
+            ingredientRepository.save(tomatoSauce);
 
             mealRepository.save(beef_kebab);
             mealRepository.save(chicken_kebab);

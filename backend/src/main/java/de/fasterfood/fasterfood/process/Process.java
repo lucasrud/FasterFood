@@ -1,6 +1,5 @@
 package de.fasterfood.fasterfood.process;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import de.fasterfood.fasterfood.editMeal.Meal;
 import de.fasterfood.fasterfood.order.Order;
 import javax.persistence.*;
@@ -31,7 +30,7 @@ public class Process {
     }
 
     @Override
-    public boolean equals(Object obj) {   // neecessary for method OrderService.addOrderandProcess()
+    public boolean equals(Object obj) {   // necessary for method OrderService.addOrderandProcess()
 
         if (obj == this) {
             return true;

@@ -8,5 +8,6 @@ public interface MealRepository extends CrudRepository<Meal, Integer> {
 
     List<Meal> findAll();
     Meal findById(int id);
+    Meal findByName(String name);
 
 }

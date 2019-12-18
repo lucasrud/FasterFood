@@ -15,17 +15,17 @@ export class OrderService {
   private response = 1;
   private meals: BehaviorSubject<Meal[]>;
   currentCost = 0;
-  dbIngredients: Ingredient[];               // All current ingredients in stock
-  currentMealRecipes: Recipe[] = [];          // Recipes needed for the whole current Meal
-  currentOrderRecipes: Recipe[] = [];     // Ingredients needed for the whole current Orderlist
+  dbIngredients: Ingredient[];              // All current ingredients in stock
+  currentMealRecipes: Recipe[] = [];        // Recipes needed for the whole current Meal
+  currentOrderRecipes: Recipe[] = [];       // Ingredients needed for the whole current Orderlist
 
   constructor(private http: HttpClient) {
     const initialOrders: Meal[] = [];
     this.meals = new BehaviorSubject<Meal[]>(initialOrders);
     this.http.get<Ingredient[]>('/api/ingredients').subscribe(ingredients => this.dbIngredients = ingredients);
-    this.dbIngredients = [];               // All current ingredients in stock
-    this.currentMealRecipes = [];          // Recipes needed for the whole current Meal
-    this.currentOrderRecipes = [];     // Ingredients needed for the whole current Orderlist
+    this.dbIngredients = [];                // All current ingredients in stock
+    this.currentMealRecipes = [];           // Recipes needed for the whole current Meal
+    this.currentOrderRecipes = [];          // Ingredients needed for the whole current Orderlist
   }
   addToMealList(meal: Meal): void {
     this.currentCost += meal.retailPrice;
@@ -56,7 +56,7 @@ export class OrderService {
   }
 
   order(meals) {
-    alert('Order submitted');
+    // alert('Order submitted');  // maybe improve this
     this.currentCost = 0;
     this.http.post<Meal[]>('/api/order', meals).subscribe(m => this.meals.next([]));
   }

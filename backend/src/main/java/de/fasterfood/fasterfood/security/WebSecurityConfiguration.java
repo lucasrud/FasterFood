@@ -22,16 +22,14 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.authorizeRequests().antMatchers("/", "/meals", "/api/meals/order", "/api/meals/price",
-                "/api/meals/addMeal", "/api/meals/deleteMeal", "/api/finance", "/api/ingredients",  "/api/ingredients/price",
-                "/api/ingredients/delete", "/api/ingredients/checkdependencies", "/api/order", "/api/sessionUser", "/api/register/user").permitAll();
+//        http.authorizeRequests().antMatchers("/", "/meals", "/api/meals/order", "/api/meals/price",
+//                "/api/meals/addMeal", "/api/meals/deleteMeal", "/api/finance", "/api/ingredients",  "/api/ingredients/price",
+//                "/api/ingredients/delete", "/api/ingredients/checkdependencies", "/api/order", "/api/sessionUser", "/api/register/user").permitAll();
 
-//        http.cors().and().csrf().disable();
-
+        http.authorizeRequests().antMatchers("/api/login").permitAll();
 
         http.httpBasic();
         http.authorizeRequests().anyRequest().authenticated();
-//        http.authorizeRequests().anyRequest().permitAll();
         http.exceptionHandling()
                 .authenticationEntryPoint(new Http403ForbiddenEntryPoint());
 
@@ -39,6 +37,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler());
 
         http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+
+
+
 
 
     }

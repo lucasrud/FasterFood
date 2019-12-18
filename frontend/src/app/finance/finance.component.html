@@ -39,11 +39,11 @@
                   <td>{{process.meal.id}}</td>
                   <td>{{process.meal.name}}</td>
                   <td>{{process.quantity}}</td>
-                  <td>{{process.meal.retailPrice}}</td>
-                  <td>{{process.retailPrice}}</td>
-                  <td>{{process.order.retailPrice}}</td>
-                  <td>{{process.meal.purchasePrice * process.quantity}}</td>
-                  <td>{{process.meal.profit * process.quantity}}</td>
+                  <td>{{process.meal.retailPrice.toFixed(2) + ' €'}}</td>
+                  <td>{{process.retailPrice.toFixed(2) + ' €'}}</td>
+                  <td>{{process.order.retailPrice.toFixed(2) + ' €'}}</td>
+                  <td>{{(process.meal.purchasePrice * process.quantity).toFixed(2) + ' €'}}</td>
+                  <td>{{(process.meal.profit * process.quantity).toFixed(2) + ' €'}}</td>
                 </tr>
               </table>
             </div>
@@ -57,15 +57,15 @@
               <table class="table">
                 <tr>
                   <th>Total Turnover</th>
-                  <th>{{processesTotalTurnover(processes)}}</th>
+                  <th>{{processesTotalTurnover(processes).toFixed(2) + ' €'}}</th>
                 </tr>
                 <tr>
                   <th>Total Expanses of Meals</th>
-                  <th>{{processesTotalPurchasePrice(processes)}}</th>
+                  <th>{{processesTotalPurchasePrice(processes).toFixed(2) + ' €'}}</th>
                 </tr>
                 <tr>
                   <th>Total Profit</th>
-                  <th>{{processesTotalProfit(processes)}}</th>
+                  <th>{{processesTotalProfit(processes).toFixed(2) + ' €'}}</th>
                 </tr>
               </table>
             </div>

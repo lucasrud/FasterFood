@@ -1,20 +1,12 @@
 <nav class="navbar is-success">
-  <a class="navbar-item" routerLink="" *ngIf="sessionUser !== null">Cash Register</a>
+  <a class="navbar-item" routerLink="cashregister" *ngIf="sessionUser !== null">Cash Register</a>
   <a class="navbar-item" routerLink="edit-meals" *ngIf="sessionUser !== null" >Edit Meals</a>
   <a class="navbar-item" routerLink="ingredients" *ngIf="sessionUser !== null">Ingredients & Stock</a>
   <a class="navbar-item" routerLink="finance" *ngIf="sessionUser !== null">Finances</a>
   <a class="navbar-item" routerLink="register" *ngIf="sessionUser !== null">Register</a>
   <a class="navbar-item" routerLink="login" *ngIf="sessionUser === null">Login</a>
   <a class="navbar-item" routerLink="login" *ngIf="sessionUser !== null" (click)="logout()">Logout</a>
-
+  <span class="navbar-item" *ngIf="sessionUser !== null" >{{'Logged in as: ' + sessionUser.username}}</span>
 </nav>
 <router-outlet></router-outlet>
 
-
-<!--<form *ngIf="sessionUser === null" (ngSubmit)="login()">-->
-<!--  <label>Username: <input name="username" [(ngModel)]="loginData.username"></label><br>-->
-<!--  <label>Password: <input type="password" name="password" [(ngModel)]="loginData.password"></label><br>-->
-<!--  <button type="submit">Los</button>-->
-<!--</form>-->
-
-<!--<button *ngIf="sessionUser !== null" (click)="logout()">Logout</button>-->

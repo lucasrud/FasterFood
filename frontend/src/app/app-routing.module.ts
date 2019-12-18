@@ -9,7 +9,8 @@ import {LoginComponent} from './login/login.component';
 
 
 const routes: Routes = [
-  { path: '', component: CashregisterComponent },
+  { path: '', component: LoginComponent},
+  { path: 'cashregister', component: CashregisterComponent },
   { path: 'ingredients', component: IngredientsComponent},
   { path: 'edit-meals', component: MealsComponent },
   { path: 'finance', component: FinanceComponent },

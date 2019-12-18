@@ -78,7 +78,6 @@ public class HomeController {
             Ingredient wasserflasche = new Ingredient("Bottle of Water - Bonaqua", 0.03, 400);
 
 
-
             List<Ingredient> ingredients = new LinkedList<>();
             ingredients.add(dough);
 //            ingredients.add(beef);

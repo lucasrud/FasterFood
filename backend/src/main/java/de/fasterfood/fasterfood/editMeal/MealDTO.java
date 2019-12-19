@@ -4,7 +4,7 @@ import de.fasterfood.fasterfood.recipe.RecipeDTO;
 
 public class MealDTO {
     private String name;
-    private int price;
+    private double price;
     private RecipeDTO[] recipeDTOS;
 
     public MealDTO() {
@@ -18,11 +18,11 @@ public class MealDTO {
         this.name = name;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

@@ -33,7 +33,7 @@ export class SecurityService {
       u => this.sessionUser.next(u),
       () => this.sessionUser.next(null),
     );
-    this.router.navigate(['/cashregister']);
+    this.router.navigate(['/login']);
   }
 
 

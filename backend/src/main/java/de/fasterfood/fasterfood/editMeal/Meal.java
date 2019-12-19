@@ -1,12 +1,6 @@
 package de.fasterfood.fasterfood.editMeal;
 
-import de.fasterfood.fasterfood.ingredient.Ingredient;
-import de.fasterfood.fasterfood.recipe.Recipe;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import javax.persistence.*;
-import java.util.HashMap;
-import java.util.List;
 
 
 @Entity

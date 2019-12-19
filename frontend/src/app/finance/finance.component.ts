@@ -20,15 +20,16 @@ export class FinanceComponent implements OnInit {
   ngOnInit() {
     this.http.get<Process[]>('/api/finance').subscribe( processes => this.processes = processes);
   }
-  changeView() {
-    if (this.daily) {
+  changeViewToTotal() {
       this.daily = false;
       this.http.get<Process[]>('/api/finance').subscribe( processes => this.processes = processes);
-    } else {
-      this.daily = true;
-      this.http.get<Process[]>('/api/finance/today').subscribe( processes => this.processes = processes);
-    }
   }
+
+  changeViewToDaily() {
+    this.daily = true;
+    this.http.get<Process[]>('/api/finance/today').subscribe( processes => this.processes = processes);
+  }
+
   processesTotalTurnover(processes) {
     let sum = 0;
     for (const process of processes) {

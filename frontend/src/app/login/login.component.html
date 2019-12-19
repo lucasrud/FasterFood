@@ -2,13 +2,21 @@
   <h2 class="title is-3" style="padding-top: 3%"><img src="../assets/fasterfood.png" alt="Faster Food"></h2>
 
 </div>
-<div class="columns is-centered" style="padding: 30px">
+<div class="columns is-centered" style="padding: 30px" *ngIf="sessionUser === null">
   <form class="column is-4-desktop is-6-touch has-text-centered" (ngSubmit)="login()">
 <input class="input is-info is-hovered" style="margin: 10px 0" type="text" name="Nutzername" placeholder="Nutzername" [(ngModel)]="loginData.username">
     <br>
 <input class="input is-info is-hovered" style="margin: 10px 0" type="password" name="Passwort" placeholder="Passwort" [(ngModel)]="loginData.password">
     <br>
     <button class="button is-info is-light" style="margin: 10px 0" type="submit">Login</button>
+  </form>
+</div>
+
+
+<div class="columns is-centered" style="padding: 30px" *ngIf="sessionUser !== null">
+  <form class="column is-4-desktop is-6-touch has-text-centered" (ngSubmit)="login()">
+    <h2>Login successful</h2>
+    <h2>Welcome {{sessionUser.username}}</h2>
   </form>
 </div>
 
